@@ -22,25 +22,18 @@ no lucide-react, no react-hook-form, no zod.
 This repo _is_ a shadcn registry — `registry.json` at the root, GitHub-registry mode:
 
 ```sh
-# once the GitHub repo is public:
 pnpm dlx shadcn@latest add rayli09/shadcn-effect/button
 pnpm dlx shadcn@latest add rayli09/shadcn-effect/badge
 pnpm dlx shadcn@latest add rayli09/shadcn-effect/theme
 ```
 
-Or via namespace, in your `components.json`:
-
-```json
-{
-  "registries": {
-    "@shadcn-effect": "https://raw.githubusercontent.com/rayli09/shadcn-effect/main/public/r/{name}.json"
-  }
-}
-```
-
-```sh
-pnpm dlx shadcn@latest add @shadcn-effect/button
-```
+No `components.json` registry configuration is needed — the GitHub repo is
+the registry. Items depend on each other by full GitHub address
+(`rayli09/shadcn-effect/utils`, …), as the shadcn GitHub-registry docs
+require; a bare dependency name would resolve against the default shadcn
+registry instead. Verified end-to-end with a scratch consumer project
+(button + its utils dependency install as TypeScript, with `effect` and
+the `@effect/ui` snapshots pulled in automatically).
 
 Prerequisite in the consuming app: `effect` + the `@effect/ui` snapshot builds
 (Effect UI is public preview, not on npm yet):

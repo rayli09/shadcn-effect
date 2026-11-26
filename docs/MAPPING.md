@@ -15,15 +15,15 @@ which are pure markup in both worlds.
 | `alert` | — (pure view / composition) | view | ported (wave 1) |
 | `alert-dialog` | AlertDialog | kit | ported (wave 1) |
 | `aspect-ratio` | — (pure view / composition) | view | ported (wave 1) |
-| `attachment` | — (pure view / composition) | view | planned |
+| `attachment` | — (pure view / composition) | view | ported (wave 2) |
 | `avatar` | Avatar | kit | ported (wave 1) |
 | `badge` | — (pure view) | view | ported |
-| `breadcrumb` | — (pure view / composition) | view | planned |
-| `bubble` | — (pure view / composition) | view | planned |
+| `breadcrumb` | — (pure view / composition) | view | ported (wave 2) |
+| `bubble` | — (pure view / composition) | view | ported (wave 2) |
 | `button` | Button (view fn) | kit | ported |
 | `button-group` | — (pure view / composition) | view | ported (wave 1) |
-| `calendar` | Calendar / RangeCalendar | kit | kit-ready |
-| `card` | — (pure view / composition) | view | planned |
+| `calendar` | Calendar / RangeCalendar | kit | ported (wave 2) |
+| `card` | — (pure view / composition) | view | ported (wave 2) |
 | `carousel` | — (pure view / composition) | view | planned |
 | `chart` | — (pure view / composition) | view | planned |
 | `checkbox` | Checkbox | kit | ported (wave 1) |
@@ -32,41 +32,41 @@ which are pure markup in both worlds.
 | `command` | Combobox / Autocomplete + ListNavigation | kit composition | ported (wave 1) |
 | `context-menu` | ContextMenu | kit | ported (wave 1) |
 | `dialog` | Dialog | kit | ported (wave 1) |
-| `direction` | DirectionProvider | kit | kit-ready |
+| `direction` | DirectionProvider | kit | ported (wave 2) |
 | `drawer` | Drawer | kit | ported (wave 1) |
 | `dropdown-menu` | Menu | kit (Menu) | ported (wave 1) |
-| `empty` | — (pure view / composition) | view | planned |
-| `field` | Field / Fieldset | kit | kit-ready |
-| `form` | Form + effect Schema | kit + Schema (replaces react-hook-form + zod) | kit-ready |
+| `empty` | — (pure view / composition) | view | ported (wave 2) |
+| `field` | Field / Fieldset | kit | ported (wave 2) |
+| `form` | Form + effect Schema | kit + Schema (replaces react-hook-form + zod) | ported (wave 2) |
 | `hover-card` | PreviewCard | kit (PreviewCard) | ported (wave 1) |
 | `input` | Input | kit | ported (wave 1) |
-| `input-group` | — (pure view / composition) | view | planned |
-| `input-otp` | OTPField | kit | kit-ready |
-| `item` | — (pure view / composition) | view | planned |
+| `input-group` | — (pure view / composition) | view | ported (wave 2) |
+| `input-otp` | OTPField | kit | ported (wave 2) |
+| `item` | — (pure view / composition) | view | ported (wave 2) |
 | `kbd` | — (pure view / composition) | view | ported (wave 1) |
 | `label` | — (pure view / composition) | view | ported (wave 1) |
-| `marker` | — (pure view / composition) | view | planned |
+| `marker` | — (pure view / composition) | view | ported (wave 2) |
 | `menubar` | Menubar | kit | ported (wave 1) |
-| `message` | — (pure view / composition) | view | planned |
-| `message-scroller` | — (pure view / composition) | view | planned |
+| `message` | — (pure view / composition) | view | ported (wave 2) |
+| `message-scroller` | — (pure view / composition) | view | ported (wave 2, anatomy — upstream scroll engine/hooks not reproduced) |
 | `native-select` | — (pure view / composition) | view | ported (wave 1) |
-| `navigation-menu` | NavigationMenu | kit | kit-ready |
-| `pagination` | — (pure view / composition) | view | planned |
+| `navigation-menu` | NavigationMenu | kit | ported (wave 2, anatomy — kit has no panels; content/viewport ship as class constants) |
+| `pagination` | — (pure view / composition) | view | ported (wave 2) |
 | `popover` | Popover | kit | ported (wave 1) |
-| `progress` | Progress | kit | kit-ready |
+| `progress` | Progress | kit | ported (wave 2) |
 | `radio-group` | RadioGroup | kit | ported (wave 1) |
 | `resizable` | — (pure view / composition) | view | planned |
-| `scroll-area` | ScrollArea | kit | kit-ready |
+| `scroll-area` | ScrollArea | kit | ported (wave 2) |
 | `select` | Select | kit | ported (wave 1) |
 | `separator` | Separator | kit | ported |
 | `sheet` | — (pure view / composition) | view | ported (wave 1) |
-| `sidebar` | — (pure view / composition) | view | planned |
+| `sidebar` | — (pure view / composition) | view | ported (wave 2, Provider Component block) |
 | `skeleton` | — (pure view / composition) | view | ported (wave 1) |
-| `slider` | Slider | kit | kit-ready |
-| `sonner` | Toast | kit (Toast) | kit-ready |
+| `slider` | Slider | kit | ported (wave 2) |
+| `sonner` | Toast | kit (Toast) | ported (wave 2) |
 | `spinner` | — (pure view / composition) | view | ported (wave 1) |
 | `switch` | Switch | kit | ported (wave 1) |
-| `table` | — (pure view / composition) | view | planned |
+| `table` | — (pure view / composition) | view | ported (wave 2) |
 | `tabs` | Tabs | kit | ported (wave 1) |
 | `textarea` | — (pure view / composition) | view | ported (wave 1) |
 | `toggle` | Toggle | kit | ported (wave 1) |

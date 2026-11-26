@@ -89,6 +89,28 @@
       ]
     },
     {
+      "name": "attachment",
+      "type": "registry:ui",
+      "title": "Attachment",
+      "description": "shadcn attachment ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/attachment.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/attachment.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ]
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -119,6 +141,48 @@
           "path": "registry/ui/badge.ts",
           "type": "registry:ui",
           "target": "~/src/components/ui/badge.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "shadcn breadcrumb ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/breadcrumb.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/breadcrumb.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "bubble",
+      "type": "registry:ui",
+      "title": "Bubble",
+      "description": "shadcn bubble ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/bubble.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/bubble.ts"
         }
       ],
       "dependencies": [
@@ -171,6 +235,49 @@
       "registryDependencies": [
         "utils",
         "separator"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "shadcn calendar ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/calendar.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/calendar.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "shadcn card ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/card.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/card.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -276,6 +383,30 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "shadcn date-picker ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/date-picker.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/date-picker.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "calendar",
+        "popover"
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -294,6 +425,24 @@
       ],
       "registryDependencies": [
         "utils"
+      ]
+    },
+    {
+      "name": "direction",
+      "type": "registry:ui",
+      "title": "Direction",
+      "description": "shadcn direction ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/direction.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/direction.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
       ]
     },
     {
@@ -339,6 +488,72 @@
       ]
     },
     {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "shadcn empty ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/empty.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/empty.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "shadcn field ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/field.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/field.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "label",
+        "separator"
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "shadcn form ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/form.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/form.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "label"
+      ]
+    },
+    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
@@ -360,6 +575,22 @@
       ]
     },
     {
+      "name": "icons",
+      "type": "registry:lib",
+      "title": "Icons",
+      "description": "Inline-SVG lucide icon builders for @effect/ui (no lucide-react)",
+      "files": [
+        {
+          "path": "registry/lib/icons.ts",
+          "type": "registry:lib",
+          "target": "~/src/lib/icons.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
@@ -378,6 +609,73 @@
       ],
       "registryDependencies": [
         "utils"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "shadcn input-group ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/input-group.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/input-group.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "input",
+        "textarea"
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp",
+      "description": "shadcn input-otp ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/input-otp.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/input-otp.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "shadcn item ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/item.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/item.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "separator"
       ]
     },
     {
@@ -423,6 +721,27 @@
       ]
     },
     {
+      "name": "marker",
+      "type": "registry:ui",
+      "title": "Marker",
+      "description": "shadcn marker ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/marker.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/marker.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
@@ -441,6 +760,50 @@
       ],
       "registryDependencies": [
         "utils"
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:ui",
+      "title": "Message",
+      "description": "shadcn message ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/message.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/message.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "title": "Message Scroller",
+      "description": "shadcn message-scroller ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/message-scroller.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/message-scroller.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "icons",
+        "button"
       ]
     },
     {
@@ -465,6 +828,49 @@
       ]
     },
     {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "shadcn navigation-menu ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/navigation-menu.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/navigation-menu.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "shadcn pagination ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/pagination.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/pagination.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button"
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
@@ -486,6 +892,27 @@
       ]
     },
     {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "shadcn progress ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/progress.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/progress.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
@@ -495,6 +922,27 @@
           "path": "registry/ui/radio-group.ts",
           "type": "registry:ui",
           "target": "~/src/components/ui/radio-group.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "description": "shadcn scroll-area ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/scroll-area.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/scroll-area.ts"
         }
       ],
       "dependencies": [
@@ -571,6 +1019,32 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "shadcn sidebar ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/sidebar.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/sidebar.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils",
+        "button",
+        "input",
+        "separator",
+        "sheet",
+        "skeleton"
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
@@ -580,6 +1054,48 @@
           "path": "registry/ui/skeleton.ts",
           "type": "registry:ui",
           "target": "~/src/components/ui/skeleton.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "shadcn slider ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/slider.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/slider.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "shadcn sonner ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/sonner.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/sonner.ts"
         }
       ],
       "dependencies": [
@@ -622,6 +1138,27 @@
           "path": "registry/ui/switch.ts",
           "type": "registry:ui",
           "target": "~/src/components/ui/switch.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "shadcn table ported to @effect/ui-kit (Effect-native)",
+      "files": [
+        {
+          "path": "registry/ui/table.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/table.ts"
         }
       ],
       "dependencies": [

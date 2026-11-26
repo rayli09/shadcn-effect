@@ -130,3 +130,19 @@
     to { height: 0; }
   }
 }
+
+/* `shimmer` utility — used by attachment.ts (group-data-[state=uploading]:shimmer).
+   Upstream v4's shipped registry styles don't define it either; this is our
+   theme-level equivalent: a background sweep over the title text. */
+@utility shimmer {
+  background: linear-gradient(100deg, currentColor 40%, color-mix(in oklab, currentColor 35%, transparent) 50%, currentColor 60%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 1.6s linear infinite;
+}
+@keyframes shimmer {
+  from { background-position: 120% 0; }
+  to { background-position: -80% 0; }
+}

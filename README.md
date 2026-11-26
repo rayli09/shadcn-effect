@@ -49,7 +49,7 @@ pnpm add effect \
 
 ## Status
 
-Wave 1 ported and parity-verified: **35 components** (button, badge, separator, accordion, alert, alert-dialog, aspect-ratio, avatar, button-group, checkbox, collapsible, combobox, command, context-menu, dialog, drawer, dropdown-menu, hover-card, input, kbd, label, menubar, native-select, popover, radio-group, select, sheet, skeleton, spinner, switch, tabs, textarea, toggle, toggle-group, tooltip) + theme + utils. Wave 2 in progress.
+All 58 portable upstream files ported and parity-verified (wave 1: 35, wave 2: 23) + the date-picker docs composition + theme, utils, icons. Only chart, carousel, resizable remain unported — declared in docs/PORTING-RULES.md D-4 (they wrap React-only engines: Recharts, embla, react-resizable-panels).
 Full 61-file upstream mapping, primitive by primitive: [docs/MAPPING.md](docs/MAPPING.md).
 Porting rules and the banned-dependency list: [docs/PORTING-RULES.md](docs/PORTING-RULES.md).
 

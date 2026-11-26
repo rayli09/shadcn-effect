@@ -21,7 +21,16 @@ for (const item of registry.items) {
   }
 }
 
-const BANNED = ["react", "radix", "lucide-react", "class-variance-authority", "clsx", "tailwind-merge", "react-hook-form", "zod", "@ui-sdk/", "solid-js", "vue"]
+// Banned packages, matched on the import specifier's package boundary —
+// a substring match would false-positive on "effect/reactivity" (contains "react").
+const isBanned = (spec) =>
+  spec === "react" || spec.startsWith("react/") || spec === "react-dom" || spec.startsWith("react-dom/") ||
+  spec.includes("radix") ||
+  spec === "lucide-react" || spec === "class-variance-authority" || spec === "clsx" ||
+  spec === "tailwind-merge" || spec === "react-hook-form" ||
+  spec === "zod" || spec.startsWith("zod/") ||
+  spec.startsWith("@ui-sdk/") || spec === "solid-js" || spec.startsWith("solid-js/") ||
+  spec === "vue" || spec.startsWith("vue/")
 const walk = (dir) => readdirSync(dir).flatMap((e) => {
   const p = join(dir, e)
   return statSync(p).isDirectory() ? walk(p) : [p]
@@ -29,15 +38,8 @@ const walk = (dir) => readdirSync(dir).flatMap((e) => {
 for (const file of walk(join(root, "registry"))) {
   if (!file.endsWith(".ts")) continue
   const src = readFileSync(file, "utf8")
-  for (const b of BANNED) {
-    if (new RegExp(`from\\s+["'][^"']*${b.replace("/", "\\/")}`).test(src) || src.includes(`"${b}"`)) {
-      // class strings legitimately mention aria/data tokens, not imports; only import lines count
-    }
-  }
-  for (const line of src.split("\n")) {
-    if (/^\s*import/.test(line)) {
-      for (const b of BANNED) if (line.includes(b)) fail(`${file}: banned import ${b} :: ${line.trim()}`)
-    }
+  for (const m of src.matchAll(/^\s*import[^"']*["']([^"']+)["']/gm)) {
+    if (isBanned(m[1])) fail(`${file}: banned import ${m[1]}`)
   }
 }
 

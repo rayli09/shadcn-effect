@@ -49,7 +49,7 @@ pnpm add effect \
 
 ## Status
 
-Proof slice ported and parity-verified: **button, badge, separator** + theme + utils.
+Wave 1 ported and parity-verified: **35 components** (button, badge, separator, accordion, alert, alert-dialog, aspect-ratio, avatar, button-group, checkbox, collapsible, combobox, command, context-menu, dialog, drawer, dropdown-menu, hover-card, input, kbd, label, menubar, native-select, popover, radio-group, select, sheet, skeleton, spinner, switch, tabs, textarea, toggle, toggle-group, tooltip) + theme + utils. Wave 2 in progress.
 Full 61-file upstream mapping, primitive by primitive: [docs/MAPPING.md](docs/MAPPING.md).
 Porting rules and the banned-dependency list: [docs/PORTING-RULES.md](docs/PORTING-RULES.md).
 

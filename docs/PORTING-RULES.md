@@ -55,3 +55,22 @@ Instead:
   `effect` until Effect UI is on npm) and `registryDependencies` (e.g. `utils`).
 - An item ships only when its port passes `bun run verify` *and* typechecks
   against the pinned `@effect/ui` snapshot (`bun run check`).
+- **D-5 `data-state` / animation attributes** — Radix/Base UI write
+  `data-state="open|closed|checked|…"` and `--radix-*` / `--vaul-*` variables;
+  the kit writes `data-open`/`data-closed`/`data-checked`/`data-pressed`/
+  `data-starting-style`/`data-ending-style` and `--transform-origin` /
+  `--anchor-width` etc. Upstream class tokens are kept verbatim for parity.
+  Where a port is controlled (checkbox, switch, radio, toggle, tabs) the
+  wrapper ALSO writes `data-state` from props so the upstream variants stay
+  live. Accordion adds kit-attribute equivalents (`data-open:animate-…`).
+  For popups/menus/dialogs the animate-in/out utilities keyed on `data-[state=…]`
+  stay inert — consumers animate via the kit attributes. This is the single
+  largest behavioral divergence in the registry.
+- **D-6 Portal / sub-component shape** — the kit has no Portal (positioners are
+  top-layer popovers) and headless parts exist only inside a Component's view
+  closure, so upstream's many small exports collapse into one Component +
+  styled part appliers + exported class constants. Names and data-slots are
+  preserved wherever an element actually renders.
+- **D-7 Controlled-only inputs** — kit `Input` requires `props.value`
+  (no uncontrolled/`defaultValue` mode). Icons are file-local inline SVG
+  builders until `registry/lib/icons.ts` hoists them (wave 2 cleanup).

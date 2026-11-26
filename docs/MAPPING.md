@@ -11,67 +11,67 @@ which are pure markup in both worlds.
 
 | shadcn | Effect UI primitive | kind | status |
 |---|---|---|---|
-| `accordion` | Accordion | kit | kit-ready |
-| `alert` | — (pure view / composition) | view | planned |
-| `alert-dialog` | AlertDialog | kit | kit-ready |
-| `aspect-ratio` | — (pure view / composition) | view | planned |
+| `accordion` | Accordion | kit | ported (wave 1) |
+| `alert` | — (pure view / composition) | view | ported (wave 1) |
+| `alert-dialog` | AlertDialog | kit | ported (wave 1) |
+| `aspect-ratio` | — (pure view / composition) | view | ported (wave 1) |
 | `attachment` | — (pure view / composition) | view | planned |
-| `avatar` | Avatar | kit | kit-ready |
+| `avatar` | Avatar | kit | ported (wave 1) |
 | `badge` | — (pure view) | view | ported |
 | `breadcrumb` | — (pure view / composition) | view | planned |
 | `bubble` | — (pure view / composition) | view | planned |
 | `button` | Button (view fn) | kit | ported |
-| `button-group` | — (pure view / composition) | view | planned |
+| `button-group` | — (pure view / composition) | view | ported (wave 1) |
 | `calendar` | Calendar / RangeCalendar | kit | kit-ready |
 | `card` | — (pure view / composition) | view | planned |
 | `carousel` | — (pure view / composition) | view | planned |
 | `chart` | — (pure view / composition) | view | planned |
-| `checkbox` | Checkbox | kit | kit-ready |
-| `collapsible` | Collapsible | kit | kit-ready |
-| `combobox` | Combobox | kit | kit-ready |
-| `command` | Combobox / Autocomplete + ListNavigation | kit composition | kit-ready |
-| `context-menu` | ContextMenu | kit | kit-ready |
-| `dialog` | Dialog | kit | kit-ready |
+| `checkbox` | Checkbox | kit | ported (wave 1) |
+| `collapsible` | Collapsible | kit | ported (wave 1) |
+| `combobox` | Combobox | kit | ported (wave 1) |
+| `command` | Combobox / Autocomplete + ListNavigation | kit composition | ported (wave 1) |
+| `context-menu` | ContextMenu | kit | ported (wave 1) |
+| `dialog` | Dialog | kit | ported (wave 1) |
 | `direction` | DirectionProvider | kit | kit-ready |
-| `drawer` | Drawer | kit | kit-ready |
-| `dropdown-menu` | Menu | kit (Menu) | kit-ready |
+| `drawer` | Drawer | kit | ported (wave 1) |
+| `dropdown-menu` | Menu | kit (Menu) | ported (wave 1) |
 | `empty` | — (pure view / composition) | view | planned |
 | `field` | Field / Fieldset | kit | kit-ready |
 | `form` | Form + effect Schema | kit + Schema (replaces react-hook-form + zod) | kit-ready |
-| `hover-card` | PreviewCard | kit (PreviewCard) | kit-ready |
-| `input` | Input | kit | kit-ready |
+| `hover-card` | PreviewCard | kit (PreviewCard) | ported (wave 1) |
+| `input` | Input | kit | ported (wave 1) |
 | `input-group` | — (pure view / composition) | view | planned |
 | `input-otp` | OTPField | kit | kit-ready |
 | `item` | — (pure view / composition) | view | planned |
-| `kbd` | — (pure view / composition) | view | planned |
-| `label` | — (pure view / composition) | view | planned |
+| `kbd` | — (pure view / composition) | view | ported (wave 1) |
+| `label` | — (pure view / composition) | view | ported (wave 1) |
 | `marker` | — (pure view / composition) | view | planned |
-| `menubar` | Menubar | kit | kit-ready |
+| `menubar` | Menubar | kit | ported (wave 1) |
 | `message` | — (pure view / composition) | view | planned |
 | `message-scroller` | — (pure view / composition) | view | planned |
-| `native-select` | — (pure view / composition) | view | planned |
+| `native-select` | — (pure view / composition) | view | ported (wave 1) |
 | `navigation-menu` | NavigationMenu | kit | kit-ready |
 | `pagination` | — (pure view / composition) | view | planned |
-| `popover` | Popover | kit | kit-ready |
+| `popover` | Popover | kit | ported (wave 1) |
 | `progress` | Progress | kit | kit-ready |
-| `radio-group` | RadioGroup | kit | kit-ready |
+| `radio-group` | RadioGroup | kit | ported (wave 1) |
 | `resizable` | — (pure view / composition) | view | planned |
 | `scroll-area` | ScrollArea | kit | kit-ready |
-| `select` | Select | kit | kit-ready |
+| `select` | Select | kit | ported (wave 1) |
 | `separator` | Separator | kit | ported |
-| `sheet` | — (pure view / composition) | view | planned |
+| `sheet` | — (pure view / composition) | view | ported (wave 1) |
 | `sidebar` | — (pure view / composition) | view | planned |
-| `skeleton` | — (pure view / composition) | view | planned |
+| `skeleton` | — (pure view / composition) | view | ported (wave 1) |
 | `slider` | Slider | kit | kit-ready |
 | `sonner` | Toast | kit (Toast) | kit-ready |
-| `spinner` | — (pure view / composition) | view | planned |
-| `switch` | Switch | kit | kit-ready |
+| `spinner` | — (pure view / composition) | view | ported (wave 1) |
+| `switch` | Switch | kit | ported (wave 1) |
 | `table` | — (pure view / composition) | view | planned |
-| `tabs` | Tabs | kit | kit-ready |
-| `textarea` | — (pure view / composition) | view | planned |
-| `toggle` | Toggle | kit | kit-ready |
-| `toggle-group` | ToggleGroup | kit | kit-ready |
-| `tooltip` | Tooltip | kit | kit-ready |
+| `tabs` | Tabs | kit | ported (wave 1) |
+| `textarea` | — (pure view / composition) | view | ported (wave 1) |
+| `toggle` | Toggle | kit | ported (wave 1) |
+| `toggle-group` | ToggleGroup | kit | ported (wave 1) |
+| `tooltip` | Tooltip | kit | ported (wave 1) |
 
 ## Declared divergences (no silent ones)
 - **chart** — upstream wraps Recharts (React). Effect-native charting is out of

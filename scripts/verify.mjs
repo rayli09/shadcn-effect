@@ -6,50 +6,68 @@
 // 3. Class parity: every upstream shadcn class token for a ported component
 //    (parity/upstream-tokens.json, extracted from shadcn-ui/ui new-york-v4)
 //    still appears in our port. Assert, never silently no-op.
-import { readFileSync, existsSync, readdirSync, statSync } from "node:fs"
-import { join, dirname } from "node:path"
-import { fileURLToPath } from "node:url"
+import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..")
-let failures = 0
-const fail = (m) => { console.error("FAIL:", m); failures++ }
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+let failures = 0;
+const fail = (m) => {
+  console.error("FAIL:", m);
+  failures++;
+};
 
-const registry = JSON.parse(readFileSync(join(root, "registry.json"), "utf8"))
+const registry = JSON.parse(readFileSync(join(root, "registry.json"), "utf8"));
 for (const item of registry.items) {
   for (const f of item.files ?? []) {
-    if (!existsSync(join(root, f.path))) fail(`registry item ${item.name}: missing file ${f.path}`)
+    if (!existsSync(join(root, f.path))) fail(`registry item ${item.name}: missing file ${f.path}`);
   }
 }
 
 // Banned packages, matched on the import specifier's package boundary —
 // a substring match would false-positive on "effect/reactivity" (contains "react").
 const isBanned = (spec) =>
-  spec === "react" || spec.startsWith("react/") || spec === "react-dom" || spec.startsWith("react-dom/") ||
+  spec === "react" ||
+  spec.startsWith("react/") ||
+  spec === "react-dom" ||
+  spec.startsWith("react-dom/") ||
   spec.includes("radix") ||
-  spec === "lucide-react" || spec === "class-variance-authority" || spec === "clsx" ||
-  spec === "tailwind-merge" || spec === "react-hook-form" ||
-  spec === "zod" || spec.startsWith("zod/") ||
-  spec.startsWith("@ui-sdk/") || spec === "solid-js" || spec.startsWith("solid-js/") ||
-  spec === "vue" || spec.startsWith("vue/")
-const walk = (dir) => readdirSync(dir).flatMap((e) => {
-  const p = join(dir, e)
-  return statSync(p).isDirectory() ? walk(p) : [p]
-})
+  spec === "lucide-react" ||
+  spec === "class-variance-authority" ||
+  spec === "clsx" ||
+  spec === "tailwind-merge" ||
+  spec === "react-hook-form" ||
+  spec === "zod" ||
+  spec.startsWith("zod/") ||
+  spec.startsWith("@ui-sdk/") ||
+  spec === "solid-js" ||
+  spec.startsWith("solid-js/") ||
+  spec === "vue" ||
+  spec.startsWith("vue/");
+const walk = (dir) =>
+  readdirSync(dir).flatMap((e) => {
+    const p = join(dir, e);
+    return statSync(p).isDirectory() ? walk(p) : [p];
+  });
 for (const file of walk(join(root, "registry"))) {
-  if (!file.endsWith(".ts")) continue
-  const src = readFileSync(file, "utf8")
+  if (!file.endsWith(".ts")) continue;
+  const src = readFileSync(file, "utf8");
   for (const m of src.matchAll(/^\s*import[^"']*["']([^"']+)["']/gm)) {
-    if (isBanned(m[1])) fail(`${file}: banned import ${m[1]}`)
+    if (isBanned(m[1])) fail(`${file}: banned import ${m[1]}`);
   }
 }
 
-const parity = JSON.parse(readFileSync(join(root, "parity/upstream-tokens.json"), "utf8"))
+const parity = JSON.parse(readFileSync(join(root, "parity/upstream-tokens.json"), "utf8"));
 for (const [name, toks] of Object.entries(parity)) {
-  const src = readFileSync(join(root, "registry/ui", `${name}.ts`), "utf8")
-  const missing = toks.filter((t) => !src.includes(t))
-  if (missing.length) fail(`${name}: ${missing.length} upstream tokens missing: ${missing.slice(0, 8).join(" ")}`)
-  else console.log(`parity ${name}: ${toks.length} upstream tokens present`)
+  const src = readFileSync(join(root, "registry/ui", `${name}.ts`), "utf8");
+  const missing = toks.filter((t) => !src.includes(t));
+  if (missing.length)
+    fail(`${name}: ${missing.length} upstream tokens missing: ${missing.slice(0, 8).join(" ")}`);
+  else console.log(`parity ${name}: ${toks.length} upstream tokens present`);
 }
 
-if (failures) { console.error(`${failures} failure(s)`); process.exit(1) }
-console.log("verify: OK")
+if (failures) {
+  console.error(`${failures} failure(s)`);
+  process.exit(1);
+}
+console.log("verify: OK");

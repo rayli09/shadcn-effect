@@ -36,53 +36,47 @@
  * `--drawer-swipe-progress`). The same applies to the handle's and
  * header's `group-data-[vaul-drawer-direction=…]` tokens.
  */
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type { Html } from "@effect/ui/html"
-import {
-  Drawer as KitDrawer,
-  type DrawerEvents,
-  type DrawerProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type { Html } from "@effect/ui/html";
+import { Drawer as KitDrawer, type DrawerEvents, type DrawerProps } from "@effect/ui-kit";
+import { cn } from "../lib/utils.ts";
 
 /** What a `Drawer`'s `view` gets: the kit Drawer's parts and plain values. */
-export type DrawerParts = Component.Headless.Parts<typeof KitDrawer>
+export type DrawerParts = Component.Headless.Parts<typeof KitDrawer>;
 
 export const DRAWER_OVERLAY_CLASS =
-  "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0"
+  "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0";
 
 export const DRAWER_CONTENT_BASE_CLASS =
-  "group/drawer-content fixed z-50 flex h-auto flex-col bg-background"
+  "group/drawer-content fixed z-50 flex h-auto flex-col bg-background";
 
 export const DRAWER_CONTENT_DIRECTION_CLASSES = {
-  top:
-    "data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-lg data-[vaul-drawer-direction=top]:border-b",
+  top: "data-[vaul-drawer-direction=top]:inset-x-0 data-[vaul-drawer-direction=top]:top-0 data-[vaul-drawer-direction=top]:mb-24 data-[vaul-drawer-direction=top]:max-h-[80vh] data-[vaul-drawer-direction=top]:rounded-b-lg data-[vaul-drawer-direction=top]:border-b",
   bottom:
     "data-[vaul-drawer-direction=bottom]:inset-x-0 data-[vaul-drawer-direction=bottom]:bottom-0 data-[vaul-drawer-direction=bottom]:mt-24 data-[vaul-drawer-direction=bottom]:max-h-[80vh] data-[vaul-drawer-direction=bottom]:rounded-t-lg data-[vaul-drawer-direction=bottom]:border-t",
   right:
     "data-[vaul-drawer-direction=right]:inset-y-0 data-[vaul-drawer-direction=right]:right-0 data-[vaul-drawer-direction=right]:w-3/4 data-[vaul-drawer-direction=right]:border-l data-[vaul-drawer-direction=right]:sm:max-w-sm",
-  left:
-    "data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=left]:sm:max-w-sm"
-} as const
+  left: "data-[vaul-drawer-direction=left]:inset-y-0 data-[vaul-drawer-direction=left]:left-0 data-[vaul-drawer-direction=left]:w-3/4 data-[vaul-drawer-direction=left]:border-r data-[vaul-drawer-direction=left]:sm:max-w-sm",
+} as const;
 
 export const DRAWER_HANDLE_CLASS =
-  "mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block"
+  "mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block";
 
 export const DRAWER_HEADER_CLASS =
-  "flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-1.5 md:text-left"
+  "flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-center group-data-[vaul-drawer-direction=top]/drawer-content:text-center md:gap-1.5 md:text-left";
 
-export const DRAWER_FOOTER_CLASS = "mt-auto flex flex-col gap-2 p-4"
+export const DRAWER_FOOTER_CLASS = "mt-auto flex flex-col gap-2 p-4";
 
-export const DRAWER_TITLE_CLASS = "font-semibold text-foreground"
+export const DRAWER_TITLE_CLASS = "font-semibold text-foreground";
 
-export const DRAWER_DESCRIPTION_CLASS = "text-sm text-muted-foreground"
+export const DRAWER_DESCRIPTION_CLASS = "text-sm text-muted-foreground";
 
 /** The grab handle upstream renders inside DrawerContent. */
 export const DrawerHandle = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) => h.div.class(cn(DRAWER_HANDLE_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.class(cn(DRAWER_HANDLE_CLASS, options.class));
 
 /**
  * A shadcn-styled Drawer. Call it like the kit's `Drawer`; the direction
@@ -119,24 +113,22 @@ export const DrawerHandle = <Msg>(
  */
 export const Drawer = <Msg, RV = never, RF = never>(
   h: View.Helper<Msg, unknown>,
-  options:
-    & View.Child.Options<DrawerProps, DrawerEvents, NoInfer<Msg>>
-    & {
-      /** The drawer's whole view, from its styled parts. */
-      readonly view: (
-        parts: DrawerParts & {
-          /** The grab handle upstream renders at the top of the content. */
-          readonly handle: (
-            h: Html.H<Msg>
-          ) => Html.Element<Msg, never, Html.EventsOf<"div">, HTMLDivElement, "div">
-        }
-      ) => View.Content<NoInfer<Msg>, RV>
-      /** Extra classes, appended like upstream's `className` on each part. */
-      readonly overlayClass?: string | undefined
-      readonly contentClass?: string | undefined
-      readonly titleClass?: string | undefined
-      readonly descriptionClass?: string | undefined
-    }
+  options: View.Child.Options<DrawerProps, DrawerEvents, NoInfer<Msg>> & {
+    /** The drawer's whole view, from its styled parts. */
+    readonly view: (
+      parts: DrawerParts & {
+        /** The grab handle upstream renders at the top of the content. */
+        readonly handle: (
+          h: Html.H<Msg>,
+        ) => Html.Element<Msg, never, Html.EventsOf<"div">, HTMLDivElement, "div">;
+      },
+    ) => View.Content<NoInfer<Msg>, RV>;
+    /** Extra classes, appended like upstream's `className` on each part. */
+    readonly overlayClass?: string | undefined;
+    readonly contentClass?: string | undefined;
+    readonly titleClass?: string | undefined;
+    readonly descriptionClass?: string | undefined;
+  },
 ): ReturnType<typeof KitDrawer<Msg, RV, RF>> =>
   KitDrawer<Msg, RV, RF>(h, {
     key: options.key,
@@ -147,15 +139,13 @@ export const Drawer = <Msg, RV = never, RF = never>(
       options.view({
         ...drawer,
         handle: (hh) => DrawerHandle(hh),
-        trigger: (element) =>
-          drawer.trigger(element.attr("data-slot", "drawer-trigger")),
-        portal: (element) =>
-          drawer.portal(element.attr("data-slot", "drawer-portal")),
+        trigger: (element) => drawer.trigger(element.attr("data-slot", "drawer-trigger")),
+        portal: (element) => drawer.portal(element.attr("data-slot", "drawer-portal")),
         backdrop: (element) =>
           drawer.backdrop(
             element
               .attr("data-slot", "drawer-overlay")
-              .class(cn(DRAWER_OVERLAY_CLASS, options.overlayClass))
+              .class(cn(DRAWER_OVERLAY_CLASS, options.overlayClass)),
           ),
         popup: (element) =>
           drawer.popup(
@@ -168,46 +158,39 @@ export const Drawer = <Msg, RV = never, RF = never>(
                     options.props.swipeDirection === "up"
                       ? "top"
                       : options.props.swipeDirection === "left"
-                      ? "left"
-                      : options.props.swipeDirection === "right"
-                      ? "right"
-                      : "bottom"
+                        ? "left"
+                        : options.props.swipeDirection === "right"
+                          ? "right"
+                          : "bottom"
                   ],
-                  options.contentClass
-                )
-              )
+                  options.contentClass,
+                ),
+              ),
           ),
         title: (element) =>
           drawer.title(
             element
               .attr("data-slot", "drawer-title")
-              .class(cn(DRAWER_TITLE_CLASS, options.titleClass))
+              .class(cn(DRAWER_TITLE_CLASS, options.titleClass)),
           ),
         description: (element) =>
           drawer.description(
             element
               .attr("data-slot", "drawer-description")
-              .class(cn(DRAWER_DESCRIPTION_CLASS, options.descriptionClass))
+              .class(cn(DRAWER_DESCRIPTION_CLASS, options.descriptionClass)),
           ),
-        close: (element) =>
-          drawer.close(element.attr("data-slot", "drawer-close"))
-      })
-  })
+        close: (element) => drawer.close(element.attr("data-slot", "drawer-close")),
+      }),
+  });
 
 /** Upstream `DrawerHeader`: a plain flex div, no kit part owns it. */
 export const DrawerHeader = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "drawer-header")
-    .class(cn(DRAWER_HEADER_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "drawer-header").class(cn(DRAWER_HEADER_CLASS, options.class));
 
 /** Upstream `DrawerFooter`: a plain flex div, no kit part owns it. */
 export const DrawerFooter = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "drawer-footer")
-    .class(cn(DRAWER_FOOTER_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "drawer-footer").class(cn(DRAWER_FOOTER_CLASS, options.class));

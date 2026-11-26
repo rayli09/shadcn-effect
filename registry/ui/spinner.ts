@@ -4,40 +4,34 @@
  * Upstream: lucide-react's `Loader2Icon` with `role="status"`,
  * `aria-label="Loading"` and the class string "size-4 animate-spin".
  * lucide-react is BANNED in this registry, so this port renders the same
- * icon as an inline SVG builder — the approach PORTING-RULES.md prescribes
- * for icons, and the one Effect UI itself uses for SVG (`h.el(tag)`, see
- * the launch example's diagram code):
+ * glyph via the shared `LoaderCircleIcon` builder in `../lib/icons.ts`
+ * (lucide loader path data "M21 12a9 9 0 1 1-6.219-8.56", ISC).
  *
- * - The <svg> carries lucide's own attributes: viewBox 0 0 24 24,
- *   fill none, stroke currentColor, stroke-width 2, round caps/joins.
- * - The single <path> is lucide's loader path data
- *   ("M21 12a9 9 0 1 1-6.219-8.56", ISC-licensed), identical to the glyph
- *   Loader2 / LoaderCircle renders.
- * - `role="status"` and `aria-label="Loading"` are preserved, as is the
- *   exact upstream class string.
+ * The shared `icon()` helper stamps lucide's full base set (xmlns,
+ * width/height, `aria-hidden="true"`) — none of which upstream's spinner
+ * renders, and an aria-hidden live region would be hidden from assistive
+ * tech. Those four are removed by chaining `.attrs({ …: undefined })`
+ * (an undefined value removes the attribute in @effect/ui's View), and
+ * `role="status"` / `aria-label="Loading"` are chained on. A render diff at
+ * migration time (wave 3) verified the rendered <svg> carries exactly the
+ * same attribute set and path as the hand-built version this replaced —
+ * only attribute order differs, which HTML does not care about.
  */
-import { Html } from "@effect/ui/html"
-import { cn } from "../lib/utils.ts"
+import type { Html } from "@effect/ui/html";
+import { LoaderCircleIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
 
-export const SPINNER_CLASS = "size-4 animate-spin"
-
-/** Lucide loader path data (ISC). */
-const LOADER_PATH = "M21 12a9 9 0 1 1-6.219-8.56"
+export const SPINNER_CLASS = "size-4 animate-spin";
 
 export const Spinner = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
-  h.el("svg").attrs({
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    "stroke-width": "2",
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
+  LoaderCircleIcon(h, { class: cn(SPINNER_CLASS, options.class) }).attrs({
+    xmlns: undefined,
+    width: undefined,
+    height: undefined,
+    "aria-hidden": undefined,
     role: "status",
     "aria-label": "Loading",
-    class: cn(SPINNER_CLASS, options.class)
-  }).children(
-    h.el("path").attr("d", LOADER_PATH)
-  )
+  });

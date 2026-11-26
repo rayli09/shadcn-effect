@@ -76,92 +76,77 @@
  *   indicator animation utilities are inert as written (D-5); key
  *   animation CSS off the kit's attributes in your theme.
  */
-import type * as Component from "@effect/ui/Component"
-import type { Html } from "@effect/ui/html"
-import type * as View from "@effect/ui/View"
-import {
-  NavigationMenu as KitNavigationMenu,
-  type NavigationMenuProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
+import type * as Component from "@effect/ui/Component";
+import type { Html } from "@effect/ui/html";
+import type * as View from "@effect/ui/View";
+import { NavigationMenu as KitNavigationMenu, type NavigationMenuProps } from "@effect/ui-kit";
+import { ChevronDownIcon as SharedChevronDownIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
 
 /** What a kit `NavigationMenu`'s view receives: its parts and plain values. */
-export type NavigationMenuParts = Component.Headless.Parts<
-  typeof KitNavigationMenu
->
+export type NavigationMenuParts = Component.Headless.Parts<typeof KitNavigationMenu>;
 
 /** The kit `NavigationMenu` props (orientation). */
-export type { NavigationMenuProps }
+export type { NavigationMenuProps };
 
 // ---------------------------------------------------------------------------
-// Inline Lucide icons (ISC path data, drawn with `h.el` as in the Effect UI
-// launch example's Icon component — the lucide-react package is banned).
+// Lucide icons from the shared `../lib/icons.ts` builders (ISC path data;
+// the lucide-react package is banned). The shared builder also stamps
+// lucide's `xmlns` / `width` / `height` defaults, which the file-local
+// builder it replaced omitted.
 // ---------------------------------------------------------------------------
-
-const iconAttrs = {
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  "stroke-width": "2",
-  "stroke-linecap": "round",
-  "stroke-linejoin": "round",
-  "aria-hidden": "true"
-} as const
 
 const ChevronDownIcon = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
-  h.el("svg")
-    .attrs({
-      ...iconAttrs,
-      class: options.class ?? NAVIGATION_MENU_TRIGGER_ICON_CLASS
-    })
-    .children(h.el("path").attrs({ d: "m6 9 6 6 6-6" }))
+  SharedChevronDownIcon(h, {
+    class: options.class ?? NAVIGATION_MENU_TRIGGER_ICON_CLASS,
+  });
 
 // ---------------------------------------------------------------------------
 // Class strings — byte-for-byte shadcn new-york-v4.
 // ---------------------------------------------------------------------------
 
 export const NAVIGATION_MENU_CLASS =
-  "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center"
+  "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center";
 
 export const NAVIGATION_MENU_LIST_CLASS =
-  "group flex flex-1 list-none items-center justify-center gap-1"
+  "group flex flex-1 list-none items-center justify-center gap-1";
 
-export const NAVIGATION_MENU_ITEM_CLASS = "relative"
+export const NAVIGATION_MENU_ITEM_CLASS = "relative";
 
 export const NAVIGATION_MENU_TRIGGER_CLASS =
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-accent/50 data-[state=open]:text-accent-foreground data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
+  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-[color,box-shadow] outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-accent/50 data-[state=open]:text-accent-foreground data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent";
 
 export const NAVIGATION_MENU_TRIGGER_ICON_CLASS =
-  "relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+  "relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180";
 
 export const NAVIGATION_MENU_CONTENT_CLASS =
-  "top-0 left-0 w-full p-2 pr-2.5 data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out md:absolute md:w-auto group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-md group-data-[viewport=false]/navigation-menu:border group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:shadow group-data-[viewport=false]/navigation-menu:duration-200 **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0 group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0 group-data-[viewport=false]/navigation-menu:data-[state=open]:zoom-in-95"
+  "top-0 left-0 w-full p-2 pr-2.5 data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out md:absolute md:w-auto group-data-[viewport=false]/navigation-menu:top-full group-data-[viewport=false]/navigation-menu:mt-1.5 group-data-[viewport=false]/navigation-menu:overflow-hidden group-data-[viewport=false]/navigation-menu:rounded-md group-data-[viewport=false]/navigation-menu:border group-data-[viewport=false]/navigation-menu:bg-popover group-data-[viewport=false]/navigation-menu:text-popover-foreground group-data-[viewport=false]/navigation-menu:shadow group-data-[viewport=false]/navigation-menu:duration-200 **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none group-data-[viewport=false]/navigation-menu:data-[state=closed]:animate-out group-data-[viewport=false]/navigation-menu:data-[state=closed]:fade-out-0 group-data-[viewport=false]/navigation-menu:data-[state=closed]:zoom-out-95 group-data-[viewport=false]/navigation-menu:data-[state=open]:animate-in group-data-[viewport=false]/navigation-menu:data-[state=open]:fade-in-0 group-data-[viewport=false]/navigation-menu:data-[state=open]:zoom-in-95";
 
 export const NAVIGATION_MENU_VIEWPORT_WRAPPER_CLASS =
-  "absolute top-full left-0 isolate z-50 flex justify-center"
+  "absolute top-full left-0 isolate z-50 flex justify-center";
 
 export const NAVIGATION_MENU_VIEWPORT_CLASS =
-  "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]"
+  "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]";
 
 export const NAVIGATION_MENU_LINK_CLASS =
-  "flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground data-[active=true]:hover:bg-accent data-[active=true]:focus:bg-accent [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground"
+  "flex flex-col gap-1 rounded-sm p-2 text-sm transition-all outline-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground data-[active=true]:hover:bg-accent data-[active=true]:focus:bg-accent [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground";
 
 export const NAVIGATION_MENU_INDICATOR_CLASS =
-  "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:animate-in data-[state=visible]:fade-in"
+  "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:animate-in data-[state=visible]:fade-in";
 
 export const NAVIGATION_MENU_INDICATOR_INNER_CLASS =
-  "relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md"
+  "relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md";
 
 /**
  * Upstream's cva export as a pure function: the trigger class string,
  * with an optional extra class appended (no cva, per PORTING-RULES).
  */
 export const navigationMenuTriggerStyle = (
-  options: { readonly class?: string | undefined } = {}
-): string => cn(NAVIGATION_MENU_TRIGGER_CLASS, options.class)
+  options: { readonly class?: string | undefined } = {},
+): string => cn(NAVIGATION_MENU_TRIGGER_CLASS, options.class);
 
 // ---------------------------------------------------------------------------
 // The root.
@@ -188,11 +173,11 @@ export const navigationMenuTriggerStyle = (
 export const NavigationMenu = <Msg, RV = never>(
   h: Html.H<Msg>,
   options: {
-    readonly props?: NavigationMenuProps | undefined
-    readonly viewport?: boolean | undefined
-    readonly class?: string | undefined
-    readonly view: (nav: NavigationMenuParts) => View.Content<Msg, RV>
-  }
+    readonly props?: NavigationMenuProps | undefined;
+    readonly viewport?: boolean | undefined;
+    readonly class?: string | undefined;
+    readonly view: (nav: NavigationMenuParts) => View.Content<Msg, RV>;
+  },
 ) =>
   KitNavigationMenu(h, {
     props: options.props ?? {},
@@ -202,8 +187,8 @@ export const NavigationMenu = <Msg, RV = never>(
         .attr("data-slot", "navigation-menu")
         .attr("data-viewport", (options.viewport ?? true) ? "true" : "false")
         .class(cn(NAVIGATION_MENU_CLASS, options.class))
-        .children(options.view(nav))
-  })
+        .children(options.view(nav)),
+  });
 
 // ---------------------------------------------------------------------------
 // Parts, styled. Each takes the parts object from the view closure.
@@ -213,23 +198,23 @@ export const NavigationMenu = <Msg, RV = never>(
 export const NavigationMenuList = <Msg>(
   nav: NavigationMenuParts,
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   nav
     .list(h.ul)
     .attr("data-slot", "navigation-menu-list")
-    .class(cn(NAVIGATION_MENU_LIST_CLASS, options.class))
+    .class(cn(NAVIGATION_MENU_LIST_CLASS, options.class));
 
 /** One item of the list: the kit `item` part on an `h.li`. */
 export const NavigationMenuItem = <Msg>(
   nav: NavigationMenuParts,
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   nav
     .item(h.li)
     .attr("data-slot", "navigation-menu-item")
-    .class(cn(NAVIGATION_MENU_ITEM_CLASS, options.class))
+    .class(cn(NAVIGATION_MENU_ITEM_CLASS, options.class));
 
 /**
  * An `<a>` builder: what `NavigationMenuLink` accepts as `element`, from
@@ -241,7 +226,7 @@ export type NavigationMenuLinkElement<Msg, R = never> = Html.Element<
   Html.EventsOf<"a">,
   HTMLAnchorElement,
   "a"
->
+>;
 
 /**
  * A link: the kit `link` part. Set `href` on the `element` (an `h.a`, or
@@ -254,18 +239,18 @@ export const NavigationMenuLink = <Msg, R = never>(
   nav: NavigationMenuParts,
   h: Html.H<Msg>,
   options: {
-    readonly element?: NavigationMenuLinkElement<Msg, R> | undefined
-    readonly active?: boolean | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly element?: NavigationMenuLinkElement<Msg, R> | undefined;
+    readonly active?: boolean | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) => {
-  const element: NavigationMenuLinkElement<Msg, R> = options.element ?? h.a
+  const element: NavigationMenuLinkElement<Msg, R> = options.element ?? h.a;
   return nav
     .link({ element, active: options.active === true })
     .attr("data-slot", "navigation-menu-link")
     .attr("data-active", options.active === true ? "true" : undefined)
-    .class(cn(NAVIGATION_MENU_LINK_CLASS, options.class))
-}
+    .class(cn(NAVIGATION_MENU_LINK_CLASS, options.class));
+};
 
 /**
  * The trigger, PRESENTATIONAL only: a styled `h.button` with the trigger
@@ -277,9 +262,9 @@ export const NavigationMenuLink = <Msg, R = never>(
 export const NavigationMenuTrigger = <Msg, R = never>(
   h: Html.H<Msg>,
   options: { readonly class?: string | undefined } = {},
-  children: View.Content<Msg, R>
+  children: View.Content<Msg, R>,
 ) =>
   h.button
     .attr("data-slot", "navigation-menu-trigger")
     .class(cn(navigationMenuTriggerStyle(), "group", options.class))
-    .children(children, " ", ChevronDownIcon(h))
+    .children(children, " ", ChevronDownIcon(h));

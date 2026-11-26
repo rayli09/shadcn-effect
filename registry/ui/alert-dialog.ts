@@ -83,22 +83,15 @@
  * Class strings are byte-for-byte the shadcn new-york-v4 strings; the parity
  * checker (scripts/verify.mjs) fails if any upstream token disappears.
  */
-import type * as Html from "@effect/ui/html/Html"
-import type * as View from "@effect/ui/View"
-import {
-  AlertDialog as KitAlertDialog,
-  type AlertDialogParts
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
-import {
-  buttonVariants,
-  type ButtonSize,
-  type ButtonVariant
-} from "./button.ts"
+import type * as Html from "@effect/ui/html/Html";
+import type * as View from "@effect/ui/View";
+import { AlertDialog as KitAlertDialog, type AlertDialogParts } from "@effect/ui-kit";
+import { cn } from "../lib/utils.ts";
+import { buttonVariants, type ButtonSize, type ButtonVariant } from "./button.ts";
 
-export type { AlertDialogProps } from "@effect/ui-kit"
+export type { AlertDialogProps } from "@effect/ui-kit";
 
-export type AlertDialogSize = "default" | "sm"
+export type AlertDialogSize = "default" | "sm";
 
 /**
  * The kit headless alert dialog, unchanged: `props: { open }` is required
@@ -106,45 +99,42 @@ export type AlertDialogSize = "default" | "sm"
  * `Settled` events to the consumer's Messages, and `view` draws the parts
  * with the helpers below.
  */
-export const AlertDialog = KitAlertDialog
+export const AlertDialog = KitAlertDialog;
 
-type Div<Msg, R> = Html.Element<
-  Msg,
-  R,
-  Html.EventsOf<"div">,
-  HTMLDivElement,
-  "div"
->
+type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 
 export const AlertDialogTrigger = <B extends View.PartTarget<"button">>(
   parts: AlertDialogParts,
-  element: B
-) => parts.trigger(element).attr("data-slot", "alert-dialog-trigger")
+  element: B,
+) => parts.trigger(element).attr("data-slot", "alert-dialog-trigger");
 
 export const AlertDialogPortal = <B extends View.PartTarget<"dialog">>(
   parts: AlertDialogParts,
-  element: B
-) => parts.portal(element)?.attr("data-slot", "alert-dialog-portal")
+  element: B,
+) => parts.portal(element)?.attr("data-slot", "alert-dialog-portal");
 
 export const AlertDialogOverlay = <B extends View.PartTarget<"div">>(
   parts: AlertDialogParts,
   element: B,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
-  parts.backdrop(element)?.attr("data-slot", "alert-dialog-overlay").class(
-    cn(
-      "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
-      options.class
-    )
-  )
+  parts
+    .backdrop(element)
+    ?.attr("data-slot", "alert-dialog-overlay")
+    .class(
+      cn(
+        "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
+        options.class,
+      ),
+    );
 
 export const AlertDialogContent = <B extends View.PartTarget<"div">>(
   parts: AlertDialogParts,
   element: B,
   options: {
-    readonly size?: AlertDialogSize | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly size?: AlertDialogSize | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   parts
     .popup(element)
@@ -153,42 +143,42 @@ export const AlertDialogContent = <B extends View.PartTarget<"div">>(
     .class(
       cn(
         "group/alert-dialog-content fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border bg-background p-6 shadow-lg duration-200 data-[size=sm]:max-w-xs data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[size=default]:sm:max-w-lg",
-        options.class
-      )
-    )
+        options.class,
+      ),
+    );
 
 export const AlertDialogHeader = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attr("data-slot", "alert-dialog-header")
     .class(
       cn(
         "grid grid-rows-[auto_1fr] place-items-center gap-1.5 text-center has-data-[slot=alert-dialog-media]:grid-rows-[auto_auto_1fr] has-data-[slot=alert-dialog-media]:gap-x-6 sm:group-data-[size=default]/alert-dialog-content:place-items-start sm:group-data-[size=default]/alert-dialog-content:text-left sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-rows-[auto_1fr]",
-        options.class
-      )
-    )
+        options.class,
+      ),
+    );
 
 export const AlertDialogFooter = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attr("data-slot", "alert-dialog-footer")
     .class(
       cn(
         "flex flex-col-reverse gap-2 group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2 sm:flex-row sm:justify-end",
-        options.class
-      )
-    )
+        options.class,
+      ),
+    );
 
 export const AlertDialogTitle = <
-  B extends View.PartTarget<"h1" | "h2" | "h3" | "h4" | "h5" | "h6">
+  B extends View.PartTarget<"h1" | "h2" | "h3" | "h4" | "h5" | "h6">,
 >(
   parts: AlertDialogParts,
   element: B,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   parts
     .title(element)
@@ -196,32 +186,32 @@ export const AlertDialogTitle = <
     .class(
       cn(
         "text-lg font-semibold sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2",
-        options.class
-      )
-    )
+        options.class,
+      ),
+    );
 
 export const AlertDialogDescription = <B extends View.PartTarget<"p">>(
   parts: AlertDialogParts,
   element: B,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   parts
     .description(element)
     .attr("data-slot", "alert-dialog-description")
-    .class(cn("text-sm text-muted-foreground", options.class))
+    .class(cn("text-sm text-muted-foreground", options.class));
 
 export const AlertDialogMedia = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attr("data-slot", "alert-dialog-media")
     .class(
       cn(
         "mb-2 inline-flex size-16 items-center justify-center rounded-md bg-muted sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[svg:not([class*='size-'])]:size-8",
-        options.class
-      )
-    )
+        options.class,
+      ),
+    );
 
 /**
  * The confirm button: the kit's `close` part wearing the shadcn Button
@@ -233,10 +223,10 @@ export const AlertDialogAction = <B extends View.PartTarget<"button">>(
   parts: AlertDialogParts,
   element: B,
   options: {
-    readonly variant?: ButtonVariant | undefined
-    readonly size?: ButtonSize | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly variant?: ButtonVariant | undefined;
+    readonly size?: ButtonSize | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   parts
     .close(element)
@@ -247,19 +237,19 @@ export const AlertDialogAction = <B extends View.PartTarget<"button">>(
       buttonVariants({
         variant: options.variant,
         size: options.size,
-        class: options.class
-      })
-    )
+        class: options.class,
+      }),
+    );
 
 /** The cancel button: same as Action, with the `outline` Button variant by default. */
 export const AlertDialogCancel = <B extends View.PartTarget<"button">>(
   parts: AlertDialogParts,
   element: B,
   options: {
-    readonly variant?: ButtonVariant | undefined
-    readonly size?: ButtonSize | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly variant?: ButtonVariant | undefined;
+    readonly size?: ButtonSize | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   parts
     .close(element)
@@ -270,6 +260,6 @@ export const AlertDialogCancel = <B extends View.PartTarget<"button">>(
       buttonVariants({
         variant: options.variant ?? "outline",
         size: options.size,
-        class: options.class
-      })
-    )
+        class: options.class,
+      }),
+    );

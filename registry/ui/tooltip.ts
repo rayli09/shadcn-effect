@@ -42,49 +42,49 @@ import {
   type TooltipEvents,
   type TooltipProps,
   type TooltipProviderProps,
-  type TooltipSide
-} from "@effect/ui-kit"
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type * as Html from "@effect/ui/html/Html"
-import type * as AsyncResult from "effect/reactivity/AsyncResult"
-import { cn } from "../lib/utils.ts"
+  type TooltipSide,
+} from "@effect/ui-kit";
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type * as Html from "@effect/ui/html/Html";
+import type * as AsyncResult from "effect/reactivity/AsyncResult";
+import { cn } from "../lib/utils.ts";
 
-export type { TooltipAlign, TooltipSide }
+export type { TooltipAlign, TooltipSide };
 
 /** The options a `Tooltip` call takes: the kit Component's call options, verbatim. */
-export type TooltipOptions<Msg, RV = never, RF = never> =
-  View.Child.Options<TooltipProps, TooltipEvents, NoInfer<Msg>> & {
-    readonly fallback?:
-      | ((
-        result: AsyncResult.Failure<never, unknown>
-      ) => View.Content<NoInfer<Msg>, RF>)
-      | undefined
-    readonly view: (
-      parts: Component.Headless.Parts<typeof KitTooltip>
-    ) => View.Content<NoInfer<Msg>, RV>
-    readonly slots?: never
-  }
+export type TooltipOptions<Msg, RV = never, RF = never> = View.Child.Options<
+  TooltipProps,
+  TooltipEvents,
+  NoInfer<Msg>
+> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<NoInfer<Msg>, RF>) | undefined;
+  readonly view: (
+    parts: Component.Headless.Parts<typeof KitTooltip>,
+  ) => View.Content<NoInfer<Msg>, RV>;
+  readonly slots?: never;
+};
 
 /** The options a `TooltipProvider` call takes: the kit Component's call options, verbatim (it emits no events). */
-export type TooltipProviderOptions<Msg, RV = never, RF = never> =
-  View.Child.Options<TooltipProviderProps, never, NoInfer<Msg>> & {
-    readonly fallback?:
-      | ((
-        result: AsyncResult.Failure<never, unknown>
-      ) => View.Content<NoInfer<Msg>, RF>)
-      | undefined
-    readonly view: (
-      parts: Component.Headless.Parts<typeof KitTooltipProvider>
-    ) => View.Content<NoInfer<Msg>, RV>
-    readonly slots?: never
-  }
+export type TooltipProviderOptions<Msg, RV = never, RF = never> = View.Child.Options<
+  TooltipProviderProps,
+  never,
+  NoInfer<Msg>
+> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<NoInfer<Msg>, RF>) | undefined;
+  readonly view: (
+    parts: Component.Headless.Parts<typeof KitTooltipProvider>,
+  ) => View.Content<NoInfer<Msg>, RV>;
+  readonly slots?: never;
+};
 
 export const TOOLTIP_CONTENT_CLASS =
-  "z-50 w-fit origin-(--radix-tooltip-content-transform-origin) animate-in rounded-md bg-foreground px-3 py-1.5 text-xs text-balance text-background fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+  "z-50 w-fit origin-(--radix-tooltip-content-transform-origin) animate-in rounded-md bg-foreground px-3 py-1.5 text-xs text-balance text-background fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95";
 
 export const TOOLTIP_ARROW_CLASS =
-  "z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground"
+  "z-50 size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground";
 
 /**
  * The kit `TooltipProvider` Component. Wrap a group with nothing to add to
@@ -93,8 +93,8 @@ export const TOOLTIP_ARROW_CLASS =
  */
 export const TooltipProvider = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
-  options: TooltipProviderOptions<Msg, RV, RF>
-) => KitTooltipProvider(h, options)
+  options: TooltipProviderOptions<Msg, RV, RF>,
+) => KitTooltipProvider(h, options);
 
 /**
  * The kit `Tooltip` Component with shadcn's default: `sideOffset: 0`
@@ -108,17 +108,17 @@ export const TooltipProvider = <Msg, RV = never, RF = never>(
  */
 export const Tooltip = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
-  options: TooltipOptions<Msg, RV, RF>
+  options: TooltipOptions<Msg, RV, RF>,
 ) =>
   KitTooltip(h, {
     ...options,
-    props: { sideOffset: 0, ...options.props }
-  })
+    props: { sideOffset: 0, ...options.props },
+  });
 
 /** Applies upstream's `data-slot="tooltip-trigger"` to a kit trigger part's builder. */
 export const TooltipTrigger = <Msg, R, E, N, T extends string>(
-  trigger: Html.Element<Msg, R, E, N, T>
-) => trigger.attr("data-slot", "tooltip-trigger")
+  trigger: Html.Element<Msg, R, E, N, T>,
+) => trigger.attr("data-slot", "tooltip-trigger");
 
 /**
  * Applies upstream's `data-slot="tooltip-content"` and content class string
@@ -127,13 +127,10 @@ export const TooltipTrigger = <Msg, R, E, N, T extends string>(
  */
 export const TooltipContent = <Msg, R, E, N, T extends string>(
   popup: Html.Element<Msg, R, E, N, T>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  popup
-    .attr("data-slot", "tooltip-content")
-    .class(cn(TOOLTIP_CONTENT_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => popup.attr("data-slot", "tooltip-content").class(cn(TOOLTIP_CONTENT_CLASS, options.class));
 
 /** Applies upstream's arrow class string to a kit arrow part's builder. Upstream's arrow carries no `data-slot`. */
 export const TooltipArrow = <Msg, R, E, N, T extends string>(
-  arrow: Html.Element<Msg, R, E, N, T>
-) => arrow.class(TOOLTIP_ARROW_CLASS)
+  arrow: Html.Element<Msg, R, E, N, T>,
+) => arrow.class(TOOLTIP_ARROW_CLASS);

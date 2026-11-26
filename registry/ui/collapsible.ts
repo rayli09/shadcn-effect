@@ -29,26 +29,24 @@
  * trigger), not Radix's `data-state="open" | "closed"`. The `data-slot`
  * attributes are upstream's, verbatim.
  */
-import { type Component, type View } from "@effect/ui"
+import { type Component, type View } from "@effect/ui";
 import {
   Collapsible as KitCollapsible,
   type CollapsibleEvents,
-  type CollapsibleProps
-} from "@effect/ui-kit"
-import type { AsyncResult } from "effect/reactivity"
+  type CollapsibleProps,
+} from "@effect/ui-kit";
+import type { AsyncResult } from "effect/reactivity";
 
-export type { CollapsibleProps }
+export type { CollapsibleProps };
 
-type CollapsibleParts = Component.Headless.Parts<typeof KitCollapsible>
+type CollapsibleParts = Component.Headless.Parts<typeof KitCollapsible>;
 
 /** The options a headless kit Component call takes, with its parts typed. */
-type HeadlessOptions<Props, Events, Parts, Msg, RV, RF> =
-  View.Child.Options<Props, Events, Msg> & {
-    readonly fallback?:
-      | ((result: AsyncResult.Failure<never, unknown>) => View.Content<Msg, RF>)
-      | undefined
-    readonly view: (parts: Parts) => View.Content<Msg, RV>
-  }
+type HeadlessOptions<Props, Events, Parts, Msg, RV, RF> = View.Child.Options<Props, Events, Msg> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<Msg, RF>) | undefined;
+  readonly view: (parts: Parts) => View.Content<Msg, RV>;
+};
 
 /**
  * The collapsible root. Same call shape as the kit's `Collapsible`; the
@@ -56,14 +54,7 @@ type HeadlessOptions<Props, Events, Parts, Msg, RV, RF> =
  */
 export const Collapsible = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
-  options: HeadlessOptions<
-    CollapsibleProps,
-    CollapsibleEvents,
-    CollapsibleParts,
-    Msg,
-    RV,
-    RF
-  >
+  options: HeadlessOptions<CollapsibleProps, CollapsibleEvents, CollapsibleParts, Msg, RV, RF>,
 ) =>
   KitCollapsible(h, {
     key: options.key,
@@ -74,10 +65,9 @@ export const Collapsible = <Msg, RV = never, RF = never>(
     view: (collapsible) =>
       options.view({
         ...collapsible,
-        root: (element) =>
-          collapsible.root(element.attr("data-slot", "collapsible"))
-      })
-  })
+        root: (element) => collapsible.root(element.attr("data-slot", "collapsible")),
+      }),
+  });
 
 /**
  * Applies the `trigger` part with upstream's `data-slot="collapsible-trigger"`.
@@ -87,13 +77,11 @@ export const Collapsible = <Msg, RV = never, RF = never>(
 export const CollapsibleTrigger = (
   collapsible: CollapsibleParts,
   element: Parameters<CollapsibleParts["trigger"]>[0],
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) => {
-  const styled = element.attr("data-slot", "collapsible-trigger")
-  return collapsible.trigger(
-    options.class === undefined ? styled : styled.class(options.class)
-  )
-}
+  const styled = element.attr("data-slot", "collapsible-trigger");
+  return collapsible.trigger(options.class === undefined ? styled : styled.class(options.class));
+};
 
 /**
  * Applies the `panel` part with upstream's `data-slot="collapsible-content"`.
@@ -105,10 +93,8 @@ export const CollapsibleTrigger = (
 export const CollapsibleContent = (
   collapsible: CollapsibleParts,
   element: Parameters<CollapsibleParts["panel"]>[0],
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) => {
-  const styled = element.attr("data-slot", "collapsible-content")
-  return collapsible.panel(
-    options.class === undefined ? styled : styled.class(options.class)
-  )
-}
+  const styled = element.attr("data-slot", "collapsible-content");
+  return collapsible.panel(options.class === undefined ? styled : styled.class(options.class));
+};

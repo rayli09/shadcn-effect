@@ -78,56 +78,47 @@
  *   kit defaults (`validationType` drives the accepted characters), not
  *   attributes spread onto an input.
  */
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type { Html } from "@effect/ui/html"
-import {
-  OTPField as KitOTPField,
-  type OTPFieldEvents,
-  type OTPFieldProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type { Html } from "@effect/ui/html";
+import { OTPField as KitOTPField, type OTPFieldEvents, type OTPFieldProps } from "@effect/ui-kit";
+import { MinusIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
 
 export type {
   OTPFieldEvents,
   OTPFieldInputMode,
   OTPFieldProps,
-  OTPFieldValidationType
-} from "@effect/ui-kit"
+  OTPFieldValidationType,
+} from "@effect/ui-kit";
 
-type DivElement<Msg, R = never> = Html.Element<
-  Msg,
-  R,
-  Html.EventsOf<"div">,
-  HTMLDivElement,
-  "div"
->
+type DivElement<Msg, R = never> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 
 /** The kit OTPField's parts, before styling. */
-type KitOTPParts = Component.Headless.Parts<typeof KitOTPField>
+type KitOTPParts = Component.Headless.Parts<typeof KitOTPField>;
 
 // ---------------------------------------------------------------------------
 // Class strings — verbatim from shadcn new-york-v4 input-otp.tsx
 // ---------------------------------------------------------------------------
 
 /** Upstream's container classes (`containerClassName`'s base). */
-export const INPUT_OTP_CONTAINER_CLASS = "flex items-center gap-2 has-disabled:opacity-50"
+export const INPUT_OTP_CONTAINER_CLASS = "flex items-center gap-2 has-disabled:opacity-50";
 
 /** Upstream `InputOTP`'s own class base, written onto its real input — here, onto every slot. */
-export const INPUT_OTP_CLASS = "disabled:cursor-not-allowed"
+export const INPUT_OTP_CLASS = "disabled:cursor-not-allowed";
 
-export const INPUT_OTP_GROUP_CLASS = "flex items-center"
+export const INPUT_OTP_GROUP_CLASS = "flex items-center";
 
 export const INPUT_OTP_SLOT_CLASS =
-  "relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40"
+  "relative flex h-9 w-9 items-center justify-center border-y border-r border-input text-sm shadow-xs transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md aria-invalid:border-destructive data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[3px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-destructive/20 dark:bg-input/30 dark:data-[active=true]:aria-invalid:ring-destructive/40";
 
 /** Upstream's fake-caret overlay, exported but not rendered — the kit's slots are real inputs with real carets (see header). */
 export const INPUT_OTP_FAKE_CARET_CLASS =
-  "pointer-events-none absolute inset-0 flex items-center justify-center"
+  "pointer-events-none absolute inset-0 flex items-center justify-center";
 
 /** Upstream's fake-caret bar, exported but not rendered — see `INPUT_OTP_FAKE_CARET_CLASS`. */
 export const INPUT_OTP_FAKE_CARET_BAR_CLASS =
-  "h-4 w-px animate-caret-blink bg-foreground duration-1000"
+  "h-4 w-px animate-caret-blink bg-foreground duration-1000";
 
 // ---------------------------------------------------------------------------
 // Styled parts
@@ -136,38 +127,38 @@ export const INPUT_OTP_FAKE_CARET_BAR_CLASS =
 /** What an `InputOTP`'s `view` gets: the kit OTPField's values and styled parts. */
 export interface InputOTPParts {
   /** The code the slots show, as a `Redacted<string>`. */
-  readonly value: OTPFieldProps["value"]
-  readonly length: number
-  readonly complete: boolean
-  readonly filled: boolean
-  readonly focused: boolean
-  readonly disabled: boolean
-  readonly readOnly: boolean
-  readonly required: boolean
+  readonly value: OTPFieldProps["value"];
+  readonly length: number;
+  readonly complete: boolean;
+  readonly filled: boolean;
+  readonly focused: boolean;
+  readonly disabled: boolean;
+  readonly readOnly: boolean;
+  readonly required: boolean;
   /** Upstream `InputOTP`'s container: the kit `root` part with `data-slot="input-otp"` and the container classes. Add the slots and groups with `.children(...)`. */
   readonly root: <B extends View.PartTarget<string>>(
     element: B,
-    options?: { readonly class?: string | undefined }
-  ) => ReturnType<B["attr"]>
+    options?: { readonly class?: string | undefined },
+  ) => ReturnType<B["attr"]>;
   /** Upstream `InputOTPSlot`: the kit `input` part for `index`, with `data-slot="input-otp-slot"` and the slot classes. */
   readonly slot: <B extends View.PartTarget<"input">>(args: {
-    readonly element: B
-    readonly index: number
-    readonly class?: string | undefined
-  }) => ReturnType<B["attr"]>
+    readonly element: B;
+    readonly index: number;
+    readonly class?: string | undefined;
+  }) => ReturnType<B["attr"]>;
   /** The kit's own name for the slot part — the same styled part as `slot`. */
-  readonly input: InputOTPParts["slot"]
+  readonly input: InputOTPParts["slot"];
 }
 
 /** shadcn's `InputOTPSlot`, as a function of the parts from `InputOTP`'s view closure. */
 export const InputOTPSlot = <B extends View.PartTarget<"input">>(
   otp: InputOTPParts,
   args: {
-    readonly element: B
-    readonly index: number
-    readonly class?: string | undefined
-  }
-): ReturnType<B["attr"]> => otp.slot(args)
+    readonly element: B;
+    readonly index: number;
+    readonly class?: string | undefined;
+  },
+): ReturnType<B["attr"]> => otp.slot(args);
 
 // ---------------------------------------------------------------------------
 // InputOTP
@@ -182,16 +173,14 @@ export const InputOTPSlot = <B extends View.PartTarget<"input">>(
  */
 export const InputOTP = <Msg, RV = never, RF = never>(
   h: View.Helper<Msg, unknown>,
-  options:
-    & View.Child.Options<OTPFieldProps, OTPFieldEvents, NoInfer<Msg>>
-    & {
-      /** The field's whole view, from its styled parts. */
-      readonly view: (parts: InputOTPParts) => View.Content<NoInfer<Msg>, RV>
-      /** Upstream `className`: appended to every slot's classes (the slots are the real inputs here). */
-      readonly class?: string | undefined
-      /** Upstream `containerClassName`: appended to the root's container classes. */
-      readonly containerClass?: string | undefined
-    }
+  options: View.Child.Options<OTPFieldProps, OTPFieldEvents, NoInfer<Msg>> & {
+    /** The field's whole view, from its styled parts. */
+    readonly view: (parts: InputOTPParts) => View.Content<NoInfer<Msg>, RV>;
+    /** Upstream `className`: appended to every slot's classes (the slots are the real inputs here). */
+    readonly class?: string | undefined;
+    /** Upstream `containerClassName`: appended to the root's container classes. */
+    readonly containerClass?: string | undefined;
+  },
 ): ReturnType<typeof KitOTPField<Msg, RV, RF>> =>
   KitOTPField<Msg, RV, RF>(h, {
     key: options.key,
@@ -200,9 +189,10 @@ export const InputOTP = <Msg, RV = never, RF = never>(
     onFailure: options.onFailure,
     view: (otp: KitOTPParts) => {
       const slot: InputOTPParts["slot"] = (args) =>
-        otp.input({ element: args.element, index: args.index })
+        otp
+          .input({ element: args.element, index: args.index })
           .attr("data-slot", "input-otp-slot")
-          .class(cn(INPUT_OTP_SLOT_CLASS, INPUT_OTP_CLASS, options.class, args.class))
+          .class(cn(INPUT_OTP_SLOT_CLASS, INPUT_OTP_CLASS, options.class, args.class));
       return options.view({
         value: otp.value,
         length: otp.length,
@@ -213,20 +203,15 @@ export const InputOTP = <Msg, RV = never, RF = never>(
         readOnly: otp.readOnly,
         required: otp.required,
         root: (element, partOptions) =>
-          otp.root(element)
+          otp
+            .root(element)
             .attr("data-slot", "input-otp")
-            .class(
-              cn(
-                INPUT_OTP_CONTAINER_CLASS,
-                options.containerClass,
-                partOptions?.class
-              )
-            ),
+            .class(cn(INPUT_OTP_CONTAINER_CLASS, options.containerClass, partOptions?.class)),
         slot,
-        input: slot
-      })
-    }
-  })
+        input: slot,
+      });
+    },
+  });
 
 // ---------------------------------------------------------------------------
 // InputOTPGroup / InputOTPSeparator — plain view functions
@@ -236,41 +221,19 @@ export const InputOTP = <Msg, RV = never, RF = never>(
 export const InputOTPGroup = <Msg, R = never>(
   h: { readonly div: DivElement<Msg, R> },
   options: {
-    readonly class?: string | undefined
-  } = {}
-) =>
-  h.div
-    .attr("data-slot", "input-otp-group")
-    .class(cn(INPUT_OTP_GROUP_CLASS, options.class))
+    readonly class?: string | undefined;
+  } = {},
+) => h.div.attr("data-slot", "input-otp-group").class(cn(INPUT_OTP_GROUP_CLASS, options.class));
 
-/** Lucide `minus` (ISC): <path d="M5 12h14" />, drawn at the default 24px as upstream's bare `<MinusIcon />`. */
-const MinusIcon = <Msg>(h: Html.H<Msg>) =>
-  h.el("svg")
-    .attrs({
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "currentColor",
-      "stroke-width": "2",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round",
-      "aria-hidden": "true"
-    })
-    .children(h.el("path").attr("d", "M5 12h14"))
-
-/** The dash between two slot groups: a `role="separator"` div holding the Lucide minus, as upstream. Upstream sets no class on it; `class` is only written when given. */
+/** The dash between two slot groups: a `role="separator"` div holding the Lucide minus (the shared `MinusIcon` from `../lib/icons.ts`, drawn at the default 24px as upstream's bare `<MinusIcon />`), as upstream. Upstream sets no class on it; `class` is only written when given. */
 export const InputOTPSeparator = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly class?: string | undefined
-  } = {}
+    readonly class?: string | undefined;
+  } = {},
 ) => {
-  const separator = h.div
-    .attr("data-slot", "input-otp-separator")
-    .attr("role", "separator")
-  return (options.class === undefined
-    ? separator
-    : separator.class(options.class)).children(MinusIcon(h))
-}
+  const separator = h.div.attr("data-slot", "input-otp-separator").attr("role", "separator");
+  return (options.class === undefined ? separator : separator.class(options.class)).children(
+    MinusIcon(h),
+  );
+};

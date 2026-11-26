@@ -30,29 +30,19 @@
  *   label part's id; this port draws no label, so name the bar with the
  *   `ariaLabel` option (the kit's documented route for a label-less bar).
  */
-import {
-  Progress as KitProgress,
-  type ProgressProps,
-  type ProgressStatus
-} from "@effect/ui-kit"
-import type { Html } from "@effect/ui/html"
-import { cn } from "../lib/utils.ts"
+import { Progress as KitProgress, type ProgressProps, type ProgressStatus } from "@effect/ui-kit";
+import type { Html } from "@effect/ui/html";
+import { cn } from "../lib/utils.ts";
 
-export type { ProgressProps, ProgressStatus }
+export type { ProgressProps, ProgressStatus };
 
-export const PROGRESS_CLASS =
-  "relative h-2 w-full overflow-hidden rounded-full bg-primary/20"
+export const PROGRESS_CLASS = "relative h-2 w-full overflow-hidden rounded-full bg-primary/20";
 
-export const PROGRESS_INDICATOR_CLASS =
-  "h-full w-full flex-1 bg-primary transition-all"
+export const PROGRESS_INDICATOR_CLASS = "h-full w-full flex-1 bg-primary transition-all";
 
 /** The kit's status in Radix's `data-state` vocabulary. */
 const dataState = (status: ProgressStatus): string =>
-  status === "complete"
-    ? "complete"
-    : status === "indeterminate"
-    ? "indeterminate"
-    : "loading"
+  status === "complete" ? "complete" : status === "indeterminate" ? "indeterminate" : "loading";
 
 /**
  * A shadcn-styled progress bar. Controlled, exactly like upstream: pass
@@ -65,29 +55,31 @@ const dataState = (status: ProgressStatus): string =>
 export const Progress = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly props: ProgressProps
-    readonly class?: string | undefined
-    readonly indicatorClass?: string | undefined
+    readonly props: ProgressProps;
+    readonly class?: string | undefined;
+    readonly indicatorClass?: string | undefined;
     /** Names the bar when no visible label is drawn (see header). */
-    readonly ariaLabel?: string | undefined
-  }
+    readonly ariaLabel?: string | undefined;
+  },
 ) =>
   KitProgress(h, {
     props: options.props,
     view: (progress) => {
-      const state = dataState(progress.status)
-      let root = progress.root(h.div)
+      const state = dataState(progress.status);
+      let root = progress
+        .root(h.div)
         .attr("data-slot", "progress")
         .attr("data-state", state)
-        .class(cn(PROGRESS_CLASS, options.class))
+        .class(cn(PROGRESS_CLASS, options.class));
       if (options.ariaLabel !== undefined) {
-        root = root.attr("aria-label", options.ariaLabel)
+        root = root.attr("aria-label", options.ariaLabel);
       }
       return root.children(
-        progress.indicator(h.div)
+        progress
+          .indicator(h.div)
           .attr("data-slot", "progress-indicator")
           .attr("data-state", state)
-          .class(cn(PROGRESS_INDICATOR_CLASS, options.indicatorClass))
-      )
-    }
-  })
+          .class(cn(PROGRESS_INDICATOR_CLASS, options.indicatorClass)),
+      );
+    },
+  });

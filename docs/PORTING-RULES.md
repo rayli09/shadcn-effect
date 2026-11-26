@@ -53,7 +53,7 @@ Instead:
   `~/src/components/ui`, `~/src/lib`, `~/src/styles`.
 - Every item declares its npm `dependencies` (the `@effect/ui` snapshot URLs +
   `effect` until Effect UI is on npm) and `registryDependencies` (e.g. `utils`).
-- An item ships only when its port passes `bun run verify` *and* typechecks
+- An item ships only when its port passes `bun run verify` _and_ typechecks
   against the pinned `@effect/ui` snapshot (`bun run check`).
 - **D-5 `data-state` / animation attributes** — Radix/Base UI write
   `data-state="open|closed|checked|…"` and `--radix-*` / `--vaul-*` variables;
@@ -74,3 +74,23 @@ Instead:
 - **D-7 Controlled-only inputs** — kit `Input` requires `props.value`
   (no uncontrolled/`defaultValue` mode). Icons are file-local inline SVG
   builders until `registry/lib/icons.ts` hoists them (wave 2 cleanup).
+
+## D-8 — Evaluation order and slot stacking (wave 3, from the Scene tests)
+
+- **Part-state children are callbacks.** A kit part can record state that a
+  later part in the same view evaluation reads (the menu `radioItem` part
+  reads the value the `radioGroup` part recorded). JS evaluates call
+  arguments before the call, so children passed as a plain argument to such
+  a wrapper would be built _before_ the recording part runs and render
+  wrong — in a browser, not just in tests. Wrappers in that situation take
+  `children: () => View.Content` and invoke it after the part runs. Applied:
+  `DropdownMenuRadioGroup`, `ContextMenuRadioGroup`, `MenubarRadioGroup`.
+- **A stacked element's own `data-slot` wins.** When a port stacks onto a
+  caller-supplied element (the D-2 composition), stamps chain in build
+  order and the later stamp wins — so a control element's own slot (e.g.
+  Input's `data-slot="input"`) overrides the slot a part stamped on the
+  element it was handed (e.g. FormField's `data-slot="form-control"`).
+  This is upstream's behavior, not a bug: FormControl is a Radix Slot and
+  Radix `mergeProps` resolves `{ ...slotProps, ...childProps }` — child
+  props win. `form-control` still lands on control elements that don't
+  stamp their own slot.

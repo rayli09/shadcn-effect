@@ -19,44 +19,37 @@
  *
  * Class strings are byte-for-byte the shadcn new-york-v4 strings.
  */
-import {
-  Toggle as KitToggle,
-  type ToggleElement,
-  type ToggleProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
+import { Toggle as KitToggle, type ToggleElement, type ToggleProps } from "@effect/ui-kit";
+import { cn } from "../lib/utils.ts";
 
-export type ToggleVariant = "default" | "outline"
+export type ToggleVariant = "default" | "outline";
 
-export type ToggleSize = "default" | "sm" | "lg"
+export type ToggleSize = "default" | "sm" | "lg";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] outline-none hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+  "inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-[color,box-shadow] outline-none hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";
 
 const VARIANTS: Record<ToggleVariant, string> = {
   default: "bg-transparent",
   outline:
-    "border border-input bg-transparent shadow-xs hover:bg-accent hover:text-accent-foreground"
-}
+    "border border-input bg-transparent shadow-xs hover:bg-accent hover:text-accent-foreground",
+};
 
 const SIZES: Record<ToggleSize, string> = {
   default: "h-9 min-w-9 px-2",
   sm: "h-8 min-w-8 px-1.5",
-  lg: "h-10 min-w-10 px-2.5"
-}
+  lg: "h-10 min-w-10 px-2.5",
+};
 
 /** Upstream name kept: `toggleVariants({ variant, size })` in shadcn; here a pure function, not cva. */
-export const toggleVariants = (options: {
-  readonly variant?: ToggleVariant | undefined
-  readonly size?: ToggleSize | undefined
-  readonly class?: string | undefined
-} = {}): string =>
-  cn(
-    BASE,
-    VARIANTS[options.variant ?? "default"],
-    SIZES[options.size ?? "default"],
-    options.class
-  )
+export const toggleVariants = (
+  options: {
+    readonly variant?: ToggleVariant | undefined;
+    readonly size?: ToggleSize | undefined;
+    readonly class?: string | undefined;
+  } = {},
+): string =>
+  cn(BASE, VARIANTS[options.variant ?? "default"], SIZES[options.size ?? "default"], options.class);
 
 /**
  * A shadcn-styled toggle. Chain `.children(...)` on the result:
@@ -70,20 +63,19 @@ export const toggleVariants = (options: {
 export const Toggle = <Msg, R = never>(
   h: { readonly button: ToggleElement<Msg> },
   options: {
-    readonly element?: ToggleElement<Msg, R> | undefined
-    readonly props: ToggleProps
+    readonly element?: ToggleElement<Msg, R> | undefined;
+    readonly props: ToggleProps;
     readonly onToggle?:
-      | ((event: { readonly pressed: boolean }) => NoInfer<Msg> | undefined)
-      | undefined
-    readonly variant?: ToggleVariant | undefined
-    readonly size?: ToggleSize | undefined
-    readonly class?: string | undefined
-  }
+      ((event: { readonly pressed: boolean }) => NoInfer<Msg> | undefined) | undefined;
+    readonly variant?: ToggleVariant | undefined;
+    readonly size?: ToggleSize | undefined;
+    readonly class?: string | undefined;
+  },
 ) =>
   KitToggle(h, {
     element: options.element,
     props: options.props,
-    onToggle: options.onToggle
+    onToggle: options.onToggle,
   })
     .attr("data-slot", "toggle")
     .attr("data-state", options.props.pressed ? "on" : "off")
@@ -91,6 +83,6 @@ export const Toggle = <Msg, R = never>(
       toggleVariants({
         variant: options.variant,
         size: options.size,
-        class: options.class
-      })
-    )
+        class: options.class,
+      }),
+    );

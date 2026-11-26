@@ -41,33 +41,29 @@
  * item classes are built from this repo's `toggleVariants` (toggle.ts),
  * mirroring upstream's import of `toggleVariants` from `toggle`.
  */
-import type * as View from "@effect/ui/View"
+import type * as View from "@effect/ui/View";
 import {
   ToggleGroup as KitToggleGroup,
   type ToggleGroupOrientation,
-  type ToggleGroupProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
-import {
-  toggleVariants,
-  type ToggleSize,
-  type ToggleVariant
-} from "./toggle.ts"
+  type ToggleGroupProps,
+} from "@effect/ui-kit";
+import { cn } from "../lib/utils.ts";
+import { toggleVariants, type ToggleSize, type ToggleVariant } from "./toggle.ts";
 
-export type { ToggleGroupOrientation, ToggleGroupProps }
+export type { ToggleGroupOrientation, ToggleGroupProps };
 
 /** The kit's keyed builder shape: a part target that can take a `key`. */
 type Keyed<Tag extends string> = View.PartTarget<Tag> & {
-  readonly key: (key: string) => View.PartTarget<Tag>
-}
+  readonly key: (key: string) => View.PartTarget<Tag>;
+};
 
 const ROOT_CLASS =
-  "group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-md data-[spacing=default]:data-[variant=outline]:shadow-xs"
+  "group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-md data-[spacing=default]:data-[variant=outline]:shadow-xs";
 
-const ITEM_CLASS = "w-auto min-w-0 shrink-0 px-3 focus:z-10 focus-visible:z-10"
+const ITEM_CLASS = "w-auto min-w-0 shrink-0 px-3 focus:z-10 focus-visible:z-10";
 
 const ITEM_SPACING_CLASS =
-  "data-[spacing=0]:rounded-none data-[spacing=0]:shadow-none data-[spacing=0]:first:rounded-l-md data-[spacing=0]:last:rounded-r-md data-[spacing=0]:data-[variant=outline]:border-l-0 data-[spacing=0]:data-[variant=outline]:first:border-l"
+  "data-[spacing=0]:rounded-none data-[spacing=0]:shadow-none data-[spacing=0]:first:rounded-l-md data-[spacing=0]:last:rounded-r-md data-[spacing=0]:data-[variant=outline]:border-l-0 data-[spacing=0]:data-[variant=outline]:first:border-l";
 
 /**
  * The styled parts handed to `ToggleGroup`'s `view` closure. `item` is
@@ -75,34 +71,34 @@ const ITEM_SPACING_CLASS =
  * group's variant / size / spacing.
  */
 export interface ToggleGroupParts {
-  readonly value: ReadonlyArray<string>
-  readonly disabled: boolean
-  readonly multiple: boolean
-  readonly orientation: ToggleGroupOrientation
+  readonly value: ReadonlyArray<string>;
+  readonly disabled: boolean;
+  readonly multiple: boolean;
+  readonly orientation: ToggleGroupOrientation;
   readonly root: <B extends View.PartTarget<"div">>(
     element: B,
-    options?: { readonly class?: string | undefined }
-  ) => ReturnType<B["attr"]>
+    options?: { readonly class?: string | undefined },
+  ) => ReturnType<B["attr"]>;
   readonly item: <B extends Keyed<"button">>(args: {
-    readonly element: B
-    readonly value: string
-    readonly variant?: ToggleVariant | undefined
-    readonly size?: ToggleSize | undefined
-    readonly class?: string | undefined
-  }) => ReturnType<B["attr"]>
+    readonly element: B;
+    readonly value: string;
+    readonly variant?: ToggleVariant | undefined;
+    readonly size?: ToggleSize | undefined;
+    readonly class?: string | undefined;
+  }) => ReturnType<B["attr"]>;
 }
 
 /** shadcn's `ToggleGroupItem`, as a function of the parts from `ToggleGroup`'s view closure. */
 export const ToggleGroupItem = <B extends Keyed<"button">>(
   group: ToggleGroupParts,
   args: {
-    readonly element: B
-    readonly value: string
-    readonly variant?: ToggleVariant | undefined
-    readonly size?: ToggleSize | undefined
-    readonly class?: string | undefined
-  }
-): ReturnType<B["attr"]> => group.item(args)
+    readonly element: B;
+    readonly value: string;
+    readonly variant?: ToggleVariant | undefined;
+    readonly size?: ToggleSize | undefined;
+    readonly class?: string | undefined;
+  },
+): ReturnType<B["attr"]> => group.item(args);
 
 /**
  * shadcn-styled toggle group. The consumer owns the pressed values: pass
@@ -111,36 +107,35 @@ export const ToggleGroupItem = <B extends Keyed<"button">>(
 export const ToggleGroup = <Msg, RV = never>(
   h: View.HelperBase<Msg, unknown>,
   options: {
-    readonly key?: string | undefined
-    readonly props: ToggleGroupProps
-    readonly onToggled?:
-      | ((value: ReadonlyArray<string>) => NoInfer<Msg> | undefined)
-      | undefined
-    readonly variant?: ToggleVariant | undefined
-    readonly size?: ToggleSize | undefined
-    readonly spacing?: number | undefined
-    readonly class?: string | undefined
-    readonly view: (group: ToggleGroupParts) => View.Content<NoInfer<Msg>, RV>
-  }
+    readonly key?: string | undefined;
+    readonly props: ToggleGroupProps;
+    readonly onToggled?: ((value: ReadonlyArray<string>) => NoInfer<Msg> | undefined) | undefined;
+    readonly variant?: ToggleVariant | undefined;
+    readonly size?: ToggleSize | undefined;
+    readonly spacing?: number | undefined;
+    readonly class?: string | undefined;
+    readonly view: (group: ToggleGroupParts) => View.Content<NoInfer<Msg>, RV>;
+  },
 ) => {
-  const spacing = options.spacing ?? 0
+  const spacing = options.spacing ?? 0;
   const styled = (group: {
-    readonly value: ReadonlyArray<string>
-    readonly disabled: boolean
-    readonly multiple: boolean
-    readonly orientation: ToggleGroupOrientation
-    readonly root: View.Part<"div", [], never>
+    readonly value: ReadonlyArray<string>;
+    readonly disabled: boolean;
+    readonly multiple: boolean;
+    readonly orientation: ToggleGroupOrientation;
+    readonly root: View.Part<"div", [], never>;
     readonly item: <B extends Keyed<"button">>(args: {
-      readonly element: B
-      readonly value: string
-    }) => ReturnType<B["attr"]>
+      readonly element: B;
+      readonly value: string;
+    }) => ReturnType<B["attr"]>;
   }): ToggleGroupParts => ({
     value: group.value,
     disabled: group.disabled,
     multiple: group.multiple,
     orientation: group.orientation,
     root: (element, partOptions) =>
-      group.root(element)
+      group
+        .root(element)
         .attr("data-slot", "toggle-group")
         .attr("data-variant", options.variant)
         .attr("data-size", options.size)
@@ -148,36 +143,27 @@ export const ToggleGroup = <Msg, RV = never>(
         .style({ "--gap": spacing })
         .class(cn(ROOT_CLASS, options.class, partOptions?.class)),
     item: (args) => {
-      const variant = options.variant ?? args.variant
-      const size = options.size ?? args.size
-      return group.item({ element: args.element, value: args.value })
+      const variant = options.variant ?? args.variant;
+      const size = options.size ?? args.size;
+      return group
+        .item({ element: args.element, value: args.value })
         .attr("data-slot", "toggle-group-item")
         .attr("data-variant", variant ?? "default")
         .attr("data-size", size ?? "default")
         .attr("data-spacing", String(spacing))
-        .attr(
-          "data-state",
-          options.props.value.includes(args.value) ? "on" : "off"
-        )
-        .class(
-          cn(
-            toggleVariants({ variant, size }),
-            ITEM_CLASS,
-            ITEM_SPACING_CLASS,
-            args.class
-          )
-        )
-    }
-  })
+        .attr("data-state", options.props.value.includes(args.value) ? "on" : "off")
+        .class(cn(toggleVariants({ variant, size }), ITEM_CLASS, ITEM_SPACING_CLASS, args.class));
+    },
+  });
   return KitToggleGroup(h, {
     ...(options.key === undefined ? {} : { key: options.key }),
     props: options.props,
     ...(options.onToggled === undefined
       ? {}
       : {
-        onEmit: (event: { readonly value: ReadonlyArray<string> }) =>
-          options.onToggled!(event.value)
-      }),
-    view: (group) => options.view(styled(group))
-  })
-}
+          onEmit: (event: { readonly value: ReadonlyArray<string> }) =>
+            options.onToggled!(event.value),
+        }),
+    view: (group) => options.view(styled(group)),
+  });
+};

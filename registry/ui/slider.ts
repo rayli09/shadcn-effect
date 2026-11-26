@@ -45,26 +45,26 @@
  * - The kit's `value` part (an `<output>`) has no upstream counterpart
  *   and is not drawn.
  */
-import { Slider as KitSlider, type SliderProps } from "@effect/ui-kit"
-import type { Html } from "@effect/ui/html"
-import { cn } from "../lib/utils.ts"
+import { Slider as KitSlider, type SliderProps } from "@effect/ui-kit";
+import type { Html } from "@effect/ui/html";
+import { cn } from "../lib/utils.ts";
 
-export type { SliderProps }
+export type { SliderProps };
 
 /** One number for one thumb, or one number per thumb for a range slider. */
-export type SliderValue = number | ReadonlyArray<number>
+export type SliderValue = number | ReadonlyArray<number>;
 
 export const SLIDER_CLASS =
-  "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col"
+  "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-44 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col";
 
 export const SLIDER_TRACK_CLASS =
-  "relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5"
+  "relative grow overflow-hidden rounded-full bg-muted data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5";
 
 export const SLIDER_RANGE_CLASS =
-  "absolute bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full"
+  "absolute bg-primary data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full";
 
 export const SLIDER_THUMB_CLASS =
-  "block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
+  "block size-4 shrink-0 rounded-full border border-primary bg-white shadow-sm ring-ring/50 transition-[color,box-shadow] hover:ring-4 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50";
 
 /**
  * Where the kit's `--slider-thumb-position` places the thumb: a
@@ -75,20 +75,17 @@ const THUMB_POSITION: Record<"horizontal" | "vertical", string> = {
   horizontal:
     "absolute top-1/2 -translate-x-1/2 -translate-y-1/2 [left:var(--slider-thumb-position)]",
   vertical:
-    "absolute left-1/2 -translate-x-1/2 translate-y-1/2 [bottom:var(--slider-thumb-position)]"
-}
+    "absolute left-1/2 -translate-x-1/2 translate-y-1/2 [bottom:var(--slider-thumb-position)]",
+};
 
 /** The kit's `--slider-indicator-start` / `--slider-indicator-size`, as classes. */
 const RANGE_POSITION: Record<"horizontal" | "vertical", string> = {
-  horizontal:
-    "[left:var(--slider-indicator-start)] [width:var(--slider-indicator-size)]",
-  vertical:
-    "[bottom:var(--slider-indicator-start)] [height:var(--slider-indicator-size)]"
-}
+  horizontal: "[left:var(--slider-indicator-start)] [width:var(--slider-indicator-size)]",
+  vertical: "[bottom:var(--slider-indicator-start)] [height:var(--slider-indicator-size)]",
+};
 
 /** Kit-attribute equivalents of the thumb's upstream `disabled:` variants. */
-const THUMB_DISABLED =
-  "data-disabled:pointer-events-none data-disabled:opacity-50"
+const THUMB_DISABLED = "data-disabled:pointer-events-none data-disabled:opacity-50";
 
 /**
  * A shadcn-styled slider. Controlled: pass the current value in
@@ -105,24 +102,22 @@ const THUMB_DISABLED =
 export const Slider = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly props: SliderProps
+    readonly props: SliderProps;
     /** Upstream's `onValueChange`: each value the user moves to. */
     readonly onValueChange?:
-      | ((event: { readonly value: SliderValue }) => Msg | undefined)
-      | undefined
+      ((event: { readonly value: SliderValue }) => Msg | undefined) | undefined;
     /** Upstream's `onValueCommit`: the value once a drag or key press ends. */
     readonly onValueCommit?:
-      | ((event: { readonly value: SliderValue }) => Msg | undefined)
-      | undefined
-    readonly class?: string | undefined
-    readonly trackClass?: string | undefined
-    readonly rangeClass?: string | undefined
-    readonly thumbClass?: string | undefined
+      ((event: { readonly value: SliderValue }) => Msg | undefined) | undefined;
+    readonly class?: string | undefined;
+    readonly trackClass?: string | undefined;
+    readonly rangeClass?: string | undefined;
+    readonly thumbClass?: string | undefined;
     /** The form name given to every thumb's hidden range input. */
-    readonly name?: string | undefined
+    readonly name?: string | undefined;
     /** One `aria-label` per thumb, by index. */
-    readonly ariaLabels?: ReadonlyArray<string> | undefined
-  }
+    readonly ariaLabels?: ReadonlyArray<string> | undefined;
+  },
 ) =>
   KitSlider(h, {
     props: options.props,
@@ -130,44 +125,46 @@ export const Slider = <Msg>(
     // event gets a no-op rather than an absent key.
     onEmit: {
       Moved: options.onValueChange ?? (() => undefined),
-      Committed: options.onValueCommit ?? (() => undefined)
+      Committed: options.onValueCommit ?? (() => undefined),
     },
     view: (slider) => {
-      const orientation = slider.orientation
-      return slider.root(slider.control(h.div))
+      const orientation = slider.orientation;
+      return slider
+        .root(slider.control(h.div))
         .attr("data-slot", "slider")
         .class(cn(SLIDER_CLASS, options.class))
         .children(
-          slider.track(h.div)
+          slider
+            .track(h.div)
             .attr("data-slot", "slider-track")
             .class(cn(SLIDER_TRACK_CLASS, options.trackClass))
             .children(
-              slider.indicator(h.div)
+              slider
+                .indicator(h.div)
                 .attr("data-slot", "slider-range")
-                .class(cn(
-                  SLIDER_RANGE_CLASS,
-                  RANGE_POSITION[orientation],
-                  options.rangeClass
-                ))
+                .class(cn(SLIDER_RANGE_CLASS, RANGE_POSITION[orientation], options.rangeClass)),
             ),
           ...slider.values.map((_, index) => {
-            let input = h.input
+            let input = h.input;
             if (options.name !== undefined) {
-              input = input.attr("name", options.name)
+              input = input.attr("name", options.name);
             }
-            const ariaLabel = options.ariaLabels?.[index]
+            const ariaLabel = options.ariaLabels?.[index];
             if (ariaLabel !== undefined) {
-              input = input.attr("aria-label", ariaLabel)
+              input = input.attr("aria-label", ariaLabel);
             }
-            return slider.thumb({ element: h.div, input, index })
+            return slider
+              .thumb({ element: h.div, input, index })
               .attr("data-slot", "slider-thumb")
-              .class(cn(
-                SLIDER_THUMB_CLASS,
-                THUMB_POSITION[orientation],
-                THUMB_DISABLED,
-                options.thumbClass
-              ))
-          })
-        )
-    }
-  })
+              .class(
+                cn(
+                  SLIDER_THUMB_CLASS,
+                  THUMB_POSITION[orientation],
+                  THUMB_DISABLED,
+                  options.thumbClass,
+                ),
+              );
+          }),
+        );
+    },
+  });

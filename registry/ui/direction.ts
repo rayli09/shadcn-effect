@@ -30,30 +30,30 @@
 import {
   DirectionProvider as KitDirectionProvider,
   type DirectionProviderDirection,
-  type DirectionProviderProps
-} from "@effect/ui-kit"
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type * as AsyncResult from "effect/reactivity/AsyncResult"
+  type DirectionProviderProps,
+} from "@effect/ui-kit";
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type * as AsyncResult from "effect/reactivity/AsyncResult";
 
 /** The reading direction of text: `"ltr"` or `"rtl"` (the kit's `DirectionProviderDirection`). */
-export type Direction = DirectionProviderDirection
+export type Direction = DirectionProviderDirection;
 
-export type { DirectionProviderProps }
+export type { DirectionProviderProps };
 
 /** The options a `DirectionProvider` call takes: the kit `DirectionProvider` Component's call options, verbatim. */
-export type DirectionProviderOptions<Msg, RV = never, RF = never> =
-  View.Child.Options<DirectionProviderProps, never, NoInfer<Msg>> & {
-    readonly fallback?:
-      | ((
-        result: AsyncResult.Failure<never, unknown>
-      ) => View.Content<NoInfer<Msg>, RF>)
-      | undefined
-    readonly view: (
-      parts: Component.Headless.Parts<typeof KitDirectionProvider>
-    ) => View.Content<NoInfer<Msg>, RV>
-    readonly slots?: never
-  }
+export type DirectionProviderOptions<Msg, RV = never, RF = never> = View.Child.Options<
+  DirectionProviderProps,
+  never,
+  NoInfer<Msg>
+> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<NoInfer<Msg>, RF>) | undefined;
+  readonly view: (
+    parts: Component.Headless.Parts<typeof KitDirectionProvider>,
+  ) => View.Content<NoInfer<Msg>, RV>;
+  readonly slots?: never;
+};
 
 /**
  * The kit `DirectionProvider` Component, with upstream's `dir` / `direction`
@@ -69,18 +69,18 @@ export const DirectionProvider = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
   options: DirectionProviderOptions<Msg, RV, RF> & {
     /** Upstream alias: Radix's prop name. `direction` wins when both are given. */
-    readonly dir?: Direction | undefined
+    readonly dir?: Direction | undefined;
     /** Upstream alias: shadcn's preferred prop name. Wins over `dir`. */
-    readonly direction?: Direction | undefined
-  }
+    readonly direction?: Direction | undefined;
+  },
 ) => {
-  const { dir, direction, ...rest } = options
-  const resolved = direction ?? dir ?? rest.props?.direction
+  const { dir, direction, ...rest } = options;
+  const resolved = direction ?? dir ?? rest.props?.direction;
   return KitDirectionProvider(h, {
     ...rest,
     props: {
       ...rest.props,
-      ...(resolved !== undefined ? { direction: resolved } : {})
-    }
-  })
-}
+      ...(resolved !== undefined ? { direction: resolved } : {}),
+    },
+  });
+};

@@ -114,157 +114,145 @@
  *     gets it from Radix Collapsible around sub-menus, which is the
  *     consumer's composition in this stack too.
  */
-import * as Html from "@effect/ui/html/Html"
-import { HtmlSubscription } from "@effect/ui/html"
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import * as UiSchema from "@effect/ui/UiSchema"
-import { Dialog as KitDialog, type SeparatorElement } from "@effect/ui-kit"
-import * as Schema from "effect/Schema"
-import { cn } from "../lib/utils.ts"
-import { buttonVariants } from "./button.ts"
-import { Input, type InputElement, type InputProps } from "./input.ts"
-import { Separator } from "./separator.ts"
+import * as Html from "@effect/ui/html/Html";
+import { HtmlSubscription } from "@effect/ui/html";
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import * as UiSchema from "@effect/ui/UiSchema";
+import { Dialog as KitDialog, type SeparatorElement } from "@effect/ui-kit";
+import * as Schema from "effect/Schema";
+import { PanelLeftIcon as SharedPanelLeftIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
+import { buttonVariants } from "./button.ts";
+import { Input, type InputElement, type InputProps } from "./input.ts";
+import { Separator } from "./separator.ts";
 import {
   SheetHeader,
   SHEET_CONTENT_BASE_CLASS,
   SHEET_CONTENT_SIDE_CLASSES,
   SHEET_DESCRIPTION_CLASS,
   SHEET_OVERLAY_CLASS,
-  SHEET_TITLE_CLASS
-} from "./sheet.ts"
-import { Skeleton } from "./skeleton.ts"
+  SHEET_TITLE_CLASS,
+} from "./sheet.ts";
+import { Skeleton } from "./skeleton.ts";
 
 // ---------------------------------------------------------------------------
 // Constants (upstream's module-level constants, same values)
 // ---------------------------------------------------------------------------
 
 /** The cookie upstream's provider writes on every desktop open change. */
-export const SIDEBAR_COOKIE_NAME = "sidebar_state"
+export const SIDEBAR_COOKIE_NAME = "sidebar_state";
 /** One week, as upstream. */
-export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-export const SIDEBAR_WIDTH = "16rem"
-export const SIDEBAR_WIDTH_MOBILE = "18rem"
-export const SIDEBAR_WIDTH_ICON = "3rem"
-export const SIDEBAR_KEYBOARD_SHORTCUT = "b"
+export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+export const SIDEBAR_WIDTH = "16rem";
+export const SIDEBAR_WIDTH_MOBILE = "18rem";
+export const SIDEBAR_WIDTH_ICON = "3rem";
+export const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 /** Upstream `use-mobile`: `MOBILE_BREAKPOINT = 768`, query `(max-width: 767px)`. */
-export const SIDEBAR_MOBILE_QUERY = "(max-width: 767px)"
+export const SIDEBAR_MOBILE_QUERY = "(max-width: 767px)";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-export type SidebarSide = "left" | "right"
-export type SidebarVariant = "sidebar" | "floating" | "inset"
-export type SidebarCollapsible = "offcanvas" | "icon" | "none"
+export type SidebarSide = "left" | "right";
+export type SidebarVariant = "sidebar" | "floating" | "inset";
+export type SidebarCollapsible = "offcanvas" | "icon" | "none";
 
 /** Upstream's derived `state`: `"expanded"` when open, `"collapsed"` when not. */
-export const SidebarState = Schema.Literals(["expanded", "collapsed"])
-export type SidebarState = typeof SidebarState.Type
+export const SidebarState = Schema.Literals(["expanded", "collapsed"]);
+export type SidebarState = typeof SidebarState.Type;
 
 // ---------------------------------------------------------------------------
 // Class strings (byte-for-byte upstream)
 // ---------------------------------------------------------------------------
 
 export const SIDEBAR_WRAPPER_CLASS =
-  "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar"
+  "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar";
 
 export const SIDEBAR_NONE_CLASS =
-  "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground"
+  "flex h-full w-(--sidebar-width) flex-col bg-sidebar text-sidebar-foreground";
 
 export const SIDEBAR_MOBILE_CONTENT_CLASS =
-  "w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+  "w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden";
 
-export const SIDEBAR_ROOT_CLASS =
-  "group peer hidden text-sidebar-foreground md:block"
+export const SIDEBAR_ROOT_CLASS = "group peer hidden text-sidebar-foreground md:block";
 
 export const SIDEBAR_GAP_BASE_CLASS =
-  "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180"
+  "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180";
 
 export const SIDEBAR_CONTAINER_BASE_CLASS =
-  "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex"
+  "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex";
 
 export const SIDEBAR_INNER_CLASS =
-  "flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm"
+  "flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm";
 
 export const SIDEBAR_RAIL_CLASS =
-  "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar [[data-side=left][data-collapsible=offcanvas]_&]:-right-2 [[data-side=right][data-collapsible=offcanvas]_&]:-left-2"
+  "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border sm:flex in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize [[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar [[data-side=left][data-collapsible=offcanvas]_&]:-right-2 [[data-side=right][data-collapsible=offcanvas]_&]:-left-2";
 
 export const SIDEBAR_INSET_CLASS =
-  "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2"
+  "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2";
 
-export const SIDEBAR_INPUT_CLASS = "h-8 w-full bg-background shadow-none"
+export const SIDEBAR_INPUT_CLASS = "h-8 w-full bg-background shadow-none";
 
-export const SIDEBAR_HEADER_CLASS = "flex flex-col gap-2 p-2"
+export const SIDEBAR_HEADER_CLASS = "flex flex-col gap-2 p-2";
 
-export const SIDEBAR_FOOTER_CLASS = "flex flex-col gap-2 p-2"
+export const SIDEBAR_FOOTER_CLASS = "flex flex-col gap-2 p-2";
 
-export const SIDEBAR_SEPARATOR_CLASS = "mx-2 w-auto bg-sidebar-border"
+export const SIDEBAR_SEPARATOR_CLASS = "mx-2 w-auto bg-sidebar-border";
 
 export const SIDEBAR_CONTENT_CLASS =
-  "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden"
+  "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden";
 
-export const SIDEBAR_GROUP_CLASS = "relative flex w-full min-w-0 flex-col p-2"
+export const SIDEBAR_GROUP_CLASS = "relative flex w-full min-w-0 flex-col p-2";
 
 export const SIDEBAR_GROUP_LABEL_CLASS =
-  "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0"
+  "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 ring-sidebar-ring outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0";
 
 export const SIDEBAR_GROUP_ACTION_CLASS =
-  "absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 md:after:hidden group-data-[collapsible=icon]:hidden"
+  "absolute top-3.5 right-3 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 md:after:hidden group-data-[collapsible=icon]:hidden";
 
-export const SIDEBAR_GROUP_CONTENT_CLASS = "w-full text-sm"
+export const SIDEBAR_GROUP_CONTENT_CLASS = "w-full text-sm";
 
-export const SIDEBAR_MENU_CLASS = "flex w-full min-w-0 flex-col gap-1"
+export const SIDEBAR_MENU_CLASS = "flex w-full min-w-0 flex-col gap-1";
 
-export const SIDEBAR_MENU_ITEM_CLASS = "group/menu-item relative"
+export const SIDEBAR_MENU_ITEM_CLASS = "group/menu-item relative";
 
 export const SIDEBAR_MENU_ACTION_CLASS =
-  "absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform peer-hover/menu-button:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 md:after:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden"
+  "absolute top-1.5 right-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground ring-sidebar-ring outline-hidden transition-transform peer-hover/menu-button:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 after:absolute after:-inset-2 md:after:hidden peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden";
 
 export const SIDEBAR_MENU_ACTION_SHOW_ON_HOVER_CLASS =
-  "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground data-[state=open]:opacity-100 md:opacity-0"
+  "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground data-[state=open]:opacity-100 md:opacity-0";
 
 export const SIDEBAR_MENU_BADGE_CLASS =
-  "pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium text-sidebar-foreground tabular-nums select-none peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden"
+  "pointer-events-none absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium text-sidebar-foreground tabular-nums select-none peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[active=true]/menu-button:text-sidebar-accent-foreground peer-data-[size=sm]/menu-button:top-1 peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 group-data-[collapsible=icon]:hidden";
 
-export const SIDEBAR_MENU_SKELETON_CLASS =
-  "flex h-8 items-center gap-2 rounded-md px-2"
+export const SIDEBAR_MENU_SKELETON_CLASS = "flex h-8 items-center gap-2 rounded-md px-2";
 
 export const SIDEBAR_MENU_SUB_CLASS =
-  "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5 group-data-[collapsible=icon]:hidden"
+  "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5 group-data-[collapsible=icon]:hidden";
 
-export const SIDEBAR_MENU_SUB_ITEM_CLASS = "group/menu-sub-item relative"
+export const SIDEBAR_MENU_SUB_ITEM_CLASS = "group/menu-sub-item relative";
 
 export const SIDEBAR_MENU_SUB_BUTTON_BASE_CLASS =
-  "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground ring-sidebar-ring outline-hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground group-data-[collapsible=icon]:hidden"
+  "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground ring-sidebar-ring outline-hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground group-data-[collapsible=icon]:hidden";
 
 // ---------------------------------------------------------------------------
 // Icons (lucide path data, ISC — inline SVG, no lucide-react)
 // ---------------------------------------------------------------------------
 
-/** Lucide `panel-left`, drawn the way this repo's other icon builders are. */
+/**
+ * Lucide `panel-left` — the shared builder from `../lib/icons.ts`, with
+ * this file's `lucide lucide-panel-left` class (plus any consumer class)
+ * preserved through its `options.class`.
+ */
 export const PanelLeftIcon = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
-  h.el("svg")
-    .attrs({
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "currentColor",
-      "stroke-width": "2",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round",
-      "aria-hidden": "true"
-    })
-    .attr("class", cn("lucide lucide-panel-left", options.class))
-    .children(
-      h.el("rect").attrs({ width: "18", height: "18", x: "3", y: "3", rx: "2" }),
-      h.el("path").attr("d", "M9 3v18")
-    )
+  SharedPanelLeftIcon(h, {
+    class: cn("lucide lucide-panel-left", options.class),
+  });
 
 // ---------------------------------------------------------------------------
 // SidebarProvider — the headless Provider Component
@@ -274,16 +262,16 @@ export const SidebarProviderProps = Schema.Struct({
   /** Upstream `defaultOpen` (default `true`): the initial uncontrolled open. */
   defaultOpen: Schema.optional(Schema.Boolean),
   /** Upstream `open`: when set, the consumer owns the desktop open state. */
-  open: Schema.optional(Schema.Boolean)
-})
-export type SidebarProviderProps = typeof SidebarProviderProps.Type
+  open: Schema.optional(Schema.Boolean),
+});
+export type SidebarProviderProps = typeof SidebarProviderProps.Type;
 
 export const SidebarProviderModel = Schema.Struct({
   openState: Schema.Boolean,
   openMobile: Schema.Boolean,
-  isMobile: Schema.Boolean
-})
-export type SidebarProviderModel = typeof SidebarProviderModel.Type
+  isMobile: Schema.Boolean,
+});
+export type SidebarProviderModel = typeof SidebarProviderModel.Type;
 
 export const SidebarProviderMessage = UiSchema.TaggedEnum({
   /** Flip the sidebar: mobile flips `openMobile`, desktop flips `open`. */
@@ -293,35 +281,32 @@ export const SidebarProviderMessage = UiSchema.TaggedEnum({
   /** Set the mobile open (upstream context's `setOpenMobile`). */
   SetOpenMobile: { open: Schema.Boolean },
   /** The mobile media query changed (the `useIsMobile` replacement). */
-  ChangedViewport: { isMobile: Schema.Boolean }
-})
+  ChangedViewport: { isMobile: Schema.Boolean },
+});
 
 export const SidebarProviderEvents = UiSchema.TaggedEnum({
   /** Upstream `onOpenChange`: the desktop open changed. */
-  Updated: { open: Schema.Boolean }
-})
+  Updated: { open: Schema.Boolean },
+});
 
 /** What the provider shares: upstream's `SidebarContextProps`, minus the setters (messages replace them). */
 export const SidebarShared = Schema.Struct({
   state: SidebarState,
   open: Schema.Boolean,
   openMobile: Schema.Boolean,
-  isMobile: Schema.Boolean
-})
-export type SidebarShared = typeof SidebarShared.Type
+  isMobile: Schema.Boolean,
+});
+export type SidebarShared = typeof SidebarShared.Type;
 
-const sharedValue = (
-  model: SidebarProviderModel,
-  props: SidebarProviderProps
-): SidebarShared => {
-  const open = props.open ?? model.openState
+const sharedValue = (model: SidebarProviderModel, props: SidebarProviderProps): SidebarShared => {
+  const open = props.open ?? model.openState;
   return {
     state: open ? "expanded" : "collapsed",
     open,
     openMobile: model.openMobile,
-    isMobile: model.isMobile
-  }
-}
+    isMobile: model.isMobile,
+  };
+};
 
 /**
  * The sidebar's state owner. Call it with the consumer's `h`, `props`
@@ -342,39 +327,34 @@ export const SidebarProvider = Html.component({
   shares: {
     value: ({ model, props }) => sharedValue(model, props),
     schema: SidebarShared,
-    receives: ["Toggled", "SetOpen", "SetOpenMobile"]
-  }
+    receives: ["Toggled", "SetOpen", "SetOpenMobile"],
+  },
 }).make({
   init: ({ props }) => ({
     openState: props.defaultOpen ?? true,
     openMobile: false,
-    isMobile: false
+    isMobile: false,
   }),
   update: {
     Toggled: ($) => {
       if ($.model.isMobile) {
-        return $.evolve({ openMobile: !$.model.openMobile })
+        return $.evolve({ openMobile: !$.model.openMobile });
       }
-      const open = !($.props.open ?? $.model.openState)
+      const open = !($.props.open ?? $.model.openState);
       return $.props.open === undefined
-        ? $.evolve({ openState: open }).emit(
-          SidebarProviderEvents.Updated({ open })
-        )
-        : $.emit(SidebarProviderEvents.Updated({ open }))
+        ? $.evolve({ openState: open }).emit(SidebarProviderEvents.Updated({ open }))
+        : $.emit(SidebarProviderEvents.Updated({ open }));
     },
     SetOpen: ($, { open }) =>
       $.props.open === undefined
-        ? $.evolve({ openState: open }).emit(
-          SidebarProviderEvents.Updated({ open })
-        )
+        ? $.evolve({ openState: open }).emit(SidebarProviderEvents.Updated({ open }))
         : $.emit(SidebarProviderEvents.Updated({ open })),
     SetOpenMobile: ($, { open }) => $.evolve({ openMobile: open }),
-    ChangedViewport: ($, { isMobile }) => $.evolve({ isMobile })
+    ChangedViewport: ($, { isMobile }) => $.evolve({ isMobile }),
   },
   subscriptions: () => [
-    HtmlSubscription.onMediaQuery(
-      SIDEBAR_MOBILE_QUERY,
-      (matches) => SidebarProviderMessage.ChangedViewport({ isMobile: matches })
+    HtmlSubscription.onMediaQuery(SIDEBAR_MOBILE_QUERY, (matches) =>
+      SidebarProviderMessage.ChangedViewport({ isMobile: matches }),
     ),
     HtmlSubscription.onDocument(
       "keydown",
@@ -382,44 +362,40 @@ export const SidebarProvider = Html.component({
         key === SIDEBAR_KEYBOARD_SHORTCUT && (meta || ctrl)
           ? SidebarProviderMessage.Toggled()
           : undefined,
-      { preventDefault: true }
-    )
+      { preventDefault: true },
+    ),
   ],
   parts: (p, model) => {
-    const value = sharedValue(model, p.props)
+    const value = sharedValue(model, p.props);
     return {
       ...value,
       wrapper: p.part("div", (b) =>
         b
           .attrs({
             "data-slot": "sidebar-wrapper",
-            style: `--sidebar-width: ${SIDEBAR_WIDTH}; --sidebar-width-icon: ${SIDEBAR_WIDTH_ICON}`
+            style: `--sidebar-width: ${SIDEBAR_WIDTH}; --sidebar-width-icon: ${SIDEBAR_WIDTH_ICON}`,
           })
-          .class(SIDEBAR_WRAPPER_CLASS)
+          .class(SIDEBAR_WRAPPER_CLASS),
       ),
-      toggle: p.part("button", (b) =>
-        b.on("click", SidebarProviderMessage.Toggled())
-      )
-    }
-  }
-})
+      toggle: p.part("button", (b) => b.on("click", SidebarProviderMessage.Toggled())),
+    };
+  },
+});
 
 /** What a `SidebarProvider`'s `view` gets: the shared values plus the `wrapper` and `toggle` parts. */
-export type SidebarProviderParts = Component.Headless.Parts<
-  typeof SidebarProvider
->
+export type SidebarProviderParts = Component.Headless.Parts<typeof SidebarProvider>;
 
 // ---------------------------------------------------------------------------
 // SidebarMobile — internal: owns the Sheet for the mobile branch
 // ---------------------------------------------------------------------------
 
 const SidebarMobileMessage = UiSchema.TaggedEnum({
-  ClosedSheet: {}
-})
+  ClosedSheet: {},
+});
 
 const SidebarMobileProps = Schema.Struct({
-  side: Schema.optional(Schema.Literals(["left", "right"]))
-})
+  side: Schema.optional(Schema.Literals(["left", "right"])),
+});
 
 /**
  * Internal (not an upstream export): upstream's `Sidebar` renders a Sheet
@@ -433,24 +409,21 @@ const SidebarMobile = Html.component({
   props: SidebarMobileProps,
   model: Schema.Struct({}),
   message: SidebarMobileMessage,
-  reads: { sidebar: SidebarProvider }
+  reads: { sidebar: SidebarProvider },
 }).make({
   init: () => ({}),
   update: {
     ClosedSheet: ($) =>
-      $.send(
-        SidebarProvider,
-        SidebarProviderMessage.SetOpenMobile({ open: false })
-      )
+      $.send(SidebarProvider, SidebarProviderMessage.SetOpenMobile({ open: false })),
   },
   parts: (p) => {
-    const side = p.props.side ?? "left"
+    const side = p.props.side ?? "left";
     return p.child(KitDialog, {
       props: { open: p.reads.sidebar.openMobile },
       onEmit: {
         RequestedOpen: () => undefined,
         RequestedClose: () => SidebarMobileMessage.ClosedSheet(),
-        Settled: () => undefined
+        Settled: () => undefined,
       },
       parts: (dialog: Component.Headless.Parts<typeof KitDialog>) => ({
         ...dialog,
@@ -459,42 +432,27 @@ const SidebarMobile = Html.component({
         portal: <B extends View.PartTarget<"dialog">>(element: B) =>
           dialog.portal(element.attr("data-slot", "sheet-portal")),
         backdrop: <B extends View.PartTarget<"div">>(element: B) =>
-          dialog.backdrop(
-            element
-              .attr("data-slot", "sheet-overlay")
-              .class(SHEET_OVERLAY_CLASS)
-          ),
+          dialog.backdrop(element.attr("data-slot", "sheet-overlay").class(SHEET_OVERLAY_CLASS)),
         popup: <B extends View.PartTarget<"div">>(element: B) =>
           dialog.popup(
             element
               .attr("data-slot", "sheet-content")
-              .class(
-                cn(
-                  SHEET_CONTENT_BASE_CLASS,
-                  SHEET_CONTENT_SIDE_CLASSES[side]
-                )
-              )
+              .class(cn(SHEET_CONTENT_BASE_CLASS, SHEET_CONTENT_SIDE_CLASSES[side])),
           ),
-        title: <
-          B extends View.PartTarget<"h1" | "h2" | "h3" | "h4" | "h5" | "h6">
-        >(element: B) =>
-          dialog.title(
-            element.attr("data-slot", "sheet-title").class(SHEET_TITLE_CLASS)
-          ),
+        title: <B extends View.PartTarget<"h1" | "h2" | "h3" | "h4" | "h5" | "h6">>(element: B) =>
+          dialog.title(element.attr("data-slot", "sheet-title").class(SHEET_TITLE_CLASS)),
         description: <B extends View.PartTarget<"p">>(element: B) =>
           dialog.description(
-            element
-              .attr("data-slot", "sheet-description")
-              .class(SHEET_DESCRIPTION_CLASS)
+            element.attr("data-slot", "sheet-description").class(SHEET_DESCRIPTION_CLASS),
           ),
         close: <B extends View.PartTarget<"button">>(element: B) =>
-          dialog.close(element.attr("data-slot", "sheet-close"))
-      })
-    })
-  }
-})
+          dialog.close(element.attr("data-slot", "sheet-close")),
+      }),
+    });
+  },
+});
 
-type SidebarMobileParts = Component.Headless.Parts<typeof SidebarMobile>
+type SidebarMobileParts = Component.Headless.Parts<typeof SidebarMobile>;
 
 // ---------------------------------------------------------------------------
 // Sidebar
@@ -511,22 +469,22 @@ export const Sidebar = <Msg, R = never>(
   sidebar: SidebarProviderParts,
   h: Html.H<Msg>,
   options: {
-    readonly side?: SidebarSide | undefined
-    readonly variant?: SidebarVariant | undefined
-    readonly collapsible?: SidebarCollapsible | undefined
-    readonly class?: string | undefined
+    readonly side?: SidebarSide | undefined;
+    readonly variant?: SidebarVariant | undefined;
+    readonly collapsible?: SidebarCollapsible | undefined;
+    readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>
+  children: View.Content<Msg, R>,
 ): View.Content<Msg, R | Component.Shared.Of<typeof SidebarProvider>> => {
-  const side = options.side ?? "left"
-  const variant = options.variant ?? "sidebar"
-  const collapsible = options.collapsible ?? "offcanvas"
+  const side = options.side ?? "left";
+  const variant = options.variant ?? "sidebar";
+  const collapsible = options.collapsible ?? "offcanvas";
 
   if (collapsible === "none") {
     return h.div
       .attr("data-slot", "sidebar")
       .class(cn(SIDEBAR_NONE_CLASS, options.class))
-      .children(children)
+      .children(children);
   }
 
   if (sidebar.isMobile) {
@@ -541,20 +499,18 @@ export const Sidebar = <Msg, R = never>(
               "data-sidebar": "sidebar",
               "data-slot": "sidebar",
               "data-mobile": "true",
-              style: `--sidebar-width: ${SIDEBAR_WIDTH_MOBILE}`
+              style: `--sidebar-width: ${SIDEBAR_WIDTH_MOBILE}`,
             })
             .class(SIDEBAR_MOBILE_CONTENT_CLASS)
             .children(
               SheetHeader(h, { class: "sr-only" }).children(
                 sheet.title(h.h2).children("Sidebar"),
-                sheet.description(h.p).children(
-                  "Displays the mobile sidebar."
-                )
+                sheet.description(h.p).children("Displays the mobile sidebar."),
               ),
-              h.div.class("flex h-full w-full flex-col").children(children)
-            )
-        )
-    })
+              h.div.class("flex h-full w-full flex-col").children(children),
+            ),
+        ),
+    });
   }
 
   return h.div
@@ -564,7 +520,7 @@ export const Sidebar = <Msg, R = never>(
       "data-collapsible": sidebar.state === "collapsed" ? collapsible : "",
       "data-variant": variant,
       "data-side": side,
-      "data-slot": "sidebar"
+      "data-slot": "sidebar",
     })
     .children(
       h.div
@@ -574,8 +530,8 @@ export const Sidebar = <Msg, R = never>(
             SIDEBAR_GAP_BASE_CLASS,
             variant === "floating" || variant === "inset"
               ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
-              : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
-          )
+              : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
+          ),
         ),
       h.div
         .attr("data-slot", "sidebar-container")
@@ -588,17 +544,17 @@ export const Sidebar = <Msg, R = never>(
             variant === "floating" || variant === "inset"
               ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
               : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
-            options.class
-          )
+            options.class,
+          ),
         )
         .children(
           h.div
             .attrs({ "data-sidebar": "sidebar", "data-slot": "sidebar-inner" })
             .class(SIDEBAR_INNER_CLASS)
-            .children(children)
-        )
-    )
-}
+            .children(children),
+        ),
+    );
+};
 
 // ---------------------------------------------------------------------------
 // Trigger / Rail / Inset
@@ -614,7 +570,7 @@ export const Sidebar = <Msg, R = never>(
 export const SidebarTrigger = <Msg>(
   sidebar: SidebarProviderParts,
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   sidebar
     .toggle(h.button)
@@ -622,25 +578,16 @@ export const SidebarTrigger = <Msg>(
       "data-sidebar": "trigger",
       "data-slot": "sidebar-trigger",
       "data-variant": "ghost",
-      "data-size": "icon"
+      "data-size": "icon",
     })
-    .class(
-      cn(
-        buttonVariants({ variant: "ghost", size: "icon" }),
-        "size-7",
-        options.class
-      )
-    )
-    .children(
-      PanelLeftIcon(h),
-      h.span.class("sr-only").children("Toggle Sidebar")
-    )
+    .class(cn(buttonVariants({ variant: "ghost", size: "icon" }), "size-7", options.class))
+    .children(PanelLeftIcon(h), h.span.class("sr-only").children("Toggle Sidebar"));
 
 /** The desktop edge rail: a <button> wearing the provider's `toggle` part. */
 export const SidebarRail = <Msg>(
   sidebar: SidebarProviderParts,
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   sidebar
     .toggle(h.button)
@@ -649,18 +596,15 @@ export const SidebarRail = <Msg>(
       "data-slot": "sidebar-rail",
       "aria-label": "Toggle Sidebar",
       title: "Toggle Sidebar",
-      tabindex: "-1"
+      tabindex: "-1",
     })
-    .class(cn(SIDEBAR_RAIL_CLASS, options.class))
+    .class(cn(SIDEBAR_RAIL_CLASS, options.class));
 
 /** The page column next to the sidebar: a plain <main>, as upstream. */
 export const SidebarInset = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.main
-    .attr("data-slot", "sidebar-inset")
-    .class(cn(SIDEBAR_INSET_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.main.attr("data-slot", "sidebar-inset").class(cn(SIDEBAR_INSET_CLASS, options.class));
 
 // ---------------------------------------------------------------------------
 // Input / Header / Footer / Separator / Content
@@ -674,63 +618,62 @@ export const SidebarInset = <Msg>(
 export const SidebarInput = <Msg, R = never>(
   h: { readonly input: InputElement<Msg> },
   options: {
-    readonly element?: InputElement<Msg, R> | undefined
-    readonly props: InputProps
+    readonly element?: InputElement<Msg, R> | undefined;
+    readonly props: InputProps;
     readonly onUpdate?:
-      | ((event: { readonly value: string }) => NoInfer<Msg> | undefined)
-      | undefined
-    readonly type?: string | undefined
-    readonly class?: string | undefined
-  }
+      ((event: { readonly value: string }) => NoInfer<Msg> | undefined) | undefined;
+    readonly type?: string | undefined;
+    readonly class?: string | undefined;
+  },
 ) =>
   Input(h, {
     element: options.element,
     props: options.props,
     onUpdate: options.onUpdate,
     type: options.type,
-    class: cn(SIDEBAR_INPUT_CLASS, options.class)
+    class: cn(SIDEBAR_INPUT_CLASS, options.class),
   })
     .attr("data-slot", "sidebar-input")
-    .attr("data-sidebar", "input")
+    .attr("data-sidebar", "input");
 
 export const SidebarHeader = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({ "data-slot": "sidebar-header", "data-sidebar": "header" })
-    .class(cn(SIDEBAR_HEADER_CLASS, options.class))
+    .class(cn(SIDEBAR_HEADER_CLASS, options.class));
 
 export const SidebarFooter = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({ "data-slot": "sidebar-footer", "data-sidebar": "footer" })
-    .class(cn(SIDEBAR_FOOTER_CLASS, options.class))
+    .class(cn(SIDEBAR_FOOTER_CLASS, options.class));
 
 /** This repo's `Separator` with upstream's sidebar overrides. */
 export const SidebarSeparator = <Msg, R = never>(
   h: { readonly div: SeparatorElement<Msg> },
   options: {
-    readonly element?: SeparatorElement<Msg, R> | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly element?: SeparatorElement<Msg, R> | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   Separator(h, {
     element: options.element,
-    class: cn(SIDEBAR_SEPARATOR_CLASS, options.class)
+    class: cn(SIDEBAR_SEPARATOR_CLASS, options.class),
   })
     .attr("data-slot", "sidebar-separator")
-    .attr("data-sidebar", "separator")
+    .attr("data-sidebar", "separator");
 
 export const SidebarContent = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({ "data-slot": "sidebar-content", "data-sidebar": "content" })
-    .class(cn(SIDEBAR_CONTENT_CLASS, options.class))
+    .class(cn(SIDEBAR_CONTENT_CLASS, options.class));
 
 // ---------------------------------------------------------------------------
 // Group pieces
@@ -738,23 +681,23 @@ export const SidebarContent = <Msg>(
 
 export const SidebarGroup = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({ "data-slot": "sidebar-group", "data-sidebar": "group" })
-    .class(cn(SIDEBAR_GROUP_CLASS, options.class))
+    .class(cn(SIDEBAR_GROUP_CLASS, options.class));
 
 /** Always a <div>: upstream's `asChild` (Slot) does not exist here (D-2). */
 export const SidebarGroupLabel = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({
       "data-slot": "sidebar-group-label",
-      "data-sidebar": "group-label"
+      "data-sidebar": "group-label",
     })
-    .class(cn(SIDEBAR_GROUP_LABEL_CLASS, options.class))
+    .class(cn(SIDEBAR_GROUP_LABEL_CLASS, options.class));
 
 /**
  * Always a <button> (D-2). Upstream spreads DOM props; here the press is
@@ -763,31 +706,29 @@ export const SidebarGroupLabel = <Msg>(
 export const SidebarGroupAction = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly onPress?: Msg | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly onPress?: Msg | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) => {
   const button = h.button
     .attrs({
       "data-slot": "sidebar-group-action",
-      "data-sidebar": "group-action"
+      "data-sidebar": "group-action",
     })
-    .class(cn(SIDEBAR_GROUP_ACTION_CLASS, options.class))
-  return options.onPress !== undefined
-    ? button.on("click", options.onPress)
-    : button
-}
+    .class(cn(SIDEBAR_GROUP_ACTION_CLASS, options.class));
+  return options.onPress !== undefined ? button.on("click", options.onPress) : button;
+};
 
 export const SidebarGroupContent = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({
       "data-slot": "sidebar-group-content",
-      "data-sidebar": "group-content"
+      "data-sidebar": "group-content",
     })
-    .class(cn(SIDEBAR_GROUP_CONTENT_CLASS, options.class))
+    .class(cn(SIDEBAR_GROUP_CONTENT_CLASS, options.class));
 
 // ---------------------------------------------------------------------------
 // Menu pieces
@@ -795,52 +736,52 @@ export const SidebarGroupContent = <Msg>(
 
 export const SidebarMenu = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.ul
     .attrs({ "data-slot": "sidebar-menu", "data-sidebar": "menu" })
-    .class(cn(SIDEBAR_MENU_CLASS, options.class))
+    .class(cn(SIDEBAR_MENU_CLASS, options.class));
 
 export const SidebarMenuItem = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.li
     .attrs({ "data-slot": "sidebar-menu-item", "data-sidebar": "menu-item" })
-    .class(cn(SIDEBAR_MENU_ITEM_CLASS, options.class))
+    .class(cn(SIDEBAR_MENU_ITEM_CLASS, options.class));
 
-export type SidebarMenuButtonVariant = "default" | "outline"
-export type SidebarMenuButtonSize = "default" | "sm" | "lg"
+export type SidebarMenuButtonVariant = "default" | "outline";
+export type SidebarMenuButtonSize = "default" | "sm" | "lg";
 
 const SIDEBAR_MENU_BUTTON_BASE_CLASS =
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0"
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm ring-sidebar-ring outline-hidden transition-[width,height,padding] group-has-data-[sidebar=menu-action]/menu-item:pr-8 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0";
 
 const SIDEBAR_MENU_BUTTON_VARIANTS: Record<SidebarMenuButtonVariant, string> = {
   default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
   outline:
-    "bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]"
-}
+    "bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
+};
 
 const SIDEBAR_MENU_BUTTON_SIZES: Record<SidebarMenuButtonSize, string> = {
   default: "h-8 text-sm",
   sm: "h-7 text-xs",
-  lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!"
-}
+  lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!",
+};
 
 /** Upstream name kept: `sidebarMenuButtonVariants({ variant, size })`; here a pure function, not cva. */
 export const sidebarMenuButtonVariants = (
   options: {
-    readonly variant?: SidebarMenuButtonVariant | undefined
-    readonly size?: SidebarMenuButtonSize | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly variant?: SidebarMenuButtonVariant | undefined;
+    readonly size?: SidebarMenuButtonSize | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ): string =>
   cn(
     SIDEBAR_MENU_BUTTON_BASE_CLASS,
     SIDEBAR_MENU_BUTTON_VARIANTS[options.variant ?? "default"],
     SIDEBAR_MENU_BUTTON_SIZES[options.size ?? "default"],
-    options.class
-  )
+    options.class,
+  );
 
 /**
  * A menu row button: always a <button> (D-2), `data-active` written from
@@ -851,67 +792,61 @@ export const sidebarMenuButtonVariants = (
 export const SidebarMenuButton = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly variant?: SidebarMenuButtonVariant | undefined
-    readonly size?: SidebarMenuButtonSize | undefined
-    readonly isActive?: boolean | undefined
-    readonly onPress?: Msg | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly variant?: SidebarMenuButtonVariant | undefined;
+    readonly size?: SidebarMenuButtonSize | undefined;
+    readonly isActive?: boolean | undefined;
+    readonly onPress?: Msg | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) => {
   const button = h.button
     .attrs({
       "data-slot": "sidebar-menu-button",
       "data-sidebar": "menu-button",
       "data-size": options.size ?? "default",
-      "data-active": String(options.isActive ?? false)
+      "data-active": String(options.isActive ?? false),
     })
     .class(
       sidebarMenuButtonVariants({
         variant: options.variant,
         size: options.size,
-        class: options.class
-      })
-    )
-  return options.onPress !== undefined
-    ? button.on("click", options.onPress)
-    : button
-}
+        class: options.class,
+      }),
+    );
+  return options.onPress !== undefined ? button.on("click", options.onPress) : button;
+};
 
 /** Always a <button> (D-2); the press is the caller's message via `onPress`. */
 export const SidebarMenuAction = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly showOnHover?: boolean | undefined
-    readonly onPress?: Msg | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly showOnHover?: boolean | undefined;
+    readonly onPress?: Msg | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) => {
   const button = h.button
     .attrs({
       "data-slot": "sidebar-menu-action",
-      "data-sidebar": "menu-action"
+      "data-sidebar": "menu-action",
     })
     .class(
       cn(
         SIDEBAR_MENU_ACTION_CLASS,
-        options.showOnHover
-          ? SIDEBAR_MENU_ACTION_SHOW_ON_HOVER_CLASS
-          : undefined,
-        options.class
-      )
-    )
-  return options.onPress !== undefined
-    ? button.on("click", options.onPress)
-    : button
-}
+        options.showOnHover ? SIDEBAR_MENU_ACTION_SHOW_ON_HOVER_CLASS : undefined,
+        options.class,
+      ),
+    );
+  return options.onPress !== undefined ? button.on("click", options.onPress) : button;
+};
 
 export const SidebarMenuBadge = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attrs({ "data-slot": "sidebar-menu-badge", "data-sidebar": "menu-badge" })
-    .class(cn(SIDEBAR_MENU_BADGE_CLASS, options.class))
+    .class(cn(SIDEBAR_MENU_BADGE_CLASS, options.class));
 
 /**
  * A loading row: this repo's `Skeleton`s inside upstream's row div. The
@@ -921,49 +856,46 @@ export const SidebarMenuBadge = <Msg>(
 export const SidebarMenuSkeleton = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly showIcon?: boolean | undefined
-    readonly width?: string | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly showIcon?: boolean | undefined;
+    readonly width?: string | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   h.div
     .attrs({
       "data-slot": "sidebar-menu-skeleton",
-      "data-sidebar": "menu-skeleton"
+      "data-sidebar": "menu-skeleton",
     })
     .class(cn(SIDEBAR_MENU_SKELETON_CLASS, options.class))
     .children(
       options.showIcon === true
-        ? Skeleton(h, { class: "size-4 rounded-md" }).attr(
-          "data-sidebar",
-          "menu-skeleton-icon"
-        )
+        ? Skeleton(h, { class: "size-4 rounded-md" }).attr("data-sidebar", "menu-skeleton-icon")
         : undefined,
       Skeleton(h, { class: "h-4 max-w-(--skeleton-width) flex-1" })
         .attr("data-sidebar", "menu-skeleton-text")
-        .attr("style", `--skeleton-width: ${options.width ?? "70%"}`)
-    )
+        .attr("style", `--skeleton-width: ${options.width ?? "70%"}`),
+    );
 
 export const SidebarMenuSub = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.ul
     .attrs({ "data-slot": "sidebar-menu-sub", "data-sidebar": "menu-sub" })
-    .class(cn(SIDEBAR_MENU_SUB_CLASS, options.class))
+    .class(cn(SIDEBAR_MENU_SUB_CLASS, options.class));
 
 export const SidebarMenuSubItem = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.li
     .attrs({
       "data-slot": "sidebar-menu-sub-item",
-      "data-sidebar": "menu-sub-item"
+      "data-sidebar": "menu-sub-item",
     })
-    .class(cn(SIDEBAR_MENU_SUB_ITEM_CLASS, options.class))
+    .class(cn(SIDEBAR_MENU_SUB_ITEM_CLASS, options.class));
 
-export type SidebarMenuSubButtonSize = "sm" | "md"
+export type SidebarMenuSubButtonSize = "sm" | "md";
 
 /**
  * A sub-menu row link: always an <a> (D-2). `href` is written when given;
@@ -972,32 +904,24 @@ export type SidebarMenuSubButtonSize = "sm" | "md"
 export const SidebarMenuSubButton = <Msg>(
   h: Html.H<Msg>,
   options: {
-    readonly size?: SidebarMenuSubButtonSize | undefined
-    readonly isActive?: boolean | undefined
-    readonly href?: string | undefined
-    readonly onPress?: Msg | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly size?: SidebarMenuSubButtonSize | undefined;
+    readonly isActive?: boolean | undefined;
+    readonly href?: string | undefined;
+    readonly onPress?: Msg | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) => {
-  const size = options.size ?? "md"
+  const size = options.size ?? "md";
   const anchor = h.a
     .attrs({
       "data-slot": "sidebar-menu-sub-button",
       "data-sidebar": "menu-sub-button",
       "data-size": size,
-      "data-active": String(options.isActive ?? false)
+      "data-active": String(options.isActive ?? false),
     })
     .class(
-      cn(
-        SIDEBAR_MENU_SUB_BUTTON_BASE_CLASS,
-        size === "sm" ? "text-xs" : "text-sm",
-        options.class
-      )
-    )
-  const withHref = options.href !== undefined
-    ? anchor.attr("href", options.href)
-    : anchor
-  return options.onPress !== undefined
-    ? withHref.on("click", options.onPress)
-    : withHref
-}
+      cn(SIDEBAR_MENU_SUB_BUTTON_BASE_CLASS, size === "sm" ? "text-xs" : "text-sm", options.class),
+    );
+  const withHref = options.href !== undefined ? anchor.attr("href", options.href) : anchor;
+  return options.onPress !== undefined ? withHref.on("click", options.onPress) : withHref;
+};

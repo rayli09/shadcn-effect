@@ -40,97 +40,82 @@
  * - The trigger and the (portaled) content are wrapped in one plain <div>:
  *   an Effect UI view returns one node where upstream returns a fragment.
  */
-import type { PopoverAlign } from "@effect/ui-kit"
-import type * as Html from "@effect/ui/html/Html"
-import * as DateTime from "effect/DateTime"
-import { cn } from "../lib/utils.ts"
-import { buttonVariants } from "./button.ts"
-import { Calendar, type CalendarProps } from "./calendar.ts"
-import { Popover, PopoverContent } from "./popover.ts"
+import type { PopoverAlign } from "@effect/ui-kit";
+import type * as Html from "@effect/ui/html/Html";
+import * as DateTime from "effect/DateTime";
+import { CalendarIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
+import { buttonVariants } from "./button.ts";
+import { Calendar, type CalendarProps } from "./calendar.ts";
+import { Popover, PopoverContent } from "./popover.ts";
 
 // ---------------------------------------------------------------------------
-// Icon — lucide `calendar` path data (ISC), inline SVG via h.el.
+// Icon — the shared `CalendarIcon` builder in ../lib/icons.ts (inline
+// Lucide SVG; lucide-react is banned). That builder also sets xmlns /
+// width / height on the <svg>, which the file-local builder it replaced
+// did not, so the call site removes them again via `svgAttrRemovals`
+// (`.attrs` with an `undefined` value removes the attribute) and the
+// rendered <svg> keeps exactly the attributes it had before.
 // ---------------------------------------------------------------------------
 
-const CalendarIcon = <Msg>(h: Html.H<Msg>, cls: string) =>
-  h.el("svg").attrs({
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    "stroke-width": "2",
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    "aria-hidden": "true",
-    class: cls
-  }).children(
-    h.el("path").key("0").attrs({ d: "M8 2v4" }),
-    h.el("path").key("1").attrs({ d: "M16 2v4" }),
-    h.el("rect").key("2").attrs({
-      width: "18",
-      height: "18",
-      x: "3",
-      y: "4",
-      rx: "2"
-    }),
-    h.el("path").key("3").attrs({ d: "M3 10h18" })
-  )
+const svgAttrRemovals = {
+  xmlns: undefined,
+  width: undefined,
+  height: undefined,
+} as const;
 
 // ---------------------------------------------------------------------------
 // Class strings — verbatim from the shadcn Date Picker docs example
 // ---------------------------------------------------------------------------
 
-export const DATE_PICKER_TRIGGER_CLASS =
-  "w-[240px] justify-start text-left font-normal"
+export const DATE_PICKER_TRIGGER_CLASS = "w-[240px] justify-start text-left font-normal";
 
-export const DATE_PICKER_TRIGGER_EMPTY_CLASS = "text-muted-foreground"
+export const DATE_PICKER_TRIGGER_EMPTY_CLASS = "text-muted-foreground";
 
-export const DATE_PICKER_ICON_CLASS = "mr-2 h-4 w-4"
+export const DATE_PICKER_ICON_CLASS = "mr-2 h-4 w-4";
 
-export const DATE_PICKER_CONTENT_CLASS = "w-auto p-0"
+export const DATE_PICKER_CONTENT_CLASS = "w-auto p-0";
 
-export const DATE_PICKER_PLACEHOLDER = "Pick a date"
+export const DATE_PICKER_PLACEHOLDER = "Pick a date";
 
 // ---------------------------------------------------------------------------
 // DatePicker
 // ---------------------------------------------------------------------------
 
-export type DatePickerDate = DateTime.Utc | null
+export type DatePickerDate = DateTime.Utc | null;
 
 export interface DatePickerOptions<Msg> {
   /** The popover's open state (consumer Model), as upstream `open`. */
-  readonly open: boolean
+  readonly open: boolean;
   /** The picked date, or `null` for the placeholder state. */
-  readonly date: DatePickerDate
+  readonly date: DatePickerDate;
   /** Any date in the visible month (consumer Model). */
-  readonly month: DateTime.Utc
+  readonly month: DateTime.Utc;
   /** The current day (passed in so rendering stays pure). */
-  readonly today: DateTime.Utc
-  readonly min?: CalendarProps["min"]
-  readonly max?: CalendarProps["max"]
-  readonly locale?: CalendarProps["locale"]
-  readonly firstDayOfWeek?: CalendarProps["firstDayOfWeek"]
-  readonly disabled?: boolean | undefined
+  readonly today: DateTime.Utc;
+  readonly min?: CalendarProps["min"];
+  readonly max?: CalendarProps["max"];
+  readonly locale?: CalendarProps["locale"];
+  readonly firstDayOfWeek?: CalendarProps["firstDayOfWeek"];
+  readonly disabled?: boolean | undefined;
   /** Placeholder text; upstream's literal is `"Pick a date"`. */
-  readonly placeholder?: string | undefined
+  readonly placeholder?: string | undefined;
   /** Upstream `PopoverContent align`; the docs example uses `"start"`. */
-  readonly align?: PopoverAlign | undefined
+  readonly align?: PopoverAlign | undefined;
   /** Extra trigger classes, after the example's own (D-1: no merge). */
-  readonly class?: string | undefined
-  readonly onOpenChange: (open: boolean) => Msg | undefined
-  readonly onPick: (date: DateTime.Utc) => Msg | undefined
-  readonly onRequestMonth: (month: DateTime.Utc) => Msg | undefined
+  readonly class?: string | undefined;
+  readonly onOpenChange: (open: boolean) => Msg | undefined;
+  readonly onPick: (date: DateTime.Utc) => Msg | undefined;
+  readonly onRequestMonth: (month: DateTime.Utc) => Msg | undefined;
 }
 
-export const DatePicker = <Msg>(
-  h: Html.H<Msg>,
-  options: DatePickerOptions<Msg>
-) =>
+export const DatePicker = <Msg>(h: Html.H<Msg>, options: DatePickerOptions<Msg>) =>
   Popover(h, {
     props: { open: options.open, align: options.align ?? "start" },
     onEmit: {
       RequestedOpen: () => options.onOpenChange(true),
       RequestedClose: () => options.onOpenChange(false),
-      Settled: () => undefined
+      Settled: () => undefined,
     },
     view: (popover) =>
       h.div.children(
@@ -144,29 +129,27 @@ export const DatePicker = <Msg>(
               buttonVariants({ variant: "outline" }),
               DATE_PICKER_TRIGGER_CLASS,
               options.date === null && DATE_PICKER_TRIGGER_EMPTY_CLASS,
-              options.class
-            )
+              options.class,
+            ),
           )
           .children(
-            CalendarIcon(h, DATE_PICKER_ICON_CLASS),
+            CalendarIcon(h, { class: DATE_PICKER_ICON_CLASS }).attrs(svgAttrRemovals),
             options.date === null
-              ? h.span.children(
-                options.placeholder ?? DATE_PICKER_PLACEHOLDER
-              )
+              ? h.span.children(options.placeholder ?? DATE_PICKER_PLACEHOLDER)
               : DateTime.formatIntl(
-                DateTime.removeTime(options.date),
-                new Intl.DateTimeFormat(options.locale, {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                  timeZone: "UTC"
-                })
-              )
+                  DateTime.removeTime(options.date),
+                  new Intl.DateTimeFormat(options.locale, {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  }),
+                ),
           ),
         popover.portal(h.dialog)?.children(
           popover.positioner(h.div).children(
             PopoverContent(popover.popup(h.div), {
-              class: DATE_PICKER_CONTENT_CLASS
+              class: DATE_PICKER_CONTENT_CLASS,
             }).children(
               Calendar(h, {
                 props: {
@@ -177,15 +160,15 @@ export const DatePicker = <Msg>(
                   max: options.max,
                   locale: options.locale,
                   firstDayOfWeek: options.firstDayOfWeek,
-                  disabled: options.disabled
+                  disabled: options.disabled,
                 },
                 onEmit: {
                   Picked: ({ date }) => options.onPick(date),
-                  RequestedMonth: ({ month }) => options.onRequestMonth(month)
-                }
-              })
-            )
-          )
-        )
-      )
-  })
+                  RequestedMonth: ({ month }) => options.onRequestMonth(month),
+                },
+              }),
+            ),
+          ),
+        ),
+      ),
+  });

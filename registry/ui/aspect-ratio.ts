@@ -12,26 +12,20 @@
  *
  *   AspectRatio(h, { ratio: 16 / 9 }).children(...)
  */
-import type * as Html from "@effect/ui/html/Html"
-import { cn } from "../lib/utils.ts"
+import type * as Html from "@effect/ui/html/Html";
+import { cn } from "../lib/utils.ts";
 
 export const AspectRatio = <Msg, R = never>(
   h: {
-    readonly div: Html.Element<
-      Msg,
-      R,
-      Html.EventsOf<"div">,
-      HTMLDivElement,
-      "div"
-    >
+    readonly div: Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
   },
   options: {
     /** Width / height, as upstream's `ratio` prop. Defaults to 1 (square). */
-    readonly ratio?: number | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly ratio?: number | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   h.div
     .attr("data-slot", "aspect-ratio")
     .attr("style", `aspect-ratio: ${options.ratio ?? 1}`)
-    .class(cn(options.class))
+    .class(cn(options.class));

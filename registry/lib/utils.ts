@@ -9,6 +9,5 @@
  * by CSS order, exactly like a plain class attribute. That is the one declared
  * divergence from upstream `cn` (see docs/PORTING-RULES.md, D-1).
  */
-export const cn = (
-  ...parts: ReadonlyArray<string | false | undefined>
-): string => parts.filter((p): p is string => typeof p === "string" && p.length > 0).join(" ")
+export const cn = (...parts: ReadonlyArray<string | false | undefined>): string =>
+  parts.filter((p): p is string => typeof p === "string" && p.length > 0).join(" ");

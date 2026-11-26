@@ -40,35 +40,32 @@ import {
   type PreviewCardAlign,
   type PreviewCardEvents,
   type PreviewCardProps,
-  type PreviewCardSide
-} from "@effect/ui-kit"
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type * as Html from "@effect/ui/html/Html"
-import type * as AsyncResult from "effect/reactivity/AsyncResult"
-import { cn } from "../lib/utils.ts"
+  type PreviewCardSide,
+} from "@effect/ui-kit";
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type * as Html from "@effect/ui/html/Html";
+import type * as AsyncResult from "effect/reactivity/AsyncResult";
+import { cn } from "../lib/utils.ts";
 
 /** The options a `HoverCard` call takes: the kit `PreviewCard` Component's call options, verbatim. */
-export type HoverCardOptions<Msg, RV = never, RF = never> =
-  View.Child.Options<PreviewCardProps, PreviewCardEvents, NoInfer<Msg>> & {
-    readonly fallback?:
-      | ((
-        result: AsyncResult.Failure<never, unknown>
-      ) => View.Content<NoInfer<Msg>, RF>)
-      | undefined
-    readonly view: (
-      parts: Component.Headless.Parts<typeof KitPreviewCard>
-    ) => View.Content<NoInfer<Msg>, RV>
-    readonly slots?: never
-  }
+export type HoverCardOptions<Msg, RV = never, RF = never> = View.Child.Options<
+  PreviewCardProps,
+  PreviewCardEvents,
+  NoInfer<Msg>
+> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<NoInfer<Msg>, RF>) | undefined;
+  readonly view: (
+    parts: Component.Headless.Parts<typeof KitPreviewCard>,
+  ) => View.Content<NoInfer<Msg>, RV>;
+  readonly slots?: never;
+};
 
-export type {
-  PreviewCardAlign as HoverCardAlign,
-  PreviewCardSide as HoverCardSide
-}
+export type { PreviewCardAlign as HoverCardAlign, PreviewCardSide as HoverCardSide };
 
 export const HOVER_CARD_CONTENT_CLASS =
-  "z-50 w-64 origin-(--radix-hover-card-content-transform-origin) rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
+  "z-50 w-64 origin-(--radix-hover-card-content-transform-origin) rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95";
 
 /**
  * The kit `PreviewCard` Component with shadcn's defaults: `align: "center"`
@@ -82,17 +79,17 @@ export const HOVER_CARD_CONTENT_CLASS =
  */
 export const HoverCard = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
-  options: HoverCardOptions<Msg, RV, RF>
+  options: HoverCardOptions<Msg, RV, RF>,
 ) =>
   KitPreviewCard(h, {
     ...options,
-    props: { align: "center", sideOffset: 4, ...options.props }
-  })
+    props: { align: "center", sideOffset: 4, ...options.props },
+  });
 
 /** Applies upstream's `data-slot="hover-card-trigger"` to a kit trigger part's builder. */
 export const HoverCardTrigger = <Msg, R, E, N, T extends string>(
-  trigger: Html.Element<Msg, R, E, N, T>
-) => trigger.attr("data-slot", "hover-card-trigger")
+  trigger: Html.Element<Msg, R, E, N, T>,
+) => trigger.attr("data-slot", "hover-card-trigger");
 
 /**
  * Applies upstream's `data-slot="hover-card-portal"` to a kit portal part's
@@ -100,8 +97,8 @@ export const HoverCardTrigger = <Msg, R, E, N, T extends string>(
  * (unless `keepMounted`), and so does this applier.
  */
 export const HoverCardPortal = <Msg, R, E, N, T extends string>(
-  portal: Html.Element<Msg, R, E, N, T> | undefined
-) => portal?.attr("data-slot", "hover-card-portal")
+  portal: Html.Element<Msg, R, E, N, T> | undefined,
+) => portal?.attr("data-slot", "hover-card-portal");
 
 /**
  * Applies upstream's `data-slot="hover-card-content"` and content class
@@ -110,8 +107,6 @@ export const HoverCardPortal = <Msg, R, E, N, T extends string>(
  */
 export const HoverCardContent = <Msg, R, E, N, T extends string>(
   popup: Html.Element<Msg, R, E, N, T>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
-  popup
-    .attr("data-slot", "hover-card-content")
-    .class(cn(HOVER_CARD_CONTENT_CLASS, options.class))
+  popup.attr("data-slot", "hover-card-content").class(cn(HOVER_CARD_CONTENT_CLASS, options.class));

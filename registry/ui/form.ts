@@ -35,7 +35,13 @@
  *   consumer's to chain on the control builder.
  * - `FormControl` is not a Slot (D-2): the kit `control` part applies
  *   the id / `aria-invalid` / `aria-describedby` to the control's own
- *   builder, which is also where `data-slot="form-control"` lands.
+ *   builder, which is also where `data-slot="form-control"` lands —
+ *   unless the control element stamps its own slot (our Input port
+ *   does, chained after the element it consumes), in which case the
+ *   element's slot wins. That matches upstream exactly: FormControl
+ *   is a Radix Slot and Radix `mergeProps` lets child props override
+ *   the Slot's, so a shadcn <Input> inside <FormControl> renders
+ *   data-slot="input" too (D-8).
  * - `FormLabel`'s `htmlFor` is written by the kit `label` part (the
  *   control's generated id); its `data-error` is bridged from the
  *   field's `invalid`, which the kit reports as an empty-valued
@@ -60,24 +66,21 @@ import {
   Field as KitField,
   Form as KitForm,
   type FieldProps,
-  type FormEvents
-} from "@effect/ui-kit"
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type * as Html from "@effect/ui/html/Html"
-import { cn } from "../lib/utils.ts"
-import { LABEL_CLASS } from "./label.ts"
+  type FormEvents,
+} from "@effect/ui-kit";
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type * as Html from "@effect/ui/html/Html";
+import { cn } from "../lib/utils.ts";
+import { LABEL_CLASS } from "./label.ts";
 
-export type { FieldProps }
+export type { FieldProps };
 
 /** What a `Form`'s `view` gets: the kit Form's parts. */
-export type FormParts = Component.Headless.Parts<typeof KitForm>
+export type FormParts = Component.Headless.Parts<typeof KitForm>;
 
 /** The kit Form's `Submitted` event: the form's named controls, in document order. */
-export type FormSubmission = Extract<
-  FormEvents,
-  { readonly _tag: "Submitted" }
->
+export type FormSubmission = Extract<FormEvents, { readonly _tag: "Submitted" }>;
 
 /**
  * A form: the kit `Form` (native `<form novalidate>`, `Submitted`
@@ -97,16 +100,14 @@ export type FormSubmission = Extract<
 export const Form = <Msg, RV = never, RF = never>(
   h: Html.H<Msg>,
   options: {
-    readonly key?: string | undefined
+    readonly key?: string | undefined;
     /** Classes for the `<form>` element (upstream puts `className` on its own form element). */
-    readonly class?: string | undefined
+    readonly class?: string | undefined;
     /** The Message a submit sends, with the form's named controls. */
-    readonly onSubmitted?:
-      | ((submission: FormSubmission) => NoInfer<Msg> | undefined)
-      | undefined
+    readonly onSubmitted?: ((submission: FormSubmission) => NoInfer<Msg> | undefined) | undefined;
     /** The form's whole view, from its parts. */
-    readonly view: (parts: FormParts) => View.Content<NoInfer<Msg>, RV>
-  }
+    readonly view: (parts: FormParts) => View.Content<NoInfer<Msg>, RV>;
+  },
 ) =>
   KitForm(h, {
     key: options.key,
@@ -115,13 +116,11 @@ export const Form = <Msg, RV = never, RF = never>(
       options.view({
         ...form,
         root: (element) => {
-          const root = form.root(element)
-          return options.class !== undefined
-            ? root.class(options.class)
-            : root
-        }
-      })
-  })
+          const root = form.root(element);
+          return options.class !== undefined ? root.class(options.class) : root;
+        },
+      }),
+  });
 
 /**
  * The styled FormMessage part: a `<p>` builder in (upstream's FormMessage
@@ -129,30 +128,22 @@ export const Form = <Msg, RV = never, RF = never>(
  * not invalid and enabled, which is when the kit `error` part is absent.
  */
 export type FormMessagePart<Msg> = (
-  element: Html.Element<
-    Msg,
-    any,
-    Html.EventsOf<"p">,
-    HTMLParagraphElement,
-    "p"
-  >
-) => Html.Element<Msg, any, Html.EventsOf<"p">, HTMLParagraphElement, "p"> | undefined
+  element: Html.Element<Msg, any, Html.EventsOf<"p">, HTMLParagraphElement, "p">,
+) => Html.Element<Msg, any, Html.EventsOf<"p">, HTMLParagraphElement, "p"> | undefined;
 
 /** What a `FormField`'s `view` gets: the kit Field's parts, pre-styled as the Form* anatomy, plus the `message` part. */
-export type FormFieldParts<Msg> =
-  & Component.Headless.Parts<typeof KitField>
-  & {
-    /** Upstream's FormMessage: the kit `error` part, styled as a plain `<p>` (see `FormField`). */
-    readonly message: FormMessagePart<Msg>
-  }
+export type FormFieldParts<Msg> = Component.Headless.Parts<typeof KitField> & {
+  /** Upstream's FormMessage: the kit `error` part, styled as a plain `<p>` (see `FormField`). */
+  readonly message: FormMessagePart<Msg>;
+};
 
-export const FORM_ITEM_CLASS = "grid gap-2"
+export const FORM_ITEM_CLASS = "grid gap-2";
 
-export const FORM_LABEL_CLASS = "data-[error=true]:text-destructive"
+export const FORM_LABEL_CLASS = "data-[error=true]:text-destructive";
 
-export const FORM_DESCRIPTION_CLASS = "text-sm text-muted-foreground"
+export const FORM_DESCRIPTION_CLASS = "text-sm text-muted-foreground";
 
-export const FORM_MESSAGE_CLASS = "text-sm text-destructive"
+export const FORM_MESSAGE_CLASS = "text-sm text-destructive";
 
 /**
  * One bound field: the kit `Field` with its parts pre-styled as
@@ -182,19 +173,17 @@ export const FORM_MESSAGE_CLASS = "text-sm text-destructive"
 export const FormField = <Msg, RV = never, RF = never>(
   h: Html.H<Msg>,
   options: {
-    readonly key?: string | undefined
+    readonly key?: string | undefined;
     /** The field's reported state — the kit Field's props (id, disabled, invalid, described, dirty, filled). */
-    readonly props?: FieldProps | undefined
+    readonly props?: FieldProps | undefined;
     /** Extra classes for the FormItem root, appended like upstream's `className`. */
-    readonly class?: string | undefined
-    readonly labelClass?: string | undefined
-    readonly descriptionClass?: string | undefined
-    readonly messageClass?: string | undefined
+    readonly class?: string | undefined;
+    readonly labelClass?: string | undefined;
+    readonly descriptionClass?: string | undefined;
+    readonly messageClass?: string | undefined;
     /** The field's whole view, from its styled parts. */
-    readonly view: (
-      parts: FormFieldParts<NoInfer<Msg>>
-    ) => View.Content<NoInfer<Msg>, RV>
-  }
+    readonly view: (parts: FormFieldParts<NoInfer<Msg>>) => View.Content<NoInfer<Msg>, RV>;
+  },
 ) =>
   KitField(h, {
     key: options.key,
@@ -203,41 +192,35 @@ export const FormField = <Msg, RV = never, RF = never>(
       options.view({
         ...field,
         root: (element) =>
-          field.root(element)
+          field
+            .root(element)
             .attr("data-slot", "form-item")
             .class(cn(FORM_ITEM_CLASS, options.class)),
         label: (element) =>
-          field.label(element)
+          field
+            .label(element)
             .attr("data-slot", "form-label")
             .attr("data-error", field.invalid ? "true" : "false")
             .class(cn(LABEL_CLASS, FORM_LABEL_CLASS, options.labelClass)),
-        control: (element) =>
-          field.control(element).attr("data-slot", "form-control"),
+        control: (element) => field.control(element).attr("data-slot", "form-control"),
         description: (element) =>
-          field.description(element)
+          field
+            .description(element)
             .attr("data-slot", "form-description")
-            .class(
-              cn(FORM_DESCRIPTION_CLASS, options.descriptionClass)
-            ),
+            .class(cn(FORM_DESCRIPTION_CLASS, options.descriptionClass)),
         message: (element) => {
-          const part = field.error(element)
+          const part = field.error(element);
           return part === undefined
             ? undefined
             : part
-              .attr("data-slot", "form-message")
-              .attr("role", undefined)
-              .class(cn(FORM_MESSAGE_CLASS, options.messageClass))
-        }
-      })
-  })
+                .attr("data-slot", "form-message")
+                .attr("role", undefined)
+                .class(cn(FORM_MESSAGE_CLASS, options.messageClass));
+        },
+      }),
+  });
 
-type Div<Msg, R> = Html.Element<
-  Msg,
-  R,
-  Html.EventsOf<"div">,
-  HTMLDivElement,
-  "div"
->
+type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 
 /**
  * Upstream `FormItem` as a standalone view function: the grid container
@@ -246,11 +229,8 @@ type Div<Msg, R> = Html.Element<
  */
 export const FormItem = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "form-item")
-    .class(cn(FORM_ITEM_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "form-item").class(cn(FORM_ITEM_CLASS, options.class));
 
 /**
  * Upstream `FormLabel` as a standalone applier, for a kit Field's label
@@ -262,14 +242,14 @@ export const FormItem = <Msg, R = never>(
 export const FormLabel = <Msg, R, E, N, T extends string>(
   label: Html.Element<Msg, R, E, N, T>,
   options: {
-    readonly error?: boolean | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly error?: boolean | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   label
     .attr("data-slot", "form-label")
     .attr("data-error", options.error === true ? "true" : "false")
-    .class(cn(LABEL_CLASS, FORM_LABEL_CLASS, options.class))
+    .class(cn(LABEL_CLASS, FORM_LABEL_CLASS, options.class));
 
 /**
  * Upstream `FormControl` as a standalone applier: stamps
@@ -279,8 +259,8 @@ export const FormLabel = <Msg, R, E, N, T extends string>(
  * Inside `FormField` the control part is already stamped.
  */
 export const FormControl = <Msg, R, E, N, T extends string>(
-  control: Html.Element<Msg, R, E, N, T>
-) => control.attr("data-slot", "form-control")
+  control: Html.Element<Msg, R, E, N, T>,
+) => control.attr("data-slot", "form-control");
 
 /**
  * Upstream `FormDescription` as a standalone applier, for a kit Field's
@@ -290,11 +270,11 @@ export const FormControl = <Msg, R, E, N, T extends string>(
  */
 export const FormDescription = <Msg, R, E, N, T extends string>(
   description: Html.Element<Msg, R, E, N, T>,
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   description
     .attr("data-slot", "form-description")
-    .class(cn(FORM_DESCRIPTION_CLASS, options.class))
+    .class(cn(FORM_DESCRIPTION_CLASS, options.class));
 
 /**
  * Upstream `FormMessage` as a standalone applier, for a kit Field's
@@ -312,16 +292,14 @@ export const FormDescription = <Msg, R, E, N, T extends string>(
 export const FormMessage = <Msg, R, E, N, T extends string>(
   message: Html.Element<Msg, R, E, N, T> | undefined,
   options: {
-    readonly error?: string | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly error?: string | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) => {
-  if (message === undefined) return undefined
+  if (message === undefined) return undefined;
   const styled = message
     .attr("data-slot", "form-message")
     .attr("role", undefined)
-    .class(cn(FORM_MESSAGE_CLASS, options.class))
-  return options.error !== undefined
-    ? styled.children(options.error)
-    : styled
-}
+    .class(cn(FORM_MESSAGE_CLASS, options.class));
+  return options.error !== undefined ? styled.children(options.error) : styled;
+};

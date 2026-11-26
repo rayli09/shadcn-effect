@@ -5,10 +5,9 @@
  * CircleIcon. Here: the @effect/ui-kit `RadioGroup` headless component —
  * the consumer's Model owns the picked `value`, picks arrive as the kit's
  * `Picked` event forwarded to `onPick`, and the kit owns roving focus,
- * arrow-key navigation and the hidden form input. The dot is an inline SVG
- * built with `h.el` from Lucide's `circle` path data (ISC) — the Html
- * vocabulary has no `svg` tag, and `h.el` is the runtime's host-neutral
- * element builder; the host's serializer namespaces SVG tags itself.
+ * arrow-key navigation and the hidden form input. The dot is the shared
+ * `CircleIcon` builder from registry/lib/icons.ts (Lucide `circle` path
+ * data, ISC).
  *
  * Class strings are byte-for-byte the shadcn new-york-v4 strings.
  *
@@ -32,46 +31,26 @@
 import {
   RadioGroup as KitRadioGroup,
   type RadioGroupItem as KitRadioGroupItem,
-  type RadioGroupProps
-} from "@effect/ui-kit"
-import type { Html } from "@effect/ui/html"
-import { cn } from "../lib/utils.ts"
+  type RadioGroupProps,
+} from "@effect/ui-kit";
+import type { Html } from "@effect/ui/html";
+import { CircleIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
 
-export const RADIO_GROUP_CLASS = "grid gap-3"
+export const RADIO_GROUP_CLASS = "grid gap-3";
 
 export const RADIO_GROUP_ITEM_CLASS =
-  "aspect-square size-4 shrink-0 rounded-full border border-input text-primary shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40"
+  "aspect-square size-4 shrink-0 rounded-full border border-input text-primary shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:ring-destructive/40";
 
-export const RADIO_GROUP_INDICATOR_CLASS =
-  "relative flex items-center justify-center"
+export const RADIO_GROUP_INDICATOR_CLASS = "relative flex items-center justify-center";
 
 /** One radio in the group: the kit's item fields, plus rendering-only extras. */
 export type RadioGroupItemSpec = KitRadioGroupItem & {
   /** Rendered as the radio's `aria-label`. */
-  readonly label?: string | undefined
-  readonly class?: string | undefined
-  readonly indicatorClass?: string | undefined
-}
-
-/** Lucide `circle` (ISC): <circle cx="12" cy="12" r="10" />, filled via the upstream class. */
-const CircleIcon = <Msg>(h: Html.H<Msg>) =>
-  h.el("svg")
-    .attrs({
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "currentColor",
-      "stroke-width": "2",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
-    })
-    .attr(
-      "class",
-      "absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary"
-    )
-    .children(h.el("circle").attrs({ cx: "12", cy: "12", r: "10" }))
+  readonly label?: string | undefined;
+  readonly class?: string | undefined;
+  readonly indicatorClass?: string | undefined;
+};
 
 /**
  * The group's parts, as its `view` closure receives them. The kit exports
@@ -81,14 +60,14 @@ const CircleIcon = <Msg>(h: Html.H<Msg>) =>
 export interface RadioGroupParts {
   readonly radio: (options: {
     // The kit's keyed button part target; `h.button` satisfies it.
-    readonly element: any
-    readonly value: string
-  }) => any
+    readonly element: any;
+    readonly value: string;
+  }) => any;
   readonly indicator: (options: {
     // The kit's span part target; `h.span` satisfies it.
-    readonly element: any
-    readonly value: string
-  }) => any
+    readonly element: any;
+    readonly value: string;
+  }) => any;
 }
 
 /**
@@ -105,29 +84,31 @@ export const RadioGroupItem = <Msg>(
   h: Html.H<Msg>,
   item: RadioGroupItemSpec,
   options: {
-    readonly checked: boolean
-    readonly class?: string | undefined
-    readonly indicatorClass?: string | undefined
-  }
+    readonly checked: boolean;
+    readonly class?: string | undefined;
+    readonly indicatorClass?: string | undefined;
+  },
 ) => {
-  const state = options.checked ? "checked" : "unchecked"
-  const radio = parts.radio({ element: h.button, value: item.value })
+  const state = options.checked ? "checked" : "unchecked";
+  const radio = parts
+    .radio({ element: h.button, value: item.value })
     .attr("data-slot", "radio-group-item")
     .attr("data-state", state)
-    .class(cn(RADIO_GROUP_ITEM_CLASS, item.class, options.class))
-  const labelled = item.label === undefined
-    ? radio
-    : radio.attr("aria-label", item.label)
+    .class(cn(RADIO_GROUP_ITEM_CLASS, item.class, options.class));
+  const labelled = item.label === undefined ? radio : radio.attr("aria-label", item.label);
   return labelled.children(
-    parts.indicator({ element: h.span, value: item.value })
+    parts
+      .indicator({ element: h.span, value: item.value })
       ?.attr("data-slot", "radio-group-indicator")
       .attr("data-state", state)
-      .class(
-        cn(RADIO_GROUP_INDICATOR_CLASS, item.indicatorClass, options.indicatorClass)
-      )
-      .children(CircleIcon(h))
-  )
-}
+      .class(cn(RADIO_GROUP_INDICATOR_CLASS, item.indicatorClass, options.indicatorClass))
+      .children(
+        CircleIcon(h, {
+          class: "absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary",
+        }),
+      ),
+  );
+};
 
 /**
  * A shadcn-styled radio group. Controlled, exactly like upstream: pass the
@@ -142,32 +123,29 @@ export const RadioGroup = <Msg>(
   h: Html.H<Msg>,
   options: {
     readonly props: Omit<RadioGroupProps, "items"> & {
-      readonly items: ReadonlyArray<RadioGroupItemSpec>
-    }
+      readonly items: ReadonlyArray<RadioGroupItemSpec>;
+    };
     /** The Message a pick sends, with the picked radio's value. */
-    readonly onPick?:
-      | ((event: { readonly value: string }) => Msg | undefined)
-      | undefined
-    readonly class?: string | undefined
-    readonly itemClass?: string | undefined
-    readonly indicatorClass?: string | undefined
-  }
+    readonly onPick?: ((event: { readonly value: string }) => Msg | undefined) | undefined;
+    readonly class?: string | undefined;
+    readonly itemClass?: string | undefined;
+    readonly indicatorClass?: string | undefined;
+  },
 ) => {
-  const { items, ...rest } = options.props
+  const { items, ...rest } = options.props;
   return KitRadioGroup(h, {
     props: {
       ...rest,
       items: items.map((item) => ({
         value: item.value,
         disabled: item.disabled,
-        readOnly: item.readOnly
-      }))
+        readOnly: item.readOnly,
+      })),
     },
-    onEmit: options.onPick === undefined
-      ? undefined
-      : { Picked: options.onPick },
+    onEmit: options.onPick === undefined ? undefined : { Picked: options.onPick },
     view: (group) =>
-      group.root(h.div)
+      group
+        .root(h.div)
         .attr("data-slot", "radio-group")
         .class(cn(RADIO_GROUP_CLASS, options.class))
         .children(
@@ -175,9 +153,9 @@ export const RadioGroup = <Msg>(
             RadioGroupItem(group, h, item, {
               checked: options.props.value === item.value,
               class: options.itemClass,
-              indicatorClass: options.indicatorClass
-            })
-          )
-        )
-  })
-}
+              indicatorClass: options.indicatorClass,
+            }),
+          ),
+        ),
+  });
+};

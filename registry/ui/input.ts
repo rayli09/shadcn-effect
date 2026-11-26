@@ -15,20 +15,16 @@
  * here and is written as the `type` attribute when given; left out, the
  * browser default ("text") applies, exactly as upstream leaving it unset.
  */
-import {
-  Input as KitInput,
-  type InputElement,
-  type InputProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
+import { Input as KitInput, type InputElement, type InputProps } from "@effect/ui-kit";
+import { cn } from "../lib/utils.ts";
 
 export const INPUT_CLASS = cn(
   "h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30",
   "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
-  "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40"
-)
+  "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+);
 
-export type { InputElement, InputProps }
+export type { InputElement, InputProps };
 
 /**
  * A shadcn-styled text input. Chain classes and native attributes on the
@@ -44,26 +40,23 @@ export const Input = <Msg, R = never>(
   h: { readonly input: InputElement<Msg> },
   options: {
     /** The caller's `h.input`, to stack a part on it (e.g. `field.control(h.input)`). `h.input` when left out. */
-    readonly element?: InputElement<Msg, R> | undefined
+    readonly element?: InputElement<Msg, R> | undefined;
     /** The controlled value (and disabled state) — the kit Input's props. */
-    readonly props: InputProps
+    readonly props: InputProps;
     /** The message an edit sends, from the value the user left in the field. */
     readonly onUpdate?:
-      | ((event: { readonly value: string }) => NoInfer<Msg> | undefined)
-      | undefined
+      ((event: { readonly value: string }) => NoInfer<Msg> | undefined) | undefined;
     /** The native `type` attribute (`"email"`, `"password"`, …). Left out, no attribute is written. */
-    readonly type?: string | undefined
-    readonly class?: string | undefined
-  }
+    readonly type?: string | undefined;
+    readonly class?: string | undefined;
+  },
 ) => {
   const input = KitInput(h, {
     element: options.element,
     props: options.props,
-    onUpdate: options.onUpdate
+    onUpdate: options.onUpdate,
   })
     .attr("data-slot", "input")
-    .class(cn(INPUT_CLASS, options.class))
-  return options.type !== undefined
-    ? input.attr("type", options.type)
-    : input
-}
+    .class(cn(INPUT_CLASS, options.class));
+  return options.type !== undefined ? input.attr("type", options.type) : input;
+};

@@ -16,39 +16,27 @@
  * Class strings are byte-for-byte the shadcn new-york-v4 strings; the parity
  * checker (scripts/verify.mjs) fails if any upstream token disappears.
  */
-import type * as Html from "@effect/ui/html/Html"
-import { cn } from "../lib/utils.ts"
+import type * as Html from "@effect/ui/html/Html";
+import { cn } from "../lib/utils.ts";
 
-type Div<Msg, R> = Html.Element<
-  Msg,
-  R,
-  Html.EventsOf<"div">,
-  HTMLDivElement,
-  "div"
->
+type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 
-export const BUBBLE_GROUP_CLASS = "flex min-w-0 flex-col gap-2"
+export const BUBBLE_GROUP_CLASS = "flex min-w-0 flex-col gap-2";
 
 export const BUBBLE_CONTENT_CLASS =
-  "w-fit max-w-full min-w-0 overflow-hidden rounded-xl border border-transparent px-3 py-2 text-sm leading-relaxed wrap-break-word group-data-[align=end]/bubble:self-end [button]:text-left [button,a]:transition-colors [button,a]:outline-none [button,a]:focus-visible:border-ring [button,a]:focus-visible:ring-3 [button,a]:focus-visible:ring-ring/50"
+  "w-fit max-w-full min-w-0 overflow-hidden rounded-xl border border-transparent px-3 py-2 text-sm leading-relaxed wrap-break-word group-data-[align=end]/bubble:self-end [button]:text-left [button,a]:transition-colors [button,a]:outline-none [button,a]:focus-visible:border-ring [button,a]:focus-visible:ring-3 [button,a]:focus-visible:ring-ring/50";
 
 // ---------------------------------------------------------------------------
 // Bubble
 // ---------------------------------------------------------------------------
 
 export type BubbleVariant =
-  | "default"
-  | "secondary"
-  | "muted"
-  | "tinted"
-  | "outline"
-  | "ghost"
-  | "destructive"
+  "default" | "secondary" | "muted" | "tinted" | "outline" | "ghost" | "destructive";
 
-export type BubbleAlign = "start" | "end"
+export type BubbleAlign = "start" | "end";
 
 const BUBBLE_BASE =
-  "group/bubble relative flex w-fit max-w-[80%] min-w-0 flex-col gap-1 group-data-[align=end]/message:self-end data-[align=end]:self-end data-[variant=ghost]:max-w-full"
+  "group/bubble relative flex w-fit max-w-[80%] min-w-0 flex-col gap-1 group-data-[align=end]/message:self-end data-[align=end]:self-end data-[variant=ghost]:max-w-full";
 
 const BUBBLE_VARIANTS: Record<BubbleVariant, string> = {
   default:
@@ -64,80 +52,79 @@ const BUBBLE_VARIANTS: Record<BubbleVariant, string> = {
   ghost:
     "border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted/50",
   destructive:
-    "*:data-[slot=bubble-content]:bg-destructive/10 *:data-[slot=bubble-content]:text-destructive dark:*:data-[slot=bubble-content]:bg-destructive/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/30"
-}
+    "*:data-[slot=bubble-content]:bg-destructive/10 *:data-[slot=bubble-content]:text-destructive dark:*:data-[slot=bubble-content]:bg-destructive/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/30",
+};
 
 /** Upstream name kept: `bubbleVariants({ variant })` in shadcn; here a pure function, not cva. */
-export const bubbleVariants = (options: {
-  readonly variant?: BubbleVariant | undefined
-  readonly class?: string | undefined
-} = {}): string =>
-  cn(
-    BUBBLE_BASE,
-    BUBBLE_VARIANTS[options.variant ?? "default"],
-    options.class
-  )
+export const bubbleVariants = (
+  options: {
+    readonly variant?: BubbleVariant | undefined;
+    readonly class?: string | undefined;
+  } = {},
+): string => cn(BUBBLE_BASE, BUBBLE_VARIANTS[options.variant ?? "default"], options.class);
 
 export const Bubble = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
   options: {
-    readonly variant?: BubbleVariant | undefined
-    readonly align?: BubbleAlign | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly variant?: BubbleVariant | undefined;
+    readonly align?: BubbleAlign | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   h.div
     .attr("data-slot", "bubble")
     .attr("data-variant", options.variant ?? "default")
     .attr("data-align", options.align ?? "start")
-    .class(bubbleVariants(options))
+    .class(bubbleVariants(options));
 
 // ---------------------------------------------------------------------------
 // BubbleReactions
 // ---------------------------------------------------------------------------
 
-export type BubbleReactionsSide = "top" | "bottom"
-export type BubbleReactionsAlign = "start" | "end"
+export type BubbleReactionsSide = "top" | "bottom";
+export type BubbleReactionsAlign = "start" | "end";
 
 const BUBBLE_REACTIONS_BASE =
-  "absolute z-10 flex w-fit shrink-0 items-center justify-center gap-1 rounded-full bg-muted px-1.5 py-0.5 text-sm ring-3 ring-card has-[button]:p-0"
+  "absolute z-10 flex w-fit shrink-0 items-center justify-center gap-1 rounded-full bg-muted px-1.5 py-0.5 text-sm ring-3 ring-card has-[button]:p-0";
 
 const BUBBLE_REACTIONS_SIDES: Record<BubbleReactionsSide, string> = {
   top: "top-0 -translate-y-3/4",
-  bottom: "bottom-0 translate-y-3/4"
-}
+  bottom: "bottom-0 translate-y-3/4",
+};
 
 const BUBBLE_REACTIONS_ALIGNS: Record<BubbleReactionsAlign, string> = {
   start: "left-3",
-  end: "right-3"
-}
+  end: "right-3",
+};
 
 /** Upstream name kept: `bubbleReactionsVariants({ side, align })` in shadcn; here a pure function, not cva. */
-export const bubbleReactionsVariants = (options: {
-  readonly side?: BubbleReactionsSide | undefined
-  readonly align?: BubbleReactionsAlign | undefined
-  readonly class?: string | undefined
-} = {}): string =>
+export const bubbleReactionsVariants = (
+  options: {
+    readonly side?: BubbleReactionsSide | undefined;
+    readonly align?: BubbleReactionsAlign | undefined;
+    readonly class?: string | undefined;
+  } = {},
+): string =>
   cn(
     BUBBLE_REACTIONS_BASE,
     BUBBLE_REACTIONS_SIDES[options.side ?? "bottom"],
     BUBBLE_REACTIONS_ALIGNS[options.align ?? "end"],
-    options.class
-  )
+    options.class,
+  );
 
 export const BubbleReactions = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
   options: {
-    readonly side?: BubbleReactionsSide | undefined
-    readonly align?: BubbleReactionsAlign | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly side?: BubbleReactionsSide | undefined;
+    readonly align?: BubbleReactionsAlign | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   h.div
     .attr("data-slot", "bubble-reactions")
     .attr("data-align", options.align ?? "end")
     .attr("data-side", options.side ?? "bottom")
-    .class(bubbleReactionsVariants(options))
+    .class(bubbleReactionsVariants(options));
 
 // ---------------------------------------------------------------------------
 // Remaining parts
@@ -145,16 +132,10 @@ export const BubbleReactions = <Msg, R = never>(
 
 export const BubbleGroup = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "bubble-group")
-    .class(cn(BUBBLE_GROUP_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "bubble-group").class(cn(BUBBLE_GROUP_CLASS, options.class));
 
 export const BubbleContent = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "bubble-content")
-    .class(cn(BUBBLE_CONTENT_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "bubble-content").class(cn(BUBBLE_CONTENT_CLASS, options.class));

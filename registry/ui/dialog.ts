@@ -34,9 +34,9 @@
  * enter/exit animation they named does not run under the kit — style the
  * starting/ending states via the kit's attributes instead.
  */
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type { Html } from "@effect/ui/html"
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type { Html } from "@effect/ui/html";
 import {
   Dialog as KitDialog,
   DialogTrigger as KitDialogTrigger,
@@ -44,59 +44,41 @@ import {
   type DialogProps,
   type DialogTriggerElement,
   type DialogTriggerPress,
-  type DialogTriggerProps
-} from "@effect/ui-kit"
-import { cn } from "../lib/utils.ts"
+  type DialogTriggerProps,
+} from "@effect/ui-kit";
+import { XIcon as SharedXIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
 
 /** What a `Dialog`'s `view` gets: the kit Dialog's parts and plain values. */
-export type DialogParts = Component.Headless.Parts<typeof KitDialog>
+export type DialogParts = Component.Headless.Parts<typeof KitDialog>;
 
 export const DIALOG_OVERLAY_CLASS =
-  "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0"
+  "fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0";
 
 export const DIALOG_CONTENT_CLASS =
-  "fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border bg-background p-6 shadow-lg duration-200 outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 sm:max-w-lg"
+  "fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border bg-background p-6 shadow-lg duration-200 outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 sm:max-w-lg";
 
 export const DIALOG_CLOSE_CLASS =
-  "absolute top-4 right-4 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+  "absolute top-4 right-4 rounded-xs opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";
 
-export const DIALOG_HEADER_CLASS = "flex flex-col gap-2 text-center sm:text-left"
+export const DIALOG_HEADER_CLASS = "flex flex-col gap-2 text-center sm:text-left";
 
-export const DIALOG_FOOTER_CLASS =
-  "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+export const DIALOG_FOOTER_CLASS = "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end";
 
-export const DIALOG_TITLE_CLASS = "text-lg leading-none font-semibold"
+export const DIALOG_TITLE_CLASS = "text-lg leading-none font-semibold";
 
-export const DIALOG_DESCRIPTION_CLASS = "text-sm text-muted-foreground"
+export const DIALOG_DESCRIPTION_CLASS = "text-sm text-muted-foreground";
 
 /**
- * The Lucide `x` icon (ISC) as an inline SVG builder. lucide-react is
- * banned, and the Html vocabulary has no `svg` tag, so the icon is built
- * with `h.el`, the helper's generic host-element builder. Path data is
- * Lucide's: `M18 6 6 18` and `m6 6 12 12`.
+ * The Lucide `x` icon (ISC), from the shared `../lib/icons.ts` builder.
+ * Kept as an export of this module — sheet.ts and consumers import
+ * `XIcon` from here — and the wrapper preserves this file's original
+ * rendering exactly: lucide-react's own `lucide lucide-x` classes are
+ * merged ahead of the caller's class, as the file-local builder did.
+ * Path data is Lucide's: `M18 6 6 18` and `m6 6 12 12`.
  */
-export const XIcon = <Msg>(
-  h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.el("svg")
-    .attrs({
-      xmlns: "http://www.w3.org/2000/svg",
-      width: "24",
-      height: "24",
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: "currentColor",
-      "stroke-width": "2",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round",
-      "aria-hidden": "true"
-    })
-    .attr("class", cn("lucide lucide-x", options.class))
-    .children(
-      h.el("path").attr("d", "M18 6 6 18"),
-      h.el("path").attr("d", "m6 6 12 12")
-    )
+export const XIcon = <Msg>(h: Html.H<Msg>, options: { readonly class?: string | undefined } = {}) =>
+  SharedXIcon(h, { class: cn("lucide lucide-x", options.class) });
 
 /**
  * A shadcn-styled Dialog. Call it exactly like the kit's, with a `view`
@@ -126,17 +108,15 @@ export const XIcon = <Msg>(
  */
 export const Dialog = <Msg, RV = never, RF = never>(
   h: View.Helper<Msg, unknown>,
-  options:
-    & View.Child.Options<DialogProps, DialogEvents, NoInfer<Msg>>
-    & {
-      /** The dialog's whole view, from its styled parts. */
-      readonly view: (parts: DialogParts) => View.Content<NoInfer<Msg>, RV>
-      /** Extra classes, appended like upstream's `className` on each part. */
-      readonly overlayClass?: string | undefined
-      readonly contentClass?: string | undefined
-      readonly titleClass?: string | undefined
-      readonly descriptionClass?: string | undefined
-    }
+  options: View.Child.Options<DialogProps, DialogEvents, NoInfer<Msg>> & {
+    /** The dialog's whole view, from its styled parts. */
+    readonly view: (parts: DialogParts) => View.Content<NoInfer<Msg>, RV>;
+    /** Extra classes, appended like upstream's `className` on each part. */
+    readonly overlayClass?: string | undefined;
+    readonly contentClass?: string | undefined;
+    readonly titleClass?: string | undefined;
+    readonly descriptionClass?: string | undefined;
+  },
 ): ReturnType<typeof KitDialog<Msg, RV, RF>> =>
   KitDialog<Msg, RV, RF>(h, {
     key: options.key,
@@ -146,38 +126,35 @@ export const Dialog = <Msg, RV = never, RF = never>(
     view: (dialog) =>
       options.view({
         ...dialog,
-        trigger: (element) =>
-          dialog.trigger(element.attr("data-slot", "dialog-trigger")),
-        portal: (element) =>
-          dialog.portal(element.attr("data-slot", "dialog-portal")),
+        trigger: (element) => dialog.trigger(element.attr("data-slot", "dialog-trigger")),
+        portal: (element) => dialog.portal(element.attr("data-slot", "dialog-portal")),
         backdrop: (element) =>
           dialog.backdrop(
             element
               .attr("data-slot", "dialog-overlay")
-              .class(cn(DIALOG_OVERLAY_CLASS, options.overlayClass))
+              .class(cn(DIALOG_OVERLAY_CLASS, options.overlayClass)),
           ),
         popup: (element) =>
           dialog.popup(
             element
               .attr("data-slot", "dialog-content")
-              .class(cn(DIALOG_CONTENT_CLASS, options.contentClass))
+              .class(cn(DIALOG_CONTENT_CLASS, options.contentClass)),
           ),
         title: (element) =>
           dialog.title(
             element
               .attr("data-slot", "dialog-title")
-              .class(cn(DIALOG_TITLE_CLASS, options.titleClass))
+              .class(cn(DIALOG_TITLE_CLASS, options.titleClass)),
           ),
         description: (element) =>
           dialog.description(
             element
               .attr("data-slot", "dialog-description")
-              .class(cn(DIALOG_DESCRIPTION_CLASS, options.descriptionClass))
+              .class(cn(DIALOG_DESCRIPTION_CLASS, options.descriptionClass)),
           ),
-        close: (element) =>
-          dialog.close(element.attr("data-slot", "dialog-close"))
-      })
-  })
+        close: (element) => dialog.close(element.attr("data-slot", "dialog-close")),
+      }),
+  });
 
 /**
  * A trigger drawn in another Component than the Dialog's, paired with it
@@ -188,28 +165,22 @@ export const Dialog = <Msg, RV = never, RF = never>(
 export const DialogTrigger = <Msg, R = never>(
   h: { readonly button: DialogTriggerElement<Msg> },
   options: {
-    readonly element?: DialogTriggerElement<Msg, R> | undefined
-    readonly props: DialogTriggerProps
-    readonly onPress?:
-      | NoInfer<Msg>
-      | ((press: DialogTriggerPress) => NoInfer<Msg>)
-      | undefined
-  }
+    readonly element?: DialogTriggerElement<Msg, R> | undefined;
+    readonly props: DialogTriggerProps;
+    readonly onPress?: NoInfer<Msg> | ((press: DialogTriggerPress) => NoInfer<Msg>) | undefined;
+  },
 ) =>
   KitDialogTrigger(h, {
     element: options.element,
     props: options.props,
-    onPress: options.onPress
-  }).attr("data-slot", "dialog-trigger")
+    onPress: options.onPress,
+  }).attr("data-slot", "dialog-trigger");
 
 /** Upstream `DialogHeader`: a plain flex div, no kit part owns it. */
 export const DialogHeader = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "dialog-header")
-    .class(cn(DIALOG_HEADER_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "dialog-header").class(cn(DIALOG_HEADER_CLASS, options.class));
 
 /**
  * Upstream `DialogFooter`. Upstream's `showCloseButton` variant rendered a
@@ -219,8 +190,5 @@ export const DialogHeader = <Msg>(
  */
 export const DialogFooter = <Msg>(
   h: Html.H<Msg>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "dialog-footer")
-    .class(cn(DIALOG_FOOTER_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "dialog-footer").class(cn(DIALOG_FOOTER_CLASS, options.class));

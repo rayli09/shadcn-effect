@@ -1,1 +1,25 @@
-{"dependencies":{"@effect/ui":"https://pkg.pr.new/Effect-TS/ui/@effect/ui@main","@effect/ui-kit":"https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main","effect":"^4.1.6"},"description":"shadcn/ui ported 1:1 to Effect UI — a shadcn registry of 100% Effect-native components","devDependencies":{"tailwindcss":"^4.0.0","typescript":"^5.9.0"},"name":"shadcn-effect","private":true,"scripts":{"check":"tsc -b tsconfig.json","verify":"node scripts/verify.mjs"},"type":"module","version":"0.0.0"}
+{
+  "dependencies": {
+    "@effect/ui": "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+    "@effect/ui-kit": "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+    "effect": "^4.1.6"
+  },
+  "description": "shadcn/ui ported 1:1 to Effect UI \u2014 a shadcn registry of 100% Effect-native components",
+  "devDependencies": {
+    "@effect/vitest": "https://pkg.pr.new/Effect-TS/effect/@effect/vitest@main",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^5.1.2"
+  },
+  "name": "shadcn-effect",
+  "private": true,
+  "scripts": {
+    "lint": "bun lint",
+    "fmt": "bun fmt",
+    "check": "bun check",
+    "test": "vitest run",
+    "verify": "node scripts/verify.mjs"
+  },
+  "type": "module",
+  "version": "0.0.0"
+}

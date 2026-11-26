@@ -7,19 +7,19 @@ same Tailwind class strings (machine-checked against upstream), same registry
 distribution model. Different engine: no React, no Radix, no cva, no hooks,
 no lucide-react, no react-hook-form, no zod.
 
-| shadcn/ui (upstream) | shadcn-effect |
-|---|---|
-| React components | `@effect/ui` Components + view functions |
+| shadcn/ui (upstream)       | shadcn-effect                                    |
+| -------------------------- | ------------------------------------------------ |
+| React components           | `@effect/ui` Components + view functions         |
 | Radix / Base UI primitives | `@effect/ui-kit` headless parts (41+ components) |
-| cva variants | Pure functions + string-union variant types |
-| `useState` / context | Component Model / Message / update, Providers |
-| react-hook-form + zod | kit `Form` / `Field` + `effect` Schema |
-| lucide-react | Inline SVG builders (lucide path data) |
-| clsx + tailwind-merge `cn` | Dependency-free `cn` (declared divergence D-1) |
+| cva variants               | Pure functions + string-union variant types      |
+| `useState` / context       | Component Model / Message / update, Providers    |
+| react-hook-form + zod      | kit `Form` / `Field` + `effect` Schema           |
+| lucide-react               | Inline SVG builders (lucide path data)           |
+| clsx + tailwind-merge `cn` | Dependency-free `cn` (declared divergence D-1)   |
 
 ## Install (registry, like shadcn)
 
-This repo *is* a shadcn registry — `registry.json` at the root, GitHub-registry mode:
+This repo _is_ a shadcn registry — `registry.json` at the root, GitHub-registry mode:
 
 ```sh
 # once the GitHub repo is public:
@@ -31,7 +31,11 @@ pnpm dlx shadcn@latest add rayli09/shadcn-effect/theme
 Or via namespace, in your `components.json`:
 
 ```json
-{ "registries": { "@shadcn-effect": "https://raw.githubusercontent.com/rayli09/shadcn-effect/main/public/r/{name}.json" } }
+{
+  "registries": {
+    "@shadcn-effect": "https://raw.githubusercontent.com/rayli09/shadcn-effect/main/public/r/{name}.json"
+  }
+}
 ```
 
 ```sh
@@ -46,6 +50,18 @@ pnpm add effect \
   https://pkg.pr.new/Effect-TS/ui/@effect/ui@main \
   https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main
 ```
+
+## Toolchain
+
+Bun only, and it needs a **canary** build (>= 1.4.6-canary): `bun lint`
+exists only there. Stable bun has `bun check` and `bun fmt` but no lint.
+
+- `bun run lint` — bun lint (config in `bunfig.toml`)
+- `bun run fmt` — bun fmt (printWidth 100, config in `bunfig.toml`)
+- `bun run check` — bun check (native type check)
+- `bun run test` — vitest via `@effect/vitest` (the Scene/Play harness is
+  vitest-bound; bun's trio doesn't cover it)
+- `bun run verify` — import gate + class-parity manifest
 
 ## Status
 

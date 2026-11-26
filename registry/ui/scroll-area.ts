@@ -34,36 +34,33 @@
  *   like Radix); it carries no `data-slot` or class upstream, and none
  *   here.
  */
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
 import {
   ScrollArea as KitScrollArea,
   type ScrollAreaOrientation,
-  type ScrollAreaProps
-} from "@effect/ui-kit"
-import type { Html } from "@effect/ui/html"
-import { cn } from "../lib/utils.ts"
+  type ScrollAreaProps,
+} from "@effect/ui-kit";
+import type { Html } from "@effect/ui/html";
+import { cn } from "../lib/utils.ts";
 
-export type { ScrollAreaOrientation, ScrollAreaProps }
+export type { ScrollAreaOrientation, ScrollAreaProps };
 
 /** The kit ScrollArea's parts, as handed to a `view` closure. */
-export type ScrollAreaParts = Component.Headless.Parts<typeof KitScrollArea>
+export type ScrollAreaParts = Component.Headless.Parts<typeof KitScrollArea>;
 
-export const SCROLL_AREA_CLASS = "relative"
+export const SCROLL_AREA_CLASS = "relative";
 
 export const SCROLL_AREA_VIEWPORT_CLASS =
-  "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1"
+  "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1";
 
-export const SCROLL_BAR_CLASS =
-  "flex touch-none p-px transition-colors select-none"
+export const SCROLL_BAR_CLASS = "flex touch-none p-px transition-colors select-none";
 
-export const SCROLL_BAR_VERTICAL_CLASS =
-  "h-full w-2.5 border-l border-l-transparent"
+export const SCROLL_BAR_VERTICAL_CLASS = "h-full w-2.5 border-l border-l-transparent";
 
-export const SCROLL_BAR_HORIZONTAL_CLASS =
-  "h-2.5 flex-col border-t border-t-transparent"
+export const SCROLL_BAR_HORIZONTAL_CLASS = "h-2.5 flex-col border-t border-t-transparent";
 
-export const SCROLL_BAR_THUMB_CLASS = "relative flex-1 rounded-full bg-border"
+export const SCROLL_BAR_THUMB_CLASS = "relative flex-1 rounded-full bg-border";
 
 /**
  * shadcn's `ScrollBar`, as a styled applier over the kit ScrollArea
@@ -74,39 +71,36 @@ export const SCROLL_BAR_THUMB_CLASS = "relative flex-1 rounded-full bg-border"
  *
  *   ScrollBar(area, { element: h.div, thumb: h.div, keepMounted: true })
  */
-export const ScrollBar = <
-  B extends View.PartTarget<"div">,
-  T extends View.PartTarget<"div">
->(
+export const ScrollBar = <B extends View.PartTarget<"div">, T extends View.PartTarget<"div">>(
   parts: ScrollAreaParts,
   options: {
-    readonly element: B
-    readonly thumb: T
-    readonly orientation?: ScrollAreaOrientation | undefined
-    readonly keepMounted?: boolean | undefined
-    readonly class?: string | undefined
-    readonly thumbClass?: string | undefined
-  }
+    readonly element: B;
+    readonly thumb: T;
+    readonly orientation?: ScrollAreaOrientation | undefined;
+    readonly keepMounted?: boolean | undefined;
+    readonly class?: string | undefined;
+    readonly thumbClass?: string | undefined;
+  },
 ) => {
-  const orientation = options.orientation ?? "vertical"
+  const orientation = options.orientation ?? "vertical";
   const built = parts.scrollbar({
     element: options.element,
     thumb: options.thumb
       .attr("data-slot", "scroll-area-thumb")
       .class(cn(SCROLL_BAR_THUMB_CLASS, options.thumbClass)),
     orientation,
-    keepMounted: options.keepMounted
-  })
+    keepMounted: options.keepMounted,
+  });
   return built
     ?.attr("data-slot", "scroll-area-scrollbar")
-    .class(cn(
-      SCROLL_BAR_CLASS,
-      orientation === "vertical"
-        ? SCROLL_BAR_VERTICAL_CLASS
-        : SCROLL_BAR_HORIZONTAL_CLASS,
-      options.class
-    ))
-}
+    .class(
+      cn(
+        SCROLL_BAR_CLASS,
+        orientation === "vertical" ? SCROLL_BAR_VERTICAL_CLASS : SCROLL_BAR_HORIZONTAL_CLASS,
+        options.class,
+      ),
+    );
+};
 
 /**
  * A shadcn-styled scroll area: a viewport holding your `children`, one
@@ -120,23 +114,25 @@ export const ScrollBar = <
 export const ScrollArea = <Msg, R = never>(
   h: Html.H<Msg>,
   options: {
-    readonly props?: ScrollAreaProps | undefined
-    readonly class?: string | undefined
-    readonly viewportClass?: string | undefined
-    readonly scrollbarClass?: string | undefined
-    readonly thumbClass?: string | undefined
-    readonly orientation?: ScrollAreaOrientation | undefined
-    readonly children: View.Content<Msg, R>
-  }
+    readonly props?: ScrollAreaProps | undefined;
+    readonly class?: string | undefined;
+    readonly viewportClass?: string | undefined;
+    readonly scrollbarClass?: string | undefined;
+    readonly thumbClass?: string | undefined;
+    readonly orientation?: ScrollAreaOrientation | undefined;
+    readonly children: View.Content<Msg, R>;
+  },
 ) =>
   KitScrollArea(h, {
     props: options.props,
     view: (area) =>
-      area.root(h.div)
+      area
+        .root(h.div)
         .attr("data-slot", "scroll-area")
         .class(cn(SCROLL_AREA_CLASS, options.class))
         .children(
-          area.viewport(h.div)
+          area
+            .viewport(h.div)
             .attr("data-slot", "scroll-area-viewport")
             .class(cn(SCROLL_AREA_VIEWPORT_CLASS, options.viewportClass))
             .children(area.content(h.div).children(options.children)),
@@ -146,8 +142,8 @@ export const ScrollArea = <Msg, R = never>(
             orientation: options.orientation ?? "vertical",
             keepMounted: true,
             class: options.scrollbarClass,
-            thumbClass: options.thumbClass
+            thumbClass: options.thumbClass,
           }),
-          area.corner(h.div)
-        )
-  })
+          area.corner(h.div),
+        ),
+  });

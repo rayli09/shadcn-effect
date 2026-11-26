@@ -52,59 +52,58 @@
  *   `animate-accordion-up/down` utilities themselves need the
  *   `--animate-accordion-*` keyframes in the theme (registry/styles/theme.css).
  *
- * The chevron is not lucide-react: `AccordionChevron` builds the lucide
- * chevron-down SVG inline with `h.el("svg")` (lucide path data, ISC), with
+ * The chevron is not lucide-react: `AccordionChevron` renders the shared
+ * `../lib/icons.ts` chevron-down builder (lucide path data, ISC), with
  * the upstream icon class string verbatim. Append it after the label —
  * `.children()` adds after what the builder already holds, so the DOM order
  * matches upstream: label first, chevron last.
  */
-import { type Component, type View } from "@effect/ui"
-import type { Html } from "@effect/ui/html"
+import { type Component, type View } from "@effect/ui";
+import type { Html } from "@effect/ui/html";
 import {
   Accordion as KitAccordion,
   AccordionItem as KitAccordionItem,
   type AccordionEvents,
   type AccordionItemEvents,
   type AccordionItemProps,
-  type AccordionProps
-} from "@effect/ui-kit"
-import type { AsyncResult } from "effect/reactivity"
-import { cn } from "../lib/utils.ts"
+  type AccordionProps,
+} from "@effect/ui-kit";
+import type { AsyncResult } from "effect/reactivity";
+import { ChevronDownIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
 
-export type { AccordionItemProps, AccordionProps }
+export type { AccordionItemProps, AccordionProps };
 
-type AccordionParts = Component.Headless.Parts<typeof KitAccordion>
-type AccordionItemParts = Component.Headless.Parts<typeof KitAccordionItem>
+type AccordionParts = Component.Headless.Parts<typeof KitAccordion>;
+type AccordionItemParts = Component.Headless.Parts<typeof KitAccordionItem>;
 
 /** The options a headless kit Component call takes, with its parts typed. */
-type HeadlessOptions<Props, Events, Parts, Msg, RV, RF> =
-  View.Child.Options<Props, Events, Msg> & {
-    readonly fallback?:
-      | ((result: AsyncResult.Failure<never, unknown>) => View.Content<Msg, RF>)
-      | undefined
-    readonly view: (parts: Parts) => View.Content<Msg, RV>
-  }
+type HeadlessOptions<Props, Events, Parts, Msg, RV, RF> = View.Child.Options<Props, Events, Msg> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<Msg, RF>) | undefined;
+  readonly view: (parts: Parts) => View.Content<Msg, RV>;
+};
 
-export const ACCORDION_ITEM_CLASS = "border-b last:border-b-0"
+export const ACCORDION_ITEM_CLASS = "border-b last:border-b-0";
 
 export const ACCORDION_TRIGGER_CLASS =
-  "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180"
+  "flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180";
 
 /** Kit-state equivalent of the upstream `[&[data-state=open]>svg]` selector. */
-export const ACCORDION_TRIGGER_OPEN_CLASS = "[&[data-panel-open]>svg]:rotate-180"
+export const ACCORDION_TRIGGER_OPEN_CLASS = "[&[data-panel-open]>svg]:rotate-180";
 
 export const ACCORDION_CONTENT_CLASS =
-  "overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+  "overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down";
 
 /** Kit-state equivalents of the upstream `data-[state=…]` animation hooks. */
 export const ACCORDION_CONTENT_STATE_CLASS =
-  "data-closed:animate-accordion-up data-open:animate-accordion-down"
+  "data-closed:animate-accordion-up data-open:animate-accordion-down";
 
 /** Upstream wraps the content's children in a div with this class. */
-export const ACCORDION_CONTENT_INNER_CLASS = "pt-0 pb-4"
+export const ACCORDION_CONTENT_INNER_CLASS = "pt-0 pb-4";
 
 export const ACCORDION_CHEVRON_CLASS =
-  "pointer-events-none size-4 shrink-0 translate-y-0.5 text-muted-foreground transition-transform duration-200"
+  "pointer-events-none size-4 shrink-0 translate-y-0.5 text-muted-foreground transition-transform duration-200";
 
 /**
  * The accordion root. Same call shape as the kit's `Accordion`; the root
@@ -113,14 +112,7 @@ export const ACCORDION_CHEVRON_CLASS =
  */
 export const Accordion = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
-  options: HeadlessOptions<
-    AccordionProps,
-    AccordionEvents,
-    AccordionParts,
-    Msg,
-    RV,
-    RF
-  >
+  options: HeadlessOptions<AccordionProps, AccordionEvents, AccordionParts, Msg, RV, RF>,
 ) =>
   KitAccordion(h, {
     key: options.key,
@@ -131,10 +123,9 @@ export const Accordion = <Msg, RV = never, RF = never>(
     view: (accordion) =>
       options.view({
         ...accordion,
-        root: (element) =>
-          accordion.root(element.attr("data-slot", "accordion"))
-      })
-  })
+        root: (element) => accordion.root(element.attr("data-slot", "accordion")),
+      }),
+  });
 
 /**
  * One accordion item. Same call shape as the kit's `AccordionItem`; the
@@ -153,8 +144,8 @@ export const AccordionItem = <Msg, RV = never, RF = never>(
     RV,
     RF
   > & {
-    readonly class?: string | undefined
-  }
+    readonly class?: string | undefined;
+  },
 ) =>
   KitAccordionItem(h, {
     key: options.key,
@@ -169,11 +160,11 @@ export const AccordionItem = <Msg, RV = never, RF = never>(
           item.root(
             element
               .attr("data-slot", "accordion-item")
-              .class(cn(ACCORDION_ITEM_CLASS, options.class))
+              .class(cn(ACCORDION_ITEM_CLASS, options.class)),
           ),
-        header: (element) => item.header(element.attr("class", "flex"))
-      })
-  })
+        header: (element) => item.header(element.attr("class", "flex")),
+      }),
+  });
 
 /**
  * Applies the item's `trigger` part with upstream's `data-slot` and class
@@ -182,37 +173,23 @@ export const AccordionItem = <Msg, RV = never, RF = never>(
 export const AccordionTrigger = (
   item: AccordionItemParts,
   element: Parameters<AccordionItemParts["trigger"]>[0],
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   item.trigger(
     element
       .attr("data-slot", "accordion-trigger")
-      .class(
-        cn(
-          ACCORDION_TRIGGER_CLASS,
-          ACCORDION_TRIGGER_OPEN_CLASS,
-          options.class
-        )
-      )
-  )
+      .class(cn(ACCORDION_TRIGGER_CLASS, ACCORDION_TRIGGER_OPEN_CLASS, options.class)),
+  );
 
 /**
- * The trigger's chevron: lucide `chevron-down` as an inline SVG builder
- * (no lucide-react), with the upstream icon class string verbatim.
+ * The trigger's chevron: lucide `chevron-down` from the shared
+ * `../lib/icons.ts` builder (no lucide-react), with the upstream icon
+ * class string verbatim. The shared builder also stamps
+ * `aria-hidden="true"`, as lucide-react does; the file-local builder it
+ * replaced did not.
  */
 export const AccordionChevron = <Msg>(h: Html.H<Msg>) =>
-  h.el("svg").attrs({
-    xmlns: "http://www.w3.org/2000/svg",
-    width: "24",
-    height: "24",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    "stroke-width": "2",
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    class: ACCORDION_CHEVRON_CLASS
-  }).children(h.el("path").attr("d", "m6 9 6 6 6-6"))
+  ChevronDownIcon(h, { class: ACCORDION_CHEVRON_CLASS });
 
 /**
  * Applies the item's `panel` part with upstream's `data-slot` and class
@@ -225,16 +202,10 @@ export const AccordionChevron = <Msg>(h: Html.H<Msg>) =>
 export const AccordionContent = (
   item: AccordionItemParts,
   element: Parameters<AccordionItemParts["panel"]>[0],
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   item.panel(
     element
       .attr("data-slot", "accordion-content")
-      .class(
-        cn(
-          ACCORDION_CONTENT_CLASS,
-          ACCORDION_CONTENT_STATE_CLASS,
-          options.class
-        )
-      )
-  )
+      .class(cn(ACCORDION_CONTENT_CLASS, ACCORDION_CONTENT_STATE_CLASS, options.class)),
+  );

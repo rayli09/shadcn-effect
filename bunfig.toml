@@ -1,0 +1,12 @@
+# Toolchain is bun-only (canary >= 1.4.6 for `bun lint`): lint / fmt / check.
+# See package.json scripts. Requires the canary — stable bun has check + fmt
+# but no lint yet.
+[fmt]
+printWidth = 100
+
+[lint.rules]
+# Deliberate patterns in this codebase: `any` appears in Html.Element type
+# positions mirroring @effect/ui's own typing, and several generics are
+# phantom parameters carried for inference at call sites.
+"@typescript-eslint/no-explicit-any" = "off"
+"@typescript-eslint/no-unused-vars" = "off"

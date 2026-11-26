@@ -33,73 +33,63 @@
  * Class strings are byte-for-byte the shadcn new-york-v4 strings; the parity
  * checker (scripts/verify.mjs) fails if any upstream token disappears.
  */
-import type * as Html from "@effect/ui/html/Html"
-import { Html as HtmlNs } from "@effect/ui/html"
-import type * as View from "@effect/ui/View"
-import { ArrowDownIcon } from "../lib/icons.ts"
-import { cn } from "../lib/utils.ts"
-import { Button, type ButtonSize, type ButtonVariant } from "./button.ts"
+import type * as Html from "@effect/ui/html/Html";
+import { Html as HtmlNs } from "@effect/ui/html";
+import type * as View from "@effect/ui/View";
+import { ArrowDownIcon } from "../lib/icons.ts";
+import { cn } from "../lib/utils.ts";
+import { Button, type ButtonSize, type ButtonVariant } from "./button.ts";
 
-type Div<Msg, R> = Html.Element<
-  Msg,
-  R,
-  Html.EventsOf<"div">,
-  HTMLDivElement,
-  "div"
->
+type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 
 export const MESSAGE_SCROLLER_CLASS =
-  "group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden"
+  "group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden";
 
 export const MESSAGE_SCROLLER_VIEWPORT_CLASS =
-  "size-full min-h-0 min-w-0 scroll-fade-b scrollbar-thin scrollbar-gutter-stable overflow-y-auto overscroll-contain contain-content data-autoscrolling:scrollbar-none data-pending-scroll:invisible"
+  "size-full min-h-0 min-w-0 scroll-fade-b scrollbar-thin scrollbar-gutter-stable overflow-y-auto overscroll-contain contain-content data-autoscrolling:scrollbar-none data-pending-scroll:invisible";
 
-export const MESSAGE_SCROLLER_CONTENT_CLASS =
-  "flex h-max min-h-full flex-col gap-8"
+export const MESSAGE_SCROLLER_CONTENT_CLASS = "flex h-max min-h-full flex-col gap-8";
 
 export const MESSAGE_SCROLLER_ITEM_CLASS =
-  "min-w-0 shrink-0 [contain-intrinsic-size:auto_10rem] [content-visibility:auto]"
+  "min-w-0 shrink-0 [contain-intrinsic-size:auto_10rem] [content-visibility:auto]";
 
 export const MESSAGE_SCROLLER_BUTTON_CLASS =
-  "absolute inset-s-1/2 -translate-x-1/2 border-border bg-background text-foreground transition-[translate,scale,opacity] duration-200 hover:bg-muted hover:text-foreground data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-0 data-[active=false]:duration-400 data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:translate-y-0 data-[active=true]:scale-100 data-[active=true]:opacity-100 data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=end]:bottom-4 data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:top-4 data-[direction=start]:data-[active=false]:-translate-y-full rtl:translate-x-1/2 data-[direction=start]:[&_svg]:rotate-180"
+  "absolute inset-s-1/2 -translate-x-1/2 border-border bg-background text-foreground transition-[translate,scale,opacity] duration-200 hover:bg-muted hover:text-foreground data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-0 data-[active=false]:duration-400 data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:translate-y-0 data-[active=true]:scale-100 data-[active=true]:opacity-100 data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=end]:bottom-4 data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:top-4 data-[direction=start]:data-[active=false]:-translate-y-full rtl:translate-x-1/2 data-[direction=start]:[&_svg]:rotate-180";
 
-export type MessageScrollerDirection = "start" | "end"
+export type MessageScrollerDirection = "start" | "end";
 
 export const MessageScroller = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "message-scroller")
-    .class(cn(MESSAGE_SCROLLER_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "message-scroller").class(cn(MESSAGE_SCROLLER_CLASS, options.class));
 
 export const MessageScrollerViewport = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attr("data-slot", "message-scroller-viewport")
-    .class(cn(MESSAGE_SCROLLER_VIEWPORT_CLASS, options.class))
+    .class(cn(MESSAGE_SCROLLER_VIEWPORT_CLASS, options.class));
 
 export const MessageScrollerContent = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
   h.div
     .attr("data-slot", "message-scroller-content")
-    .class(cn(MESSAGE_SCROLLER_CONTENT_CLASS, options.class))
+    .class(cn(MESSAGE_SCROLLER_CONTENT_CLASS, options.class));
 
 export const MessageScrollerItem = <Msg, R = never>(
   h: { readonly div: Div<Msg, R> },
   options: {
     /** Accepted for source compatibility; engine bookkeeping only — see header. */
-    readonly scrollAnchor?: boolean | undefined
-    readonly class?: string | undefined
-  } = {}
+    readonly scrollAnchor?: boolean | undefined;
+    readonly class?: string | undefined;
+  } = {},
 ) =>
   h.div
     .attr("data-slot", "message-scroller-item")
-    .class(cn(MESSAGE_SCROLLER_ITEM_CLASS, options.class))
+    .class(cn(MESSAGE_SCROLLER_ITEM_CLASS, options.class));
 
 /**
  * The scroll-to-start/end button. Defaults mirror upstream: direction "end",
@@ -109,39 +99,33 @@ export const MessageScrollerItem = <Msg, R = never>(
  * "Scroll to start"). Pass `active` to write `data-active`, which drives
  * upstream's show/hide transitions.
  */
-export const MessageScrollerButton = <
-  Msg,
-  C extends View.Children<Msg> = View.Children<Msg>
->(
+export const MessageScrollerButton = <Msg, C extends View.Children<Msg> = View.Children<Msg>>(
   h: HtmlNs.H<Msg>,
   options: {
-    readonly direction?: MessageScrollerDirection | undefined
-    readonly variant?: ButtonVariant | undefined
-    readonly size?: ButtonSize | undefined
-    readonly active?: boolean | undefined
-    readonly onPress?: Msg | undefined
-    readonly class?: string | undefined
-    readonly children?: C | undefined
-  } = {}
+    readonly direction?: MessageScrollerDirection | undefined;
+    readonly variant?: ButtonVariant | undefined;
+    readonly size?: ButtonSize | undefined;
+    readonly active?: boolean | undefined;
+    readonly onPress?: Msg | undefined;
+    readonly class?: string | undefined;
+    readonly children?: C | undefined;
+  } = {},
 ) => {
-  const direction = options.direction ?? "end"
+  const direction = options.direction ?? "end";
   const button = Button(h, {
     onPress: options.onPress,
     variant: options.variant ?? "secondary",
     size: options.size ?? "icon-sm",
-    class: cn(MESSAGE_SCROLLER_BUTTON_CLASS, options.class)
+    class: cn(MESSAGE_SCROLLER_BUTTON_CLASS, options.class),
   })
     .attr("data-slot", "message-scroller-button")
-    .attr("data-direction", direction)
-  const withActive = options.active !== undefined
-    ? button.attr("data-active", String(options.active))
-    : button
+    .attr("data-direction", direction);
+  const withActive =
+    options.active !== undefined ? button.attr("data-active", String(options.active)) : button;
   return options.children !== undefined
     ? withActive.children(options.children)
     : withActive.children(
-      ArrowDownIcon(h),
-      h.span.class("sr-only").children(
-        direction === "end" ? "Scroll to end" : "Scroll to start"
-      )
-    )
-}
+        ArrowDownIcon(h),
+        h.span.class("sr-only").children(direction === "end" ? "Scroll to end" : "Scroll to start"),
+      );
+};

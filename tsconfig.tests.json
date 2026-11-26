@@ -1,0 +1,5 @@
+{
+  "exclude": ["node_modules", "examples"],
+  "extends": "./tsconfig.json",
+  "include": ["registry", "tests", "vitest.config.ts", "vitest.setup.ts"]
+}

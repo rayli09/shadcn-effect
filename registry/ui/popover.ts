@@ -38,38 +38,38 @@ import {
   type PopoverAlign,
   type PopoverEvents,
   type PopoverProps,
-  type PopoverSide
-} from "@effect/ui-kit"
-import type * as Component from "@effect/ui/Component"
-import type * as View from "@effect/ui/View"
-import type * as Html from "@effect/ui/html/Html"
-import type * as AsyncResult from "effect/reactivity/AsyncResult"
-import { cn } from "../lib/utils.ts"
+  type PopoverSide,
+} from "@effect/ui-kit";
+import type * as Component from "@effect/ui/Component";
+import type * as View from "@effect/ui/View";
+import type * as Html from "@effect/ui/html/Html";
+import type * as AsyncResult from "effect/reactivity/AsyncResult";
+import { cn } from "../lib/utils.ts";
 
-export type { PopoverAlign, PopoverSide }
+export type { PopoverAlign, PopoverSide };
 
 /** The options a `Popover` call takes: the kit Component's call options, verbatim. */
-export type PopoverOptions<Msg, RV = never, RF = never> =
-  View.Child.Options<PopoverProps, PopoverEvents, NoInfer<Msg>> & {
-    readonly fallback?:
-      | ((
-        result: AsyncResult.Failure<never, unknown>
-      ) => View.Content<NoInfer<Msg>, RF>)
-      | undefined
-    readonly view: (
-      parts: Component.Headless.Parts<typeof KitPopover>
-    ) => View.Content<NoInfer<Msg>, RV>
-    readonly slots?: never
-  }
+export type PopoverOptions<Msg, RV = never, RF = never> = View.Child.Options<
+  PopoverProps,
+  PopoverEvents,
+  NoInfer<Msg>
+> & {
+  readonly fallback?:
+    ((result: AsyncResult.Failure<never, unknown>) => View.Content<NoInfer<Msg>, RF>) | undefined;
+  readonly view: (
+    parts: Component.Headless.Parts<typeof KitPopover>,
+  ) => View.Content<NoInfer<Msg>, RV>;
+  readonly slots?: never;
+};
 
 export const POPOVER_CONTENT_CLASS =
-  "z-50 w-72 origin-(--radix-popover-content-transform-origin) rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
+  "z-50 w-72 origin-(--radix-popover-content-transform-origin) rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95";
 
-export const POPOVER_HEADER_CLASS = "flex flex-col gap-1 text-sm"
+export const POPOVER_HEADER_CLASS = "flex flex-col gap-1 text-sm";
 
-export const POPOVER_TITLE_CLASS = "font-medium"
+export const POPOVER_TITLE_CLASS = "font-medium";
 
-export const POPOVER_DESCRIPTION_CLASS = "text-muted-foreground"
+export const POPOVER_DESCRIPTION_CLASS = "text-muted-foreground";
 
 /**
  * The kit `Popover` Component with shadcn's defaults: `align: "center"` and
@@ -83,17 +83,17 @@ export const POPOVER_DESCRIPTION_CLASS = "text-muted-foreground"
  */
 export const Popover = <Msg, RV = never, RF = never>(
   h: View.HelperBase<Msg, unknown>,
-  options: PopoverOptions<Msg, RV, RF>
+  options: PopoverOptions<Msg, RV, RF>,
 ) =>
   KitPopover(h, {
     ...options,
-    props: { align: "center", sideOffset: 4, ...options.props }
-  })
+    props: { align: "center", sideOffset: 4, ...options.props },
+  });
 
 /** Applies upstream's `data-slot="popover-trigger"` to a kit trigger part's builder. */
 export const PopoverTrigger = <Msg, R, E, N, T extends string>(
-  trigger: Html.Element<Msg, R, E, N, T>
-) => trigger.attr("data-slot", "popover-trigger")
+  trigger: Html.Element<Msg, R, E, N, T>,
+) => trigger.attr("data-slot", "popover-trigger");
 
 /**
  * Applies upstream's `data-slot="popover-content"` and content class string
@@ -102,57 +102,28 @@ export const PopoverTrigger = <Msg, R, E, N, T extends string>(
  */
 export const PopoverContent = <Msg, R, E, N, T extends string>(
   popup: Html.Element<Msg, R, E, N, T>,
-  options: { readonly class?: string | undefined } = {}
-) =>
-  popup
-    .attr("data-slot", "popover-content")
-    .class(cn(POPOVER_CONTENT_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => popup.attr("data-slot", "popover-content").class(cn(POPOVER_CONTENT_CLASS, options.class));
 
 export const PopoverHeader = <Msg, R = never>(
   h: {
-    readonly div: Html.Element<
-      Msg,
-      R,
-      Html.EventsOf<"div">,
-      HTMLDivElement,
-      "div"
-    >
+    readonly div: Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
   },
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "popover-header")
-    .class(cn(POPOVER_HEADER_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "popover-header").class(cn(POPOVER_HEADER_CLASS, options.class));
 
 /** Upstream types this as an h2 but renders a plain <div>; the rendered output is what is ported. */
 export const PopoverTitle = <Msg, R = never>(
   h: {
-    readonly div: Html.Element<
-      Msg,
-      R,
-      Html.EventsOf<"div">,
-      HTMLDivElement,
-      "div"
-    >
+    readonly div: Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
   },
-  options: { readonly class?: string | undefined } = {}
-) =>
-  h.div
-    .attr("data-slot", "popover-title")
-    .class(cn(POPOVER_TITLE_CLASS, options.class))
+  options: { readonly class?: string | undefined } = {},
+) => h.div.attr("data-slot", "popover-title").class(cn(POPOVER_TITLE_CLASS, options.class));
 
 export const PopoverDescription = <Msg, R = never>(
   h: {
-    readonly p: Html.Element<
-      Msg,
-      R,
-      Html.EventsOf<"p">,
-      HTMLParagraphElement,
-      "p"
-    >
+    readonly p: Html.Element<Msg, R, Html.EventsOf<"p">, HTMLParagraphElement, "p">;
   },
-  options: { readonly class?: string | undefined } = {}
+  options: { readonly class?: string | undefined } = {},
 ) =>
-  h.p
-    .attr("data-slot", "popover-description")
-    .class(cn(POPOVER_DESCRIPTION_CLASS, options.class))
+  h.p.attr("data-slot", "popover-description").class(cn(POPOVER_DESCRIPTION_CLASS, options.class));

@@ -20,9 +20,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "alert",
@@ -41,9 +39,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "alert-dialog",
@@ -62,10 +58,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button"
-      ]
+      "registryDependencies": ["utils", "button"]
     },
     {
       "name": "aspect-ratio",
@@ -84,9 +77,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "attachment",
@@ -105,10 +96,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button"
-      ]
+      "registryDependencies": ["utils", "button"]
     },
     {
       "name": "avatar",
@@ -127,9 +115,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "badge",
@@ -148,9 +134,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "breadcrumb",
@@ -169,9 +153,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "bubble",
@@ -190,9 +172,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "button",
@@ -211,9 +191,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "button-group",
@@ -232,10 +210,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "separator"
-      ]
+      "registryDependencies": ["utils", "separator"]
     },
     {
       "name": "calendar",
@@ -254,10 +229,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button"
-      ]
+      "registryDependencies": ["utils", "button"]
     },
     {
       "name": "card",
@@ -276,9 +248,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "checkbox",
@@ -297,9 +267,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "collapsible",
@@ -336,9 +304,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "command",
@@ -357,9 +323,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "context-menu",
@@ -378,9 +342,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "date-picker",
@@ -399,12 +361,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button",
-        "calendar",
-        "popover"
-      ]
+      "registryDependencies": ["utils", "button", "calendar", "popover"]
     },
     {
       "name": "dialog",
@@ -423,9 +380,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "direction",
@@ -462,9 +417,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "dropdown-menu",
@@ -483,9 +436,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "empty",
@@ -504,9 +455,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "field",
@@ -525,11 +474,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "label",
-        "separator"
-      ]
+      "registryDependencies": ["utils", "label", "separator"]
     },
     {
       "name": "form",
@@ -548,10 +493,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "label"
-      ]
+      "registryDependencies": ["utils", "label"]
     },
     {
       "name": "hover-card",
@@ -570,9 +512,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "icons",
@@ -586,9 +526,7 @@
           "target": "~/src/lib/icons.ts"
         }
       ],
-      "dependencies": [
-        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"
-      ]
+      "dependencies": ["https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"]
     },
     {
       "name": "input",
@@ -607,9 +545,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "input-group",
@@ -628,12 +564,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button",
-        "input",
-        "textarea"
-      ]
+      "registryDependencies": ["utils", "button", "input", "textarea"]
     },
     {
       "name": "input-otp",
@@ -652,9 +583,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "item",
@@ -673,10 +602,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "separator"
-      ]
+      "registryDependencies": ["utils", "separator"]
     },
     {
       "name": "kbd",
@@ -695,9 +621,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "label",
@@ -716,9 +640,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "marker",
@@ -737,9 +659,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "menubar",
@@ -758,9 +678,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "message",
@@ -779,9 +697,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "message-scroller",
@@ -800,11 +716,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "icons",
-        "button"
-      ]
+      "registryDependencies": ["utils", "icons", "button"]
     },
     {
       "name": "native-select",
@@ -823,9 +735,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "navigation-menu",
@@ -844,9 +754,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "pagination",
@@ -865,10 +773,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button"
-      ]
+      "registryDependencies": ["utils", "button"]
     },
     {
       "name": "popover",
@@ -887,9 +792,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "progress",
@@ -908,9 +811,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "radio-group",
@@ -929,9 +830,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "scroll-area",
@@ -950,9 +849,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "select",
@@ -971,9 +868,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "separator",
@@ -992,9 +887,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "sheet",
@@ -1013,10 +906,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "dialog"
-      ]
+      "registryDependencies": ["utils", "dialog"]
     },
     {
       "name": "sidebar",
@@ -1035,14 +925,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "button",
-        "input",
-        "separator",
-        "sheet",
-        "skeleton"
-      ]
+      "registryDependencies": ["utils", "button", "input", "separator", "sheet", "skeleton"]
     },
     {
       "name": "skeleton",
@@ -1061,9 +944,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "slider",
@@ -1082,9 +963,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "sonner",
@@ -1103,9 +982,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "spinner",
@@ -1124,9 +1001,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "switch",
@@ -1145,9 +1020,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "table",
@@ -1166,9 +1039,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "tabs",
@@ -1187,9 +1058,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "textarea",
@@ -1208,9 +1077,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "theme",
@@ -1242,9 +1109,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "toggle-group",
@@ -1263,10 +1128,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils",
-        "toggle"
-      ]
+      "registryDependencies": ["utils", "toggle"]
     },
     {
       "name": "tooltip",
@@ -1285,9 +1147,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "utils"
-      ]
+      "registryDependencies": ["utils"]
     },
     {
       "name": "utils",

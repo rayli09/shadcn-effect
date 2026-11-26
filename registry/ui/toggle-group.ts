@@ -57,12 +57,12 @@ type Keyed<Tag extends string> = View.PartTarget<Tag> & {
   readonly key: (key: string) => View.PartTarget<Tag>;
 };
 
-const ROOT_CLASS =
+export const TOGGLE_GROUP_ROOT_CLASS =
   "group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-md data-[spacing=default]:data-[variant=outline]:shadow-xs";
 
-const ITEM_CLASS = "w-auto min-w-0 shrink-0 px-3 focus:z-10 focus-visible:z-10";
+export const TOGGLE_GROUP_ITEM_CLASS = "w-auto min-w-0 shrink-0 px-3 focus:z-10 focus-visible:z-10";
 
-const ITEM_SPACING_CLASS =
+export const TOGGLE_GROUP_ITEM_SPACING_CLASS =
   "data-[spacing=0]:rounded-none data-[spacing=0]:shadow-none data-[spacing=0]:first:rounded-l-md data-[spacing=0]:last:rounded-r-md data-[spacing=0]:data-[variant=outline]:border-l-0 data-[spacing=0]:data-[variant=outline]:first:border-l";
 
 /**
@@ -141,7 +141,7 @@ export const ToggleGroup = <Msg, RV = never>(
         .attr("data-size", options.size)
         .attr("data-spacing", String(spacing))
         .style({ "--gap": spacing })
-        .class(cn(ROOT_CLASS, options.class, partOptions?.class)),
+        .class(cn(TOGGLE_GROUP_ROOT_CLASS, options.class, partOptions?.class)),
     item: (args) => {
       const variant = options.variant ?? args.variant;
       const size = options.size ?? args.size;
@@ -152,7 +152,14 @@ export const ToggleGroup = <Msg, RV = never>(
         .attr("data-size", size ?? "default")
         .attr("data-spacing", String(spacing))
         .attr("data-state", options.props.value.includes(args.value) ? "on" : "off")
-        .class(cn(toggleVariants({ variant, size }), ITEM_CLASS, ITEM_SPACING_CLASS, args.class));
+        .class(
+          cn(
+            toggleVariants({ variant, size }),
+            TOGGLE_GROUP_ITEM_CLASS,
+            TOGGLE_GROUP_ITEM_SPACING_CLASS,
+            args.class,
+          ),
+        );
     },
   });
   return KitToggleGroup(h, {

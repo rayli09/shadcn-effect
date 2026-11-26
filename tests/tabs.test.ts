@@ -4,7 +4,15 @@ import { Locator, Scene } from "@effect/ui/testing";
 import { Tabs as KitTabs } from "@effect/ui-kit";
 import { assert, describe, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
-import { Tabs, TabsContent, TabsList, tabsListVariants, TabsTrigger } from "../registry/ui/tabs.ts";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  tabsListVariants,
+  TabsTrigger,
+  TABS_ROOT_CLASS,
+  TABS_TRIGGER_CLASS,
+} from "../registry/ui/tabs.ts";
 
 // The consumer recipe (see tests/README.md): the kit Tabs is a headless
 // component, so the consumer Component owns the active tab in its Model,
@@ -59,12 +67,14 @@ describe("Tabs (shadcn-effect port)", () => {
       Effect.gen(function* () {
         const scene = yield* Scene.make(Settings, {});
         assert.strictEqual(scene.get(root).attrs?.["data-orientation"], "horizontal");
+        assert.strictEqual(scene.get(root).attrs?.class, TABS_ROOT_CLASS);
         const listAttrs = scene.get(list).attrs;
         assert.strictEqual(listAttrs?.role, "tablist");
         assert.strictEqual(listAttrs?.["data-variant"], "default");
         assert.strictEqual(listAttrs?.class, tabsListVariants({}));
         const account = scene.get(trigger("Account")).attrs;
         assert.strictEqual(account?.role, "tab");
+        assert.strictEqual(account?.class, TABS_TRIGGER_CLASS);
         assert.strictEqual(account?.["aria-selected"], "true");
         // The port writes Radix's data-state from the controlled value (D-5),
         // alongside the kit's own data-active flag.

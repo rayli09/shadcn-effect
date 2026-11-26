@@ -59,7 +59,7 @@ type Keyed<Tag extends string> = View.PartTarget<Tag> & {
   readonly key: (key: string) => View.PartTarget<Tag>;
 };
 
-const ROOT_CLASS = "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col";
+export const TABS_ROOT_CLASS = "group/tabs flex gap-2 data-[orientation=horizontal]:flex-col";
 
 const LIST_BASE =
   "group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-[orientation=horizontal]/tabs:h-9 group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col data-[variant=line]:rounded-none";
@@ -69,14 +69,14 @@ const LIST_VARIANTS: Record<TabsListVariant, string> = {
   line: "gap-1 bg-transparent",
 };
 
-const TRIGGER_CLASS = cn(
+export const TABS_TRIGGER_CLASS = cn(
   "relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 group-data-[variant=default]/tabs-list:data-[state=active]:shadow-sm group-data-[variant=line]/tabs-list:data-[state=active]:shadow-none dark:text-muted-foreground dark:hover:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   "group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent",
   "data-[state=active]:bg-background data-[state=active]:text-foreground dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:data-[state=active]:text-foreground",
   "after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-[orientation=horizontal]/tabs:after:inset-x-0 group-data-[orientation=horizontal]/tabs:after:bottom-[-5px] group-data-[orientation=horizontal]/tabs:after:h-0.5 group-data-[orientation=vertical]/tabs:after:inset-y-0 group-data-[orientation=vertical]/tabs:after:-right-1 group-data-[orientation=vertical]/tabs:after:w-0.5 group-data-[variant=line]/tabs-list:data-[state=active]:after:opacity-100",
 );
 
-const CONTENT_CLASS = "flex-1 outline-none";
+export const TABS_CONTENT_CLASS = "flex-1 outline-none";
 
 /** Upstream name kept: `tabsListVariants({ variant })` in shadcn; here a pure function, not cva. */
 export const tabsListVariants = (
@@ -197,12 +197,12 @@ export const Tabs = <Msg, RV = never>(
         .tab({ element: args.element, value: args.value })
         .attr("data-slot", "tabs-trigger")
         .attr("data-state", args.value === options.props.value ? "active" : "inactive")
-        .class(cn(TRIGGER_CLASS, args.class));
+        .class(cn(TABS_TRIGGER_CLASS, args.class));
     const content: TabsParts["content"] = (args) =>
       tabs
         .panel({ element: args.element, value: args.value })
         ?.attr("data-slot", "tabs-content")
-        .class(cn(CONTENT_CLASS, args.class));
+        .class(cn(TABS_CONTENT_CLASS, args.class));
     return {
       value: tabs.value,
       orientation: tabs.orientation,
@@ -212,7 +212,7 @@ export const Tabs = <Msg, RV = never>(
           .root(element)
           .attr("data-slot", "tabs")
           .attr("data-orientation", orientation)
-          .class(cn(ROOT_CLASS, partOptions?.class)),
+          .class(cn(TABS_ROOT_CLASS, partOptions?.class)),
       list: (element, partOptions) =>
         tabs
           .list(element)

@@ -4,8 +4,15 @@ import { Locator, Scene } from "@effect/ui/testing";
 import { ToggleGroup as KitToggleGroup } from "@effect/ui-kit";
 import { assert, describe, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
+import { cn } from "../registry/lib/utils.ts";
 import { toggleVariants } from "../registry/ui/toggle.ts";
-import { ToggleGroup, ToggleGroupItem } from "../registry/ui/toggle-group.ts";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+  TOGGLE_GROUP_ITEM_CLASS,
+  TOGGLE_GROUP_ITEM_SPACING_CLASS,
+  TOGGLE_GROUP_ROOT_CLASS,
+} from "../registry/ui/toggle-group.ts";
 
 // The consumer recipe (see tests/README.md): the kit ToggleGroup is a
 // headless component, so the consumer Component owns the pressed values
@@ -62,6 +69,7 @@ describe("ToggleGroup (shadcn-effect port)", () => {
         const rootAttrs = scene.get(root).attrs;
         assert.strictEqual(rootAttrs?.["data-variant"], "default");
         assert.strictEqual(rootAttrs?.["data-spacing"], "0");
+        assert.strictEqual(rootAttrs?.class, TOGGLE_GROUP_ROOT_CLASS);
         const left = scene.get(item("left")).attrs;
         assert.strictEqual(left?.["aria-pressed"], "true");
         // The port writes Radix's data-state from the controlled value (D-5),
@@ -71,8 +79,16 @@ describe("ToggleGroup (shadcn-effect port)", () => {
         assert.strictEqual(left?.["data-variant"], "default");
         assert.strictEqual(left?.["data-size"], "default");
         // The item class is built from toggle.ts's toggleVariants (the
-        // upstream reuse chain), then the group's own item classes.
-        assert.isTrue(left?.class?.startsWith(toggleVariants({})) === true);
+        // upstream reuse chain), then the group's own item classes — the
+        // exact composition the port renders, asserted in full.
+        assert.strictEqual(
+          left?.class,
+          cn(
+            toggleVariants({ variant: "default" }),
+            TOGGLE_GROUP_ITEM_CLASS,
+            TOGGLE_GROUP_ITEM_SPACING_CLASS,
+          ),
+        );
         const center = scene.get(item("center")).attrs;
         assert.strictEqual(center?.["aria-pressed"], "false");
         assert.strictEqual(center?.["data-state"], "off");
@@ -115,7 +131,14 @@ describe("ToggleGroup (shadcn-effect port)", () => {
       assert.strictEqual(scene.get(root).attrs?.["data-variant"], "outline");
       const left = scene.get(item("left")).attrs;
       assert.strictEqual(left?.["data-variant"], "outline");
-      assert.isTrue(left?.class?.startsWith(toggleVariants({ variant: "outline" })) === true);
+      assert.strictEqual(
+        left?.class,
+        cn(
+          toggleVariants({ variant: "outline" }),
+          TOGGLE_GROUP_ITEM_CLASS,
+          TOGGLE_GROUP_ITEM_SPACING_CLASS,
+        ),
+      );
     }),
   );
 });

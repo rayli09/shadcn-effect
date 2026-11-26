@@ -1,0 +1,96 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn-effect",
+  "homepage": "https://github.com/rayli09/shadcn-effect",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:style",
+      "title": "Theme",
+      "description": "shadcn new-york-v4 oklch tokens + Tailwind v4 theme mapping",
+      "files": [
+        {
+          "path": "registry/styles/theme.css",
+          "type": "registry:style",
+          "target": "~/src/styles/theme.css"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "cn \u2014 dependency-free class join (Effect-native, no clsx/tailwind-merge)",
+      "files": [
+        {
+          "path": "registry/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "~/src/lib/utils.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "shadcn Button on @effect/ui-kit Button \u2014 variants as pure functions, onPress sends a Message",
+      "files": [
+        {
+          "path": "registry/ui/button.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/button.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "shadcn Badge as a pure @effect/ui view function",
+      "files": [
+        {
+          "path": "registry/ui/badge.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/badge.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "shadcn Separator on @effect/ui-kit Separator",
+      "files": [
+        {
+          "path": "registry/ui/separator.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/separator.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": false,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/theme.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "~/src/components",
+    "utils": "~/src/lib/utils",
+    "ui": "~/src/components/ui",
+    "lib": "~/src/lib",
+    "hooks": "~/src/hooks"
+  },
+  "iconLibrary": "lucide-svg",
+  "registries": {
+    "@shadcn-effect": "https://raw.githubusercontent.com/rayli09/shadcn-effect/main/public/r/{name}.json"
+  }
+}

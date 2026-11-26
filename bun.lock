@@ -1,0 +1,29 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "shadcn-effect",
+      "dependencies": {
+        "@effect/ui": "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "@effect/ui-kit": "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect": "^4.1.6",
+      },
+      "devDependencies": {
+        "tailwindcss": "^4.0.0",
+        "typescript": "^5.9.0",
+      },
+    },
+  },
+  "packages": {
+    "@effect/ui": ["@effect/ui@https://pkg.pr.new/Effect-TS/ui/@effect/ui@main", { "peerDependencies": { "effect": "^4.1.4" } }, "sha512-wiZ/TVbVGpkRoW/Js2x4OhnQiLvCYOw8DOmObSHYM8mhcbxyqFW0RmMrCKtd+iPqMoPTVp4ugIOWDYVQELOpHA=="],
+
+    "@effect/ui-kit": ["@effect/ui-kit@https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main", { "peerDependencies": { "@effect/ui": "^0.0.0", "effect": "^4.1.4" } }, "sha512-fzYdI2AaLJQkU36SkDN2fQKlwWx5P4GLllUvWfjg3g58kx7wEIcLLJxwnphAYYifPYtAremxryFW7Yjn1j5NKQ=="],
+
+    "effect": ["effect@4.1.6", "", {}, "sha512-P3CxMsdcSCle/7/FnPILd9GJkNqGtduKam2LX9Xsb8LoOjmeQ9Kmsuh16JwtIthaxLyiTCOzUUt+PZsXIohl+A=="],
+
+    "tailwindcss": ["tailwindcss@4.3.5", "", {}, "sha512-FcQk9BuffmEHJP2G0XmB2SplU1aLTI7j07Kunk+U74Ny+XiWOtzXz9aujFZ/avntw1e2cOv/3PkgzflQ7gX2vQ=="],
+
+    "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
+  }
+}

@@ -4721,6 +4721,728 @@
         "rayli09/shadcn-effect/icons",
         "rayli09/shadcn-effect/utils"
       ]
+    },
+    {
+      "name": "dashboard-01",
+      "type": "registry:block",
+      "title": "dashboard-01 block",
+      "description": "shadcn dashboard-01 example block ported to Effect UI (new-york generation)",
+      "files": [
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/app-sidebar.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/app-sidebar.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/chart-area-interactive.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/chart-area-interactive.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/data-table.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/data-table.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/nav-documents.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-documents.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/nav-main.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-main.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/nav-secondary.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-secondary.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/nav-user.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-user.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/section-cards.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/section-cards.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/components/site-header.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/site-header.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/data.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/data.ts"
+        },
+        {
+          "path": "registry/blocks/new-york/dashboard-01/page.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/page.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/avatar",
+        "rayli09/shadcn-effect/badge",
+        "rayli09/shadcn-effect/button",
+        "rayli09/shadcn-effect/card",
+        "rayli09/shadcn-effect/chart",
+        "rayli09/shadcn-effect/checkbox",
+        "rayli09/shadcn-effect/drawer",
+        "rayli09/shadcn-effect/dropdown-menu",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/input",
+        "rayli09/shadcn-effect/label",
+        "rayli09/shadcn-effect/select",
+        "rayli09/shadcn-effect/separator",
+        "rayli09/shadcn-effect/sidebar",
+        "rayli09/shadcn-effect/table",
+        "rayli09/shadcn-effect/tabs",
+        "rayli09/shadcn-effect/toggle-group",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-dashboard-01",
+      "type": "registry:block",
+      "title": "dashboard-01 block (Bases)",
+      "description": "shadcn dashboard-01 example block ported to Effect UI (bases generation)",
+      "files": [
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/app-sidebar.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/app-sidebar.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/chart-area-interactive.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/chart-area-interactive.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/data-table.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/data-table.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/nav-documents.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-documents.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/nav-main.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-main.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/nav-secondary.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-secondary.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/nav-user.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/nav-user.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/section-cards.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/section-cards.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/components/site-header.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/components/site-header.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/data.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/data.ts"
+        },
+        {
+          "path": "registry/blocks/bases/dashboard-01/page.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/dashboard-01/page.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-avatar",
+        "rayli09/shadcn-effect/base-badge",
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-card",
+        "rayli09/shadcn-effect/base-chart",
+        "rayli09/shadcn-effect/base-checkbox",
+        "rayli09/shadcn-effect/base-drawer",
+        "rayli09/shadcn-effect/base-dropdown-menu",
+        "rayli09/shadcn-effect/base-input",
+        "rayli09/shadcn-effect/base-label",
+        "rayli09/shadcn-effect/base-select",
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/base-sidebar",
+        "rayli09/shadcn-effect/base-table",
+        "rayli09/shadcn-effect/base-tabs",
+        "rayli09/shadcn-effect/base-toggle-group",
+        "rayli09/shadcn-effect/icons"
+      ]
+    },
+    {
+      "name": "base-preview",
+      "type": "registry:block",
+      "title": "preview block (Bases)",
+      "description": "shadcn preview example block ported to Effect UI (bases generation)",
+      "files": [
+        {
+          "path": "registry/blocks/bases/preview/cards/activate-agent-dialog.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/activate-agent-dialog.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/analytics-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/analytics-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/anomaly-alert.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/anomaly-alert.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/assign-issue.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/assign-issue.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/bar-chart-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/bar-chart-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/bar-visualizer.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/bar-visualizer.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/book-appointment.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/book-appointment.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/codespaces-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/codespaces-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/contributions-activity.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/contributions-activity.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/contributors.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/contributors.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/environment-variables.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/environment-variables.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/feedback-form.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/feedback-form.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/file-upload.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/file-upload.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/github-profile.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/github-profile.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/icon-preview-grid.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/icon-preview-grid.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/invite-team.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/invite-team.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/invoice.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/invoice.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/live-waveform.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/live-waveform.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/no-team-members.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/no-team-members.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/not-found.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/not-found.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/observability-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/observability-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/pie-chart-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/pie-chart-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/report-bug.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/report-bug.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/shipping-address.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/shipping-address.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/shortcuts.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/shortcuts.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/skeleton-loading.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/skeleton-loading.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/sleep-report.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/sleep-report.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/style-overview.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/style-overview.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/typography-specimen.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/typography-specimen.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/ui-elements.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/ui-elements.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/usage-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/usage-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/visitors.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/visitors.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/cards/weekly-fitness-summary.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/cards/weekly-fitness-summary.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview/page.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview/page.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-alert",
+        "rayli09/shadcn-effect/base-alert-dialog",
+        "rayli09/shadcn-effect/base-avatar",
+        "rayli09/shadcn-effect/base-badge",
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-button-group",
+        "rayli09/shadcn-effect/base-card",
+        "rayli09/shadcn-effect/base-chart",
+        "rayli09/shadcn-effect/base-checkbox",
+        "rayli09/shadcn-effect/base-combobox",
+        "rayli09/shadcn-effect/base-dialog",
+        "rayli09/shadcn-effect/base-dropdown-menu",
+        "rayli09/shadcn-effect/base-empty",
+        "rayli09/shadcn-effect/base-field",
+        "rayli09/shadcn-effect/base-input",
+        "rayli09/shadcn-effect/base-input-group",
+        "rayli09/shadcn-effect/base-item",
+        "rayli09/shadcn-effect/base-kbd",
+        "rayli09/shadcn-effect/base-native-select",
+        "rayli09/shadcn-effect/base-progress",
+        "rayli09/shadcn-effect/base-radio-group",
+        "rayli09/shadcn-effect/base-select",
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/base-skeleton",
+        "rayli09/shadcn-effect/base-slider",
+        "rayli09/shadcn-effect/base-spinner",
+        "rayli09/shadcn-effect/base-switch",
+        "rayli09/shadcn-effect/base-table",
+        "rayli09/shadcn-effect/base-tabs",
+        "rayli09/shadcn-effect/base-textarea",
+        "rayli09/shadcn-effect/base-toggle-group",
+        "rayli09/shadcn-effect/base-tooltip",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-preview-02",
+      "type": "registry:block",
+      "title": "preview-02 block (Bases)",
+      "description": "shadcn preview-02 example block ported to Effect UI (bases generation)",
+      "files": [
+        {
+          "path": "registry/blocks/bases/preview-02/cards/account-access.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/account-access.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/album-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/album-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/card-overview.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/card-overview.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/catalog-toolbar.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/catalog-toolbar.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/claimable-balance.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/claimable-balance.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/contribution-history.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/contribution-history.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/cover-art.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/cover-art.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/dividend-income.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/dividend-income.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/empty-connect-bank.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/empty-connect-bank.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/empty-distribute-track.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/empty-distribute-track.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/empty-explore-catalog.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/empty-explore-catalog.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/faq.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/faq.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/front-door.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/front-door.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/index-investing.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/index-investing.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/kitchen-island.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/kitchen-island.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/loading-card.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/loading-card.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/new-milestone.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/new-milestone.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/notification-settings.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/notification-settings.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/payments.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/payments.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/payout-threshold.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/payout-threshold.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/power-usage.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/power-usage.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/preferences.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/preferences.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/qr-connect.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/qr-connect.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/receiving-method.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/receiving-method.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/recent-transactions.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/recent-transactions.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/release-catalog.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/release-catalog.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/roller-shades.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/roller-shades.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/savings-progress.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/savings-progress.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/savings-targets.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/savings-targets.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/sidebar-nav.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/sidebar-nav.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/social-links.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/social-links.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/stock-performance.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/stock-performance.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/syncing-state.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/syncing-state.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/transfer-funds.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/transfer-funds.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/cards/upcoming-payments.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/cards/upcoming-payments.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-02/page.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-02/page.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-accordion",
+        "rayli09/shadcn-effect/base-badge",
+        "rayli09/shadcn-effect/base-breadcrumb",
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-calendar",
+        "rayli09/shadcn-effect/base-card",
+        "rayli09/shadcn-effect/base-chart",
+        "rayli09/shadcn-effect/base-checkbox",
+        "rayli09/shadcn-effect/base-combobox",
+        "rayli09/shadcn-effect/base-dropdown-menu",
+        "rayli09/shadcn-effect/base-empty",
+        "rayli09/shadcn-effect/base-field",
+        "rayli09/shadcn-effect/base-input",
+        "rayli09/shadcn-effect/base-input-group",
+        "rayli09/shadcn-effect/base-item",
+        "rayli09/shadcn-effect/base-label",
+        "rayli09/shadcn-effect/base-native-select",
+        "rayli09/shadcn-effect/base-progress",
+        "rayli09/shadcn-effect/base-radio-group",
+        "rayli09/shadcn-effect/base-select",
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/base-sidebar",
+        "rayli09/shadcn-effect/base-skeleton",
+        "rayli09/shadcn-effect/base-slider",
+        "rayli09/shadcn-effect/base-spinner",
+        "rayli09/shadcn-effect/base-switch",
+        "rayli09/shadcn-effect/base-table",
+        "rayli09/shadcn-effect/base-tabs",
+        "rayli09/shadcn-effect/base-textarea",
+        "rayli09/shadcn-effect/base-toggle-group",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-preview-03",
+      "type": "registry:block",
+      "title": "preview-03 block (Bases)",
+      "description": "shadcn preview-03 example block ported to Effect UI (bases generation)",
+      "files": [
+        {
+          "path": "registry/blocks/bases/preview-03/cards/files-chat.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/cards/files-chat.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/cards/group-chat.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/cards/group-chat.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/cards/reasoning-chat.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/cards/reasoning-chat.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/cards/simple-chat.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/cards/simple-chat.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/cards/sources-chat.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/cards/sources-chat.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/cards/tool-chat.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/cards/tool-chat.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/example.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/example.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/part-file.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/part-file.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/part-reasoning.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/part-reasoning.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/part-source.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/part-source.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/part-text.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/part-text.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/part-tool.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/part-tool.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/components/prompt-input.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/components/prompt-input.ts"
+        },
+        {
+          "path": "registry/blocks/bases/preview-03/page.ts",
+          "type": "registry:block",
+          "target": "~/src/blocks/preview-03/page.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-attachment",
+        "rayli09/shadcn-effect/base-badge",
+        "rayli09/shadcn-effect/base-bubble",
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-card",
+        "rayli09/shadcn-effect/base-dropdown-menu",
+        "rayli09/shadcn-effect/base-field",
+        "rayli09/shadcn-effect/base-input-group",
+        "rayli09/shadcn-effect/base-marker",
+        "rayli09/shadcn-effect/base-message",
+        "rayli09/shadcn-effect/base-message-scroller",
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/base-spinner",
+        "rayli09/shadcn-effect/base-textarea",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
     }
   ]
 }

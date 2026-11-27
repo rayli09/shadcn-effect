@@ -215,7 +215,7 @@ describe("Resizable (new-york)", () => {
         const GripDemo = Html.component({
           name: "GripDemo",
           model: Schema.Struct({}),
-          message: UiSchema.TaggedEnum({ Unused: {} }),
+          message: UiSchema.TaggedEnum({}),
         }).make({
           init: () => ({}),
           update: {},

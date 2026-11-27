@@ -120,7 +120,7 @@ export type TableCaptionElement<Msg, R = never> = Html.Element<
  *
  * `class` lands on the <table>, as upstream's `className` does.
  */
-export const Table = <Msg, R = never, C extends View.Children<Msg> = View.Children<Msg>>(
+export const Table = <Msg, R = never>(
   h: {
     readonly div: TableContainerElement<Msg, R>;
     readonly table: TableElement<Msg, R>;
@@ -128,14 +128,20 @@ export const Table = <Msg, R = never, C extends View.Children<Msg> = View.Childr
   options: {
     readonly class?: string | undefined;
     /** The table's children: TableCaption / TableHeader / TableBody / TableFooter builders. */
-    readonly children?: C | undefined;
+    readonly children?: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>> | undefined;
   } = {},
 ) => {
   const table = h.table.attr("data-slot", "table").class(cn(TABLE_CLASS, options.class));
   return h.div
     .attr("data-slot", "table-container")
     .class(TABLE_CONTAINER_CLASS)
-    .children(options.children !== undefined ? table.children(options.children) : table);
+    .children(
+      options.children !== undefined
+        ? table.children(
+            ...(Array.isArray(options.children) ? options.children : [options.children]),
+          )
+        : table,
+    );
 };
 
 /** The table's header section (<thead>). */

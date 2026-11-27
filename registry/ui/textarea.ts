@@ -20,7 +20,7 @@ export const TEXTAREA_CLASS =
  * A `<textarea>` builder: what `Textarea` accepts as `element`, from the
  * caller's `h.textarea`, and what it returns.
  */
-export type TextareaElement<Msg, R = never> = Html.Element<
+export type TextareaElement<Msg, R = never> = Html.VoidElement<
   Msg,
   R,
   Html.EventsOf<"textarea">,

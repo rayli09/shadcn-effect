@@ -205,7 +205,7 @@ describe("Carousel (new-york generation)", () => {
     Effect.gen(function* () {
       const scene = yield* HtmlScene.make(
         Carousel,
-        { count: 2, orientation: "vertical" },
+        { count: 2, orientation: "vertical" as const },
         { elements: Html, view: standInView },
       );
       scene.expectMount(CarouselTrack({ index: 0, orientation: "vertical" }));

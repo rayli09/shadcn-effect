@@ -20,10 +20,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "alert",
@@ -42,9 +39,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "alert-dialog",
@@ -63,10 +58,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/button"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/button"]
     },
     {
       "name": "aspect-ratio",
@@ -85,9 +77,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "attachment",
@@ -106,10 +96,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/button"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/button"]
     },
     {
       "name": "avatar",
@@ -128,9 +115,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "badge",
@@ -149,9 +134,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "breadcrumb",
@@ -170,10 +153,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "bubble",
@@ -192,9 +172,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "button",
@@ -213,9 +191,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "button-group",
@@ -234,10 +210,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/separator"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/separator"]
     },
     {
       "name": "calendar",
@@ -279,9 +252,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "checkbox",
@@ -300,10 +271,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "collapsible",
@@ -340,10 +308,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "command",
@@ -362,10 +327,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "context-menu",
@@ -384,10 +346,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "date-picker",
@@ -431,10 +390,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "direction",
@@ -471,9 +427,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "dropdown-menu",
@@ -492,10 +446,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "empty",
@@ -514,9 +465,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "field",
@@ -558,10 +507,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/label"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/label"]
     },
     {
       "name": "hover-card",
@@ -580,9 +526,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "icons",
@@ -596,9 +540,7 @@
           "target": "~/src/lib/icons.ts"
         }
       ],
-      "dependencies": [
-        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"
-      ]
+      "dependencies": ["https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"]
     },
     {
       "name": "input",
@@ -617,9 +559,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "input-group",
@@ -662,10 +602,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "item",
@@ -684,10 +621,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/separator"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/separator"]
     },
     {
       "name": "kbd",
@@ -706,9 +640,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "label",
@@ -727,9 +659,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "marker",
@@ -748,9 +678,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "menubar",
@@ -769,10 +697,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "message",
@@ -791,9 +716,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "message-scroller",
@@ -835,9 +758,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "navigation-menu",
@@ -856,10 +777,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "pagination",
@@ -901,9 +819,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "progress",
@@ -922,9 +838,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "radio-group",
@@ -943,10 +857,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "scroll-area",
@@ -965,9 +876,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "select",
@@ -986,10 +895,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "separator",
@@ -1008,9 +914,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "sheet",
@@ -1029,10 +933,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/dialog"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/dialog"]
     },
     {
       "name": "sidebar",
@@ -1078,9 +979,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "slider",
@@ -1099,9 +998,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "sonner",
@@ -1120,10 +1017,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "spinner",
@@ -1142,10 +1036,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/icons"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/icons"]
     },
     {
       "name": "switch",
@@ -1164,9 +1055,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "table",
@@ -1185,9 +1074,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "tabs",
@@ -1206,9 +1093,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "textarea",
@@ -1227,9 +1112,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "theme",
@@ -1261,9 +1144,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "toggle-group",
@@ -1282,10 +1163,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils",
-        "rayli09/shadcn-effect/toggle"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/toggle"]
     },
     {
       "name": "tooltip",
@@ -1304,9 +1182,7 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": [
-        "rayli09/shadcn-effect/utils"
-      ]
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
     },
     {
       "name": "utils",
@@ -1319,6 +1195,1398 @@
           "type": "registry:lib",
           "target": "~/src/lib/utils.ts"
         }
+      ]
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-luma.css",
+          "target": "~/src/styles/style-luma.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-luma",
+      "title": "Style \u2014 Luma",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-lyra.css",
+          "target": "~/src/styles/style-lyra.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-lyra",
+      "title": "Style \u2014 Lyra",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-maia.css",
+          "target": "~/src/styles/style-maia.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-maia",
+      "title": "Style \u2014 Maia",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-mira.css",
+          "target": "~/src/styles/style-mira.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-mira",
+      "title": "Style \u2014 Mira",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-nova.css",
+          "target": "~/src/styles/style-nova.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-nova",
+      "title": "Style \u2014 Nova",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-rhea.css",
+          "target": "~/src/styles/style-rhea.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-rhea",
+      "title": "Style \u2014 Rhea",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-sera.css",
+          "target": "~/src/styles/style-sera.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-sera",
+      "title": "Style \u2014 Sera",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/style-vega.css",
+          "target": "~/src/styles/style-vega.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "style-vega",
+      "title": "Style \u2014 Vega",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/theme-stone.css",
+          "target": "~/src/styles/theme-stone.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "theme-stone",
+      "registryDependencies": ["rayli09/shadcn-effect/theme"],
+      "title": "Theme \u2014 Stone",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/theme-zinc.css",
+          "target": "~/src/styles/theme-zinc.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "theme-zinc",
+      "registryDependencies": ["rayli09/shadcn-effect/theme"],
+      "title": "Theme \u2014 Zinc",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/theme-mauve.css",
+          "target": "~/src/styles/theme-mauve.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "theme-mauve",
+      "registryDependencies": ["rayli09/shadcn-effect/theme"],
+      "title": "Theme \u2014 Mauve",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/theme-olive.css",
+          "target": "~/src/styles/theme-olive.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "theme-olive",
+      "registryDependencies": ["rayli09/shadcn-effect/theme"],
+      "title": "Theme \u2014 Olive",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/theme-mist.css",
+          "target": "~/src/styles/theme-mist.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "theme-mist",
+      "registryDependencies": ["rayli09/shadcn-effect/theme"],
+      "title": "Theme \u2014 Mist",
+      "type": "registry:style"
+    },
+    {
+      "files": [
+        {
+          "path": "registry/styles/theme-taupe.css",
+          "target": "~/src/styles/theme-taupe.css",
+          "type": "registry:style"
+        }
+      ],
+      "name": "theme-taupe",
+      "registryDependencies": ["rayli09/shadcn-effect/theme"],
+      "title": "Theme \u2014 Taupe",
+      "type": "registry:style"
+    },
+    {
+      "name": "base-accordion",
+      "type": "registry:ui",
+      "title": "Accordion (Bases)",
+      "description": "shadcn accordion \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/accordion.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/accordion.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-alert",
+      "type": "registry:ui",
+      "title": "Alert (Bases)",
+      "description": "shadcn alert \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/alert.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/alert.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog (Bases)",
+      "description": "shadcn alert-dialog \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/alert-dialog.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/alert-dialog.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/base-button", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio (Bases)",
+      "description": "shadcn aspect-ratio \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/aspect-ratio.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/aspect-ratio.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-attachment",
+      "type": "registry:ui",
+      "title": "Attachment (Bases)",
+      "description": "shadcn attachment \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/attachment.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/attachment.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/base-button", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-avatar",
+      "type": "registry:ui",
+      "title": "Avatar (Bases)",
+      "description": "shadcn avatar \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/avatar.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/avatar.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-badge",
+      "type": "registry:ui",
+      "title": "Badge (Bases)",
+      "description": "shadcn badge \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/badge.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/badge.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb (Bases)",
+      "description": "shadcn breadcrumb \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/breadcrumb.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/breadcrumb.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-bubble",
+      "type": "registry:ui",
+      "title": "Bubble (Bases)",
+      "description": "shadcn bubble \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/bubble.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/bubble.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-button",
+      "type": "registry:ui",
+      "title": "Button (Bases)",
+      "description": "shadcn button \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/button.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/button.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-button-group",
+      "type": "registry:ui",
+      "title": "Button Group (Bases)",
+      "description": "shadcn button-group \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/button-group.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/button-group.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-calendar",
+      "type": "registry:ui",
+      "title": "Calendar (Bases)",
+      "description": "shadcn calendar \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/calendar.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/calendar.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-card",
+      "type": "registry:ui",
+      "title": "Card (Bases)",
+      "description": "shadcn card \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/card.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/card.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox (Bases)",
+      "description": "shadcn checkbox \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/checkbox.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/checkbox.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-code-block",
+      "type": "registry:ui",
+      "title": "Code Block (Bases)",
+      "description": "shadcn code-block \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/code-block.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/code-block.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible (Bases)",
+      "description": "shadcn collapsible \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/collapsible.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/collapsible.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ]
+    },
+    {
+      "name": "base-combobox",
+      "type": "registry:ui",
+      "title": "Combobox (Bases)",
+      "description": "shadcn combobox \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/combobox.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/combobox.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-input-group",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-command",
+      "type": "registry:ui",
+      "title": "Command (Bases)",
+      "description": "shadcn command \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/command.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/command.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-input-group",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu (Bases)",
+      "description": "shadcn context-menu \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/context-menu.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/context-menu.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker (Bases)",
+      "description": "shadcn date-picker \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/date-picker.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/date-picker.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-calendar",
+        "rayli09/shadcn-effect/base-popover",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-dialog",
+      "type": "registry:ui",
+      "title": "Dialog (Bases)",
+      "description": "shadcn dialog \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/dialog.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/dialog.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-direction",
+      "type": "registry:ui",
+      "title": "Direction (Bases)",
+      "description": "shadcn direction \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/direction.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/direction.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ]
+    },
+    {
+      "name": "base-drawer",
+      "type": "registry:ui",
+      "title": "Drawer (Bases)",
+      "description": "shadcn drawer \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/drawer.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/drawer.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu (Bases)",
+      "description": "shadcn dropdown-menu \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/dropdown-menu.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/dropdown-menu.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-empty",
+      "type": "registry:ui",
+      "title": "Empty (Bases)",
+      "description": "shadcn empty \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/empty.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/empty.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-field",
+      "type": "registry:ui",
+      "title": "Field (Bases)",
+      "description": "shadcn field \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/field.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/field.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-label",
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card (Bases)",
+      "description": "shadcn hover-card \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/hover-card.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/hover-card.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-input",
+      "type": "registry:ui",
+      "title": "Input (Bases)",
+      "description": "shadcn input \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/input.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/input.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-input-group",
+      "type": "registry:ui",
+      "title": "Input Group (Bases)",
+      "description": "shadcn input-group \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/input-group.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/input-group.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-input",
+        "rayli09/shadcn-effect/base-textarea",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp (Bases)",
+      "description": "shadcn input-otp \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/input-otp.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/input-otp.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-item",
+      "type": "registry:ui",
+      "title": "Item (Bases)",
+      "description": "shadcn item \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/item.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/item.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-kbd",
+      "type": "registry:ui",
+      "title": "Kbd (Bases)",
+      "description": "shadcn kbd \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/kbd.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/kbd.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-label",
+      "type": "registry:ui",
+      "title": "Label (Bases)",
+      "description": "shadcn label \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/label.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/label.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-marker",
+      "type": "registry:ui",
+      "title": "Marker (Bases)",
+      "description": "shadcn marker \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/marker.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/marker.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-menubar",
+      "type": "registry:ui",
+      "title": "Menubar (Bases)",
+      "description": "shadcn menubar \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/menubar.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/menubar.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-message",
+      "type": "registry:ui",
+      "title": "Message (Bases)",
+      "description": "shadcn message \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/message.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/message.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-message-scroller",
+      "type": "registry:ui",
+      "title": "Message Scroller (Bases)",
+      "description": "shadcn message-scroller \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/message-scroller.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/message-scroller.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-native-select",
+      "type": "registry:ui",
+      "title": "Native Select (Bases)",
+      "description": "shadcn native-select \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/native-select.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/native-select.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu (Bases)",
+      "description": "shadcn navigation-menu \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/navigation-menu.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/navigation-menu.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-pagination",
+      "type": "registry:ui",
+      "title": "Pagination (Bases)",
+      "description": "shadcn pagination \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/pagination.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/pagination.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-popover",
+      "type": "registry:ui",
+      "title": "Popover (Bases)",
+      "description": "shadcn popover \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/popover.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/popover.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-progress",
+      "type": "registry:ui",
+      "title": "Progress (Bases)",
+      "description": "shadcn progress \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/progress.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/progress.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-questionnaire",
+      "type": "registry:ui",
+      "title": "Questionnaire (Bases)",
+      "description": "shadcn questionnaire \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/questionnaire.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/questionnaire.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group (Bases)",
+      "description": "shadcn radio-group \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/radio-group.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/radio-group.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area (Bases)",
+      "description": "shadcn scroll-area \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/scroll-area.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/scroll-area.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-select",
+      "type": "registry:ui",
+      "title": "Select (Bases)",
+      "description": "shadcn select \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/select.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/select.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-separator",
+      "type": "registry:ui",
+      "title": "Separator (Bases)",
+      "description": "shadcn separator \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/separator.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/separator.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-sheet",
+      "type": "registry:ui",
+      "title": "Sheet (Bases)",
+      "description": "shadcn sheet \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/sheet.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/sheet.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/base-dialog", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar (Bases)",
+      "description": "shadcn sidebar \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/sidebar.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/sidebar.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-button",
+        "rayli09/shadcn-effect/base-input",
+        "rayli09/shadcn-effect/base-separator",
+        "rayli09/shadcn-effect/base-sheet",
+        "rayli09/shadcn-effect/base-skeleton",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
+      ]
+    },
+    {
+      "name": "base-skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton (Bases)",
+      "description": "shadcn skeleton \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/skeleton.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/skeleton.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-slider",
+      "type": "registry:ui",
+      "title": "Slider (Bases)",
+      "description": "shadcn slider \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/slider.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/slider.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-sonner",
+      "type": "registry:ui",
+      "title": "Sonner (Bases)",
+      "description": "shadcn sonner \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/sonner.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/sonner.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-spinner",
+      "type": "registry:ui",
+      "title": "Spinner (Bases)",
+      "description": "shadcn spinner \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/spinner.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/spinner.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/icons", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-switch",
+      "type": "registry:ui",
+      "title": "Switch (Bases)",
+      "description": "shadcn switch \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/switch.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/switch.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-table",
+      "type": "registry:ui",
+      "title": "Table (Bases)",
+      "description": "shadcn table \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/table.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/table.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-tabs",
+      "type": "registry:ui",
+      "title": "Tabs (Bases)",
+      "description": "shadcn tabs \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/tabs.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/tabs.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-textarea",
+      "type": "registry:ui",
+      "title": "Textarea (Bases)",
+      "description": "shadcn textarea \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/textarea.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/textarea.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-toggle",
+      "type": "registry:ui",
+      "title": "Toggle (Bases)",
+      "description": "shadcn toggle \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/toggle.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/toggle.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group (Bases)",
+      "description": "shadcn toggle-group \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/toggle-group.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/toggle-group.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/base-toggle", "rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip (Bases)",
+      "description": "shadcn tooltip \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/tooltip.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/tooltip.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+    },
+    {
+      "name": "base-trace",
+      "type": "registry:ui",
+      "title": "Trace (Bases)",
+      "description": "shadcn trace \u2014 bases (hooks) generation on @effect/ui-kit; visual design comes from a style-* preset",
+      "files": [
+        {
+          "path": "registry/bases/ui/trace.ts",
+          "type": "registry:ui",
+          "target": "~/src/components/ui/trace.ts"
+        }
+      ],
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main",
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
+        "effect"
+      ],
+      "registryDependencies": [
+        "rayli09/shadcn-effect/base-collapsible",
+        "rayli09/shadcn-effect/icons",
+        "rayli09/shadcn-effect/utils"
       ]
     }
   ]

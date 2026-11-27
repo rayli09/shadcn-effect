@@ -1326,10 +1326,7 @@
     "w-(--sidebar-width)",
     "w-full"
   ],
-  "skeleton": [
-    "animate-pulse",
-    "cn-skeleton"
-  ],
+  "skeleton": ["animate-pulse", "cn-skeleton"],
   "slider": [
     "cn-slider",
     "cn-slider-range",
@@ -1364,10 +1361,7 @@
     "var(--popover-foreground)",
     "var(--radius)"
   ],
-  "spinner": [
-    "animate-spin",
-    "size-4"
-  ],
+  "spinner": ["animate-spin", "size-4"],
   "switch": [
     "after:-inset-x-3",
     "after:-inset-y-2",

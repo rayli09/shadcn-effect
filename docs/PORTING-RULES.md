@@ -99,3 +99,35 @@ Instead:
   Radix `mergeProps` resolves `{ ...slotProps, ...childProps }` — child
   props win. `form-control` still lands on control elements that don't
   stamp their own slot.
+
+## D-9 — The bases generation and presets (wave 6)
+
+- **Two generations, one registry.** The new-york items keep their names
+  (`button`); the bases generation ships as `base-<name>` items installing
+  to the same target paths — mutually exclusive alternatives per component.
+  A bases port is the same kit logic/anatomy as its new-york sibling with
+  the class layer taken verbatim from `bases/radix/ui` (structural inline
+  classes + `cn-*` hooks); parity is gated against
+  `parity/bases-tokens.json` by the same verify script.
+- **Presets are vendored, never edited.** `registry/styles/style-*.css`
+  are byte-identical copies of upstream `apps/v4/registry/styles/`
+  (md5-verified at vendoring time). Their `@apply` rules key on the
+  `cn-*` hooks plus `data-open`/`data-closed`/`data-checked`-style
+  variants — attributes the kit emits natively. Theme overrides
+  (`theme-<color>.css`) are generated from upstream `themes.ts` cssVars
+  (7 base colors; the `theme` item itself is neutral, sourced from the
+  new-york globals — small value drift vs `themes.ts` neutral is known
+  and documented in wave-6 notes; no var is missing).
+- **Attribute bridges make verbatim classes live.** Where upstream keys
+  classes on attributes the kit doesn't write, the wrapper stamps the
+  attribute from the same option that drives behavior: separator stamps
+  `data-horizontal`/`data-vertical`, sheet stamps `data-side`, drawer
+  stamps `data-vaul-drawer-direction` (kit swipe direction mapped
+  down→bottom, up→top). This is the D-5 family applied to the bases
+  layer; bridges are declared in each file's header.
+- **Lib imports are alias-form only.** Distributed files import
+  `@/lib/utils` / `@/lib/icons` — never relative `../lib` paths, which
+  survive installation verbatim and don't resolve from the installed
+  location. The CLI rewrites the alias form via `components.json`
+  aliases; in-repo, tsconfig `paths` resolve them. Every item must
+  declare the lib items it imports (verify gate 4).

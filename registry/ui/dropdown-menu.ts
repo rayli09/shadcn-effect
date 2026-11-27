@@ -250,8 +250,12 @@ export const DropdownMenuCheckboxItem = <Msg, R = never>(
 export const DropdownMenuRadioGroup = <Msg, R = never>(
   menu: DropdownMenuParts,
   h: Html.H<Msg>,
-  children: View.Content<Msg, R>,
-) => menu.radioGroup(h.div).attr("data-slot", "dropdown-menu-radio-group").children(children);
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
+) =>
+  menu
+    .radioGroup(h.div)
+    .attr("data-slot", "dropdown-menu-radio-group")
+    .children(...(Array.isArray(children) ? children : [children]));
 
 /**
  * A radio item, checked while its entry in the Menu's `items` prop

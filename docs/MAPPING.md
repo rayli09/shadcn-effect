@@ -87,3 +87,18 @@ which are pure markup in both worlds.
 - **icons** — lucide-react is banned. Icons are inline SVG builders (`h.svg` with
   lucide path data, ISC-licensed) in `registry/lib/icons.ts` (planned with the first
   icon-bearing component, checkbox).
+
+## Bases generation (wave 6)
+
+Every row above also exists in the bases generation as a `base-<name>`
+item (`registry/bases/ui/<name>.ts`), ported from
+`apps/v4/registry/bases/radix/ui/<name>.tsx` with the same kit mapping —
+only the class layer differs (structural classes + `cn-*` hooks, styled
+by the `style-*` presets; see docs/PRESETS.md). Differences from the
+table above: **form** has no bases counterpart (upstream dropped it;
+`base-field` is the form surface); **code-block**, **questionnaire**
+(native step-navigation Component; upstream wraps
+`@shadcn/react/questionnaire`) and **trace** exist only in the bases
+generation; **date-picker** is again a composition, on the bases
+calendar/button/popover. chart/carousel/resizable stay D-4 in both
+generations.

@@ -58,8 +58,28 @@ exists only there. Stable bun has `bun check` and `bun fmt` but no lint.
 
 ## Status
 
-All 58 portable upstream files ported and parity-verified (wave 1: 35, wave 2: 23) + the date-picker docs composition + theme, utils, icons. Only chart, carousel, resizable remain unported — declared in docs/PORTING-RULES.md D-4 (they wrap React-only engines: Recharts, embla, react-resizable-panels).
-Full 61-file upstream mapping, primitive by primitive: [docs/MAPPING.md](docs/MAPPING.md).
+Two component generations, one registry (137 items):
+
+- **new-york generation** (`button`, `card`, …): all 58 portable upstream
+  new-york-v4 files ported and parity-verified + the date-picker composition.
+  Full utilities inline; theme via CSS variables only.
+- **bases generation** (`base-button`, `base-card`, …): all 60 portable
+  upstream bases/radix files ported with the `cn-*` hook class layer
+  verbatim + a date-picker composition. Visual design lives in the style
+  presets: 8 vendored byte-for-byte (`style-vega`, `style-nova`,
+  `style-maia`, `style-lyra`, `style-mira`, `style-luma`, `style-sera`,
+  `style-rhea`) plus the theme matrix — 7 base colors (the `theme` item is
+  neutral; `theme-stone`, `theme-zinc`, `theme-mauve`, `theme-olive`,
+  `theme-mist`, `theme-taupe` override its variables). Bases adds three
+  components new-york never had: `base-code-block`, `base-questionnaire`
+  (step navigation native in the Component Model), `base-trace`. The bases
+  generation has no form item — `base-field` is the form surface, as
+  upstream. See [docs/PRESETS.md](docs/PRESETS.md) for activation.
+- Only chart, carousel, resizable remain unported in both generations —
+  declared in docs/PORTING-RULES.md D-4 (they wrap React-only engines:
+  Recharts, embla, react-resizable-panels).
+
+Full upstream mapping, primitive by primitive: [docs/MAPPING.md](docs/MAPPING.md).
 Porting rules and the banned-dependency list: [docs/PORTING-RULES.md](docs/PORTING-RULES.md).
 
 ```sh

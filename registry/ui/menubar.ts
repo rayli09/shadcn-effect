@@ -296,8 +296,12 @@ export const MenubarCheckboxItem = <Msg, R = never>(
 export const MenubarRadioGroup = <Msg, R = never>(
   menu: MenubarMenuParts,
   h: Html.H<Msg>,
-  children: View.Content<Msg, R>,
-) => menu.radioGroup(h.div).attr("data-slot", "menubar-radio-group").children(children);
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
+) =>
+  menu
+    .radioGroup(h.div)
+    .attr("data-slot", "menubar-radio-group")
+    .children(...(Array.isArray(children) ? children : [children]));
 
 /**
  * A radio item, checked while its entry in the Menu's `items` prop

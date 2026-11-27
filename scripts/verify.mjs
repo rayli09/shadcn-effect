@@ -85,7 +85,9 @@ for (const [name, toks] of Object.entries(basesParity)) {
   const src = readFileSync(file, "utf8");
   const missing = toks.filter((t) => !src.includes(t));
   if (missing.length)
-    fail(`base-${name}: ${missing.length} upstream tokens missing: ${missing.slice(0, 8).join(" ")}`);
+    fail(
+      `base-${name}: ${missing.length} upstream tokens missing: ${missing.slice(0, 8).join(" ")}`,
+    );
   else console.log(`parity base-${name}: ${toks.length} upstream tokens present`);
 }
 if (basesPending) console.log(`bases: ${basesPending} ports pending (no registry item yet)`);
@@ -102,7 +104,9 @@ for (const item of registry.items) {
     const src = readFileSync(join(root, f.path), "utf8");
     for (const m of src.matchAll(/@\/lib\/([a-z-]+)/g)) {
       if (!deps.has(`rayli09/shadcn-effect/${m[1]}`))
-        fail(`${item.name}: imports @/lib/${m[1]} but does not declare rayli09/shadcn-effect/${m[1]}`);
+        fail(
+          `${item.name}: imports @/lib/${m[1]} but does not declare rayli09/shadcn-effect/${m[1]}`,
+        );
     }
   }
 }

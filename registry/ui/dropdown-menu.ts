@@ -50,8 +50,8 @@ import {
   type MenuTriggerElement,
   type MenuTriggerOptions,
 } from "@effect/ui-kit";
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { CheckIcon, ChevronRightIcon, CircleIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 /** What a kit `Menu`'s view receives: its parts and plain values. */
 export type DropdownMenuParts = Component.Headless.Parts<typeof Menu>;

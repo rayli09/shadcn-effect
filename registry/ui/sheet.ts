@@ -36,7 +36,7 @@ import type * as Component from "@effect/ui/Component";
 import type * as View from "@effect/ui/View";
 import type { Html } from "@effect/ui/html";
 import { Dialog as KitDialog, type DialogEvents, type DialogProps } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { XIcon } from "./dialog.ts";
 
 /** What a `Sheet`'s `view` gets: the kit Dialog's parts and plain values. */

@@ -8,7 +8,7 @@
  * the class strings verbatim so anchors style identically.
  */
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type BadgeVariant = "default" | "secondary" | "destructive" | "outline" | "ghost" | "link";
 

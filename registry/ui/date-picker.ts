@@ -43,8 +43,8 @@
 import type { PopoverAlign } from "@effect/ui-kit";
 import type * as Html from "@effect/ui/html/Html";
 import * as DateTime from "effect/DateTime";
-import { CalendarIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { CalendarIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "./button.ts";
 import { Calendar, type CalendarProps } from "./calendar.ts";
 import { Popover, PopoverContent } from "./popover.ts";

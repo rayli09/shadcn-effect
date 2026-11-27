@@ -65,8 +65,8 @@ import type * as Component from "@effect/ui/Component";
 import type * as Html from "@effect/ui/html/Html";
 import type * as View from "@effect/ui/View";
 import * as DateTime from "effect/DateTime";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 import { buttonVariants, type ButtonVariant } from "./button.ts";
 
 // ---------------------------------------------------------------------------

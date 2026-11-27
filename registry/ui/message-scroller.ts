@@ -36,8 +36,8 @@
 import type * as Html from "@effect/ui/html/Html";
 import { Html as HtmlNs } from "@effect/ui/html";
 import type * as View from "@effect/ui/View";
-import { ArrowDownIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { ArrowDownIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 import { Button, type ButtonSize, type ButtonVariant } from "./button.ts";
 
 type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;

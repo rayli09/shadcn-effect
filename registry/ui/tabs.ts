@@ -48,7 +48,7 @@ import {
   type TabsOrientation,
   type TabsProps,
 } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type { TabsActivationDirection, TabsOrientation, TabsProps };
 

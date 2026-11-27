@@ -58,8 +58,8 @@ import {
   type MenuTriggerElement,
   type MenuTriggerOptions,
 } from "@effect/ui-kit";
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { CheckIcon, ChevronRightIcon, CircleIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 /** What the kit `Menubar`'s view receives: its `root` part and plain values. */
 export type MenubarParts = Component.Headless.Parts<typeof KitMenubar>;

@@ -34,8 +34,8 @@ import {
   type RadioGroupProps,
 } from "@effect/ui-kit";
 import type { Html } from "@effect/ui/html";
-import { CircleIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { CircleIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 export const RADIO_GROUP_CLASS = "grid gap-3";
 

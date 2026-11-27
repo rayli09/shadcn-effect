@@ -20,7 +20,7 @@
  * Class strings are byte-for-byte the shadcn new-york-v4 strings.
  */
 import { Toggle as KitToggle, type ToggleElement, type ToggleProps } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type ToggleVariant = "default" | "outline";
 

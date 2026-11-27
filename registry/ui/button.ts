@@ -12,7 +12,7 @@
  * checker (scripts/verify.mjs) fails if any upstream token disappears.
  */
 import { Button as KitButton, type ButtonElement, type ButtonProps } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type ButtonVariant = "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
 

@@ -28,8 +28,8 @@
  */
 import type * as Html from "@effect/ui/html/Html";
 import { type Html as HtmlNs } from "@effect/ui/html";
-import { ChevronRightIcon, EllipsisIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { ChevronRightIcon, EllipsisIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 export const BREADCRUMB_LIST_CLASS =
   "flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2.5";

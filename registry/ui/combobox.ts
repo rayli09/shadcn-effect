@@ -54,8 +54,8 @@ import {
 } from "@effect/ui-kit";
 import type * as Html from "@effect/ui/html/Html";
 import type * as View from "@effect/ui/View";
-import { CheckIcon, ChevronDownIcon, XIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { CheckIcon, ChevronDownIcon, XIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
 // Class strings — verbatim from shadcn new-york-v4 combobox.tsx

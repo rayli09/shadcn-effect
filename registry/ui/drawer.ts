@@ -40,7 +40,7 @@ import type * as Component from "@effect/ui/Component";
 import type * as View from "@effect/ui/View";
 import type { Html } from "@effect/ui/html";
 import { Drawer as KitDrawer, type DrawerEvents, type DrawerProps } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 /** What a `Drawer`'s `view` gets: the kit Drawer's parts and plain values. */
 export type DrawerParts = Component.Headless.Parts<typeof KitDrawer>;

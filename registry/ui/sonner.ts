@@ -80,8 +80,8 @@ import {
   OctagonXIcon as SharedOctagonXIcon,
   TriangleAlertIcon as SharedTriangleAlertIcon,
   XIcon as SharedXIcon,
-} from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+} from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 export type { ToastData, ToastItem, ToastProviderProps };
 

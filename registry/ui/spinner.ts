@@ -18,8 +18,8 @@
  * only attribute order differs, which HTML does not care about.
  */
 import type { Html } from "@effect/ui/html";
-import { LoaderCircleIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { LoaderCircleIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 export const SPINNER_CLASS = "size-4 animate-spin";
 

@@ -13,7 +13,7 @@
  * builder instead — the repo-wide view-function shape (see badge.ts).
  */
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 type DivElement<Msg, R = never> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 

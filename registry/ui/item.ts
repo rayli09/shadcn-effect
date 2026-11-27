@@ -17,7 +17,7 @@
  */
 import type * as Html from "@effect/ui/html/Html";
 import type { SeparatorElement } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { Separator } from "./separator.ts";
 
 type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;

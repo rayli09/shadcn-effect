@@ -80,8 +80,8 @@ import type * as Component from "@effect/ui/Component";
 import type { Html } from "@effect/ui/html";
 import type * as View from "@effect/ui/View";
 import { NavigationMenu as KitNavigationMenu, type NavigationMenuProps } from "@effect/ui-kit";
-import { ChevronDownIcon as SharedChevronDownIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { ChevronDownIcon as SharedChevronDownIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 /** What a kit `NavigationMenu`'s view receives: its parts and plain values. */
 export type NavigationMenuParts = Component.Headless.Parts<typeof KitNavigationMenu>;

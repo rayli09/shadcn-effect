@@ -44,7 +44,7 @@ import type * as Component from "@effect/ui/Component";
 import type * as View from "@effect/ui/View";
 import type * as Html from "@effect/ui/html/Html";
 import type * as AsyncResult from "effect/reactivity/AsyncResult";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type { PopoverAlign, PopoverSide };
 

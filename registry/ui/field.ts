@@ -45,7 +45,7 @@ import { Field as KitField, type FieldProps } from "@effect/ui-kit";
 import type * as Component from "@effect/ui/Component";
 import type * as View from "@effect/ui/View";
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { LABEL_CLASS } from "./label.ts";
 import { Separator } from "./separator.ts";
 

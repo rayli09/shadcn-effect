@@ -6,7 +6,7 @@
  * <div>. Class string is byte-for-byte upstream.
  */
 import { Separator as KitSeparator, type SeparatorElement } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export const SEPARATOR_CLASS =
   "shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px";

@@ -69,8 +69,8 @@ import {
   type AccordionProps,
 } from "@effect/ui-kit";
 import type { AsyncResult } from "effect/reactivity";
-import { ChevronDownIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { ChevronDownIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 export type { AccordionItemProps, AccordionProps };
 

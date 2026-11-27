@@ -46,8 +46,8 @@ import {
   type DialogTriggerPress,
   type DialogTriggerProps,
 } from "@effect/ui-kit";
-import { XIcon as SharedXIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { XIcon as SharedXIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 /** What a `Dialog`'s `view` gets: the kit Dialog's parts and plain values. */
 export type DialogParts = Component.Headless.Parts<typeof KitDialog>;

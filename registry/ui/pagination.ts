@@ -24,8 +24,8 @@
  */
 import type * as Html from "@effect/ui/html/Html";
 import { type Html as HtmlNs } from "@effect/ui/html";
-import { ChevronLeftIcon, ChevronRightIcon, EllipsisIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { ChevronLeftIcon, ChevronRightIcon, EllipsisIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 import { buttonVariants, type ButtonSize } from "./button.ts";
 
 export const PAGINATION_CLASS = "mx-auto flex w-full justify-center";

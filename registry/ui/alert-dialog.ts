@@ -86,7 +86,7 @@
 import type * as Html from "@effect/ui/html/Html";
 import type * as View from "@effect/ui/View";
 import { AlertDialog as KitAlertDialog, type AlertDialogParts } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { buttonVariants, type ButtonSize, type ButtonVariant } from "./button.ts";
 
 export type { AlertDialogProps } from "@effect/ui-kit";

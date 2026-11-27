@@ -23,7 +23,7 @@
  */
 import type * as Html from "@effect/ui/html/Html";
 import type { ButtonElement, ButtonProps } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { Button, type ButtonSize, type ButtonVariant } from "./button.ts";
 
 type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;

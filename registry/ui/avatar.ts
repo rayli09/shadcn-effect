@@ -35,7 +35,7 @@ import {
   type AvatarSpan,
 } from "@effect/ui-kit";
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type AvatarSize = "default" | "sm" | "lg";
 

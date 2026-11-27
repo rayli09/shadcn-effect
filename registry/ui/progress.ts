@@ -32,7 +32,7 @@
  */
 import { Progress as KitProgress, type ProgressProps, type ProgressStatus } from "@effect/ui-kit";
 import type { Html } from "@effect/ui/html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type { ProgressProps, ProgressStatus };
 

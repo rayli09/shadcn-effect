@@ -22,7 +22,7 @@
  */
 import type * as Html from "@effect/ui/html/Html";
 import type * as View from "@effect/ui/View";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export const TABLE_CONTAINER_CLASS = "relative w-full overflow-x-auto";
 

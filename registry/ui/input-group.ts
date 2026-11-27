@@ -53,7 +53,7 @@
  */
 import type * as Html from "@effect/ui/html/Html";
 import type { ButtonElement, ButtonProps } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { Button, type ButtonVariant } from "./button.ts";
 import { Input, type InputElement, type InputProps } from "./input.ts";
 import { Textarea, type TextareaElement, type TextareaProps } from "./textarea.ts";

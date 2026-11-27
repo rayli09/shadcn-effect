@@ -6,7 +6,7 @@
  * not a Component. Class string is byte-for-byte upstream.
  */
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export const SKELETON_CLASS = "animate-pulse rounded-md bg-accent";
 

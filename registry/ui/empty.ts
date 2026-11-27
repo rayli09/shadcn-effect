@@ -15,7 +15,7 @@
  * checker (scripts/verify.mjs) fails if any upstream token disappears.
  */
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 type Div<Msg, R> = Html.Element<Msg, R, Html.EventsOf<"div">, HTMLDivElement, "div">;
 

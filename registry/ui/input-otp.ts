@@ -82,8 +82,8 @@ import type * as Component from "@effect/ui/Component";
 import type * as View from "@effect/ui/View";
 import type { Html } from "@effect/ui/html";
 import { OTPField as KitOTPField, type OTPFieldEvents, type OTPFieldProps } from "@effect/ui-kit";
-import { MinusIcon } from "../lib/icons.ts";
-import { cn } from "../lib/utils.ts";
+import { MinusIcon } from "@/lib/icons";
+import { cn } from "@/lib/utils";
 
 export type {
   OTPFieldEvents,

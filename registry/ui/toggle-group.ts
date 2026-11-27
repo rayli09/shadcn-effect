@@ -47,7 +47,7 @@ import {
   type ToggleGroupOrientation,
   type ToggleGroupProps,
 } from "@effect/ui-kit";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 import { toggleVariants, type ToggleSize, type ToggleVariant } from "./toggle.ts";
 
 export type { ToggleGroupOrientation, ToggleGroupProps };

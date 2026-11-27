@@ -13,7 +13,7 @@
  *   AspectRatio(h, { ratio: 16 / 9 }).children(...)
  */
 import type * as Html from "@effect/ui/html/Html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export const AspectRatio = <Msg, R = never>(
   h: {

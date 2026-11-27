@@ -42,7 +42,7 @@ import {
   type ScrollAreaProps,
 } from "@effect/ui-kit";
 import type { Html } from "@effect/ui/html";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 export type { ScrollAreaOrientation, ScrollAreaProps };
 

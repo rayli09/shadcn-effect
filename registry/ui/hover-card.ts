@@ -46,7 +46,7 @@ import type * as Component from "@effect/ui/Component";
 import type * as View from "@effect/ui/View";
 import type * as Html from "@effect/ui/html/Html";
 import type * as AsyncResult from "effect/reactivity/AsyncResult";
-import { cn } from "../lib/utils.ts";
+import { cn } from "@/lib/utils";
 
 /** The options a `HoverCard` call takes: the kit `PreviewCard` Component's call options, verbatim. */
 export type HoverCardOptions<Msg, RV = never, RF = never> = View.Child.Options<

@@ -66,6 +66,30 @@ for (const [name, toks] of Object.entries(parity)) {
   else console.log(`parity ${name}: ${toks.length} upstream tokens present`);
 }
 
+// Bases generation (wave 6): same gate against bases/radix tokens, applied
+// to every base-* item registered in registry.json. Token entries without a
+// registered item yet are pending ports, counted but not failures.
+const registered = new Set(registry.items.map((i) => i.name));
+const basesParity = JSON.parse(readFileSync(join(root, "parity/bases-tokens.json"), "utf8"));
+let basesPending = 0;
+for (const [name, toks] of Object.entries(basesParity)) {
+  if (!registered.has(`base-${name}`)) {
+    basesPending++;
+    continue;
+  }
+  const file = join(root, "registry/bases/ui", `${name}.ts`);
+  if (!existsSync(file)) {
+    fail(`base-${name}: registered but port missing`);
+    continue;
+  }
+  const src = readFileSync(file, "utf8");
+  const missing = toks.filter((t) => !src.includes(t));
+  if (missing.length)
+    fail(`base-${name}: ${missing.length} upstream tokens missing: ${missing.slice(0, 8).join(" ")}`);
+  else console.log(`parity base-${name}: ${toks.length} upstream tokens present`);
+}
+if (basesPending) console.log(`bases: ${basesPending} ports pending (no registry item yet)`);
+
 if (failures) {
   console.error(`${failures} failure(s)`);
   process.exit(1);

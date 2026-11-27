@@ -6,6 +6,10 @@
     "moduleResolution": "NodeNext",
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@/lib/icons": ["./registry/lib/icons.ts"],
+      "@/lib/utils": ["./registry/lib/utils.ts"]
+    },
     "skipLibCheck": true,
     "strict": true,
     "target": "ES2022"

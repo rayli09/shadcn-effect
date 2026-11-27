@@ -22,7 +22,9 @@
  *   drawn inside the parent's popup. Re-exported below as the same `Menu`.
  * - Open state is the consumer's: pass `open` in the Menu props and store
  *   what its `RequestedOpen` / `RequestedClose` events ask for. Item
- *   `disabled` likewise comes from the Menu's `items` prop, not the part.
+ *   `disabled` likewise comes from the Menu's `items` prop, not the part,
+ *   and so does checked state: a checkbox or radio item is checked when
+ *   its `items` entry carries `checked: true` (Effect-TS/ui PR #474).
  * - Upstream Content's `sideOffset = 4` default is a Positioning prop on
  *   the kit Menu call (`sideOffset: 4` in `props`), not on the part.
  *
@@ -201,14 +203,16 @@ export const DropdownMenuItem = <Msg>(
 /**
  * A checkbox item with the upstream indicator: a left span holding the
  * kit's `checkboxItemIndicator` part, which draws only while checked,
- * with an inline Check icon inside.
+ * with an inline Check icon inside. Checked state is NOT an option here:
+ * the kit reads it from the Menu's `items` prop — the item is checked
+ * when its entry there carries `checked: true`, and `Picked` reports
+ * the new state (the opposite of the entry's current `checked`).
  */
 export const DropdownMenuCheckboxItem = <Msg, R = never>(
   menu: DropdownMenuParts,
   h: Html.H<Msg>,
   options: {
     readonly value: string;
-    readonly checked: boolean;
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
@@ -218,7 +222,6 @@ export const DropdownMenuCheckboxItem = <Msg, R = never>(
     .checkboxItem({
       element: h.div,
       value: options.value,
-      checked: options.checked,
       closeOnClick: options.closeOnClick,
     })
     .attr("data-slot", "dropdown-menu-checkbox-item")
@@ -235,29 +238,24 @@ export const DropdownMenuCheckboxItem = <Msg, R = never>(
     );
 
 /**
- * The radio group: the kit `radioGroup` part; `value` is the checked item's value, or null.
- *
- * `children` is a CALLBACK, deliberately: the kit's `radioItem` part reads
- * the value this group part records when it runs, and JS evaluates call
- * arguments before the call — items passed as a plain argument would be
- * built before the group ran and every item would render unchecked (in a
- * browser too, not just tests). The callback is invoked after the part
- * runs, so items built inside it see the recorded value. (D-8)
+ * The radio group: the kit `radioGroup` part, a plain grouping element.
+ * It carries no value of its own: each radio item is checked when its
+ * entry in the Menu's `items` prop carries `checked: true`, so the
+ * consumer derives the entries from its Model (exactly one checked).
+ * Checked state comes from the items data (Effect-TS/ui PR #474, fixing
+ * issue #445, which this repo's D-8 finding reported), so build order
+ * no longer matters and `children` is a plain argument again — the D-8
+ * children callback this wrapper used to require is gone.
  */
 export const DropdownMenuRadioGroup = <Msg, R = never>(
   menu: DropdownMenuParts,
   h: Html.H<Msg>,
-  options: { readonly value: string | null },
-  children: () => View.Content<Msg, R>,
-) =>
-  menu
-    .radioGroup({ element: h.div, value: options.value })
-    .attr("data-slot", "dropdown-menu-radio-group")
-    .children(children());
+  children: View.Content<Msg, R>,
+) => menu.radioGroup(h.div).attr("data-slot", "dropdown-menu-radio-group").children(children);
 
 /**
- * A radio item, checked while the enclosing radio group's value is its
- * own, with the upstream Circle indicator.
+ * A radio item, checked while its entry in the Menu's `items` prop
+ * carries `checked: true`, with the upstream Circle indicator.
  */
 export const DropdownMenuRadioItem = <Msg, R = never>(
   menu: DropdownMenuParts,

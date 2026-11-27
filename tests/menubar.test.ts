@@ -37,11 +37,16 @@ import {
 // kit's per-item `data-menu-item` values where they can, and document
 // order (File before Edit) for the two triggers and contents.
 //
-// Radio items are built inside the RadioGroup wrapper's children
-// CALLBACK (D-8): the kit's radioItem part reads the value the
-// radioGroup part recorded earlier in the same view evaluation, and
-// plain-argument children would be evaluated before the group part
-// ran, rendering every item unchecked. Text labels go through
+// Checked state is items-driven: a checkbox or radio item renders
+// checked when its entry in the menu's `items` prop carries
+// `checked: true`, so the consumer derives File's items from its Model
+// on every render, and a checkbox Picked reports the new state (the
+// opposite of the entry's current `checked`). This is Effect-TS/ui
+// PR #474 ("Read Menu checked state from items"), fixing issue #445 —
+// filed from this repo's D-8 finding, where radio items passed as a
+// plain argument rendered unchecked because the old `radioGroup` part
+// recorded its value mid-evaluation. Build order is free now and the
+// wrappers' children callback is gone. Text labels go through
 // View.text because the wrappers' children parameters are a single
 // View.Content. The port Menubar's `view` returns an array of menus
 // directly (its typing was widened to View.Children at wave-3
@@ -66,11 +71,13 @@ const EditorBarMessage = UiSchema.TaggedEnum({
   },
 });
 
-const fileItems = [
+// File's `items` prop, derived from the Model on every render:
+// `checked` on an entry is the kit's only source of checked state.
+const fileItemsFor = (model: { readonly wrap: boolean; readonly size: string }) => [
   { value: "new", label: "New" },
-  { value: "wrap", label: "Wrap lines" },
-  { value: "small", label: "Small" },
-  { value: "large", label: "Large" },
+  { value: "wrap", label: "Wrap lines", checked: model.wrap },
+  { value: "small", label: "Small", checked: model.size === "small" },
+  { value: "large", label: "Large", checked: model.size === "large" },
 ];
 const editItems = [
   { value: "undo", label: "Undo" },
@@ -106,7 +113,7 @@ const EditorBar = Html.component({
             key: "File",
             props: {
               open: model.open === "File",
-              items: fileItems,
+              items: fileItemsFor(model),
               align: "start",
               alignOffset: -4,
               sideOffset: 8,
@@ -125,15 +132,11 @@ const EditorBar = Html.component({
                 MenubarContent(menu, h).children(
                   MenubarLabel(menu, h, {}).children("Actions"),
                   MenubarItem(menu, h, { value: "new" }).children("New"),
-                  MenubarCheckboxItem(
-                    menu,
-                    h,
-                    { value: "wrap", checked: model.wrap },
-                    View.text("Wrap lines"),
-                  ),
+                  MenubarCheckboxItem(menu, h, { value: "wrap" }, View.text("Wrap lines")),
                   MenubarSeparator(menu, h),
-                  // Group first, items chained after — see the header.
-                  MenubarRadioGroup(menu, h, { value: model.size }, () => [
+                  // Radio items as plain children: checked state comes
+                  // from the items prop data, so build order is free.
+                  MenubarRadioGroup(menu, h, [
                     MenubarRadioItem(menu, h, { value: "small" }, View.text("Small")),
                     MenubarRadioItem(menu, h, { value: "large" }, View.text("Large")),
                   ]),

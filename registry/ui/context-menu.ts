@@ -20,7 +20,9 @@
  *   inside the context menu's popup. Re-exported below as `Menu`.
  * - Open state is the consumer's: pass `open` in the props and store
  *   what its `RequestedOpen` / `RequestedClose` events ask for. Item
- *   `disabled` comes from the `items` prop, not the part.
+ *   `disabled` comes from the `items` prop, not the part, and so does
+ *   checked state: a checkbox or radio item is checked when its `items`
+ *   entry carries `checked: true` (Effect-TS/ui PR #474).
  *
  * Declared divergences (see docs/PORTING-RULES.md):
  *
@@ -196,14 +198,16 @@ export const ContextMenuItem = <Msg>(
 /**
  * A checkbox item with the upstream indicator: a left span holding the
  * kit's `checkboxItemIndicator` part, which draws only while checked,
- * with an inline Check icon inside.
+ * with an inline Check icon inside. Checked state is NOT an option here:
+ * the kit reads it from the Menu's `items` prop — the item is checked
+ * when its entry there carries `checked: true`, and `Picked` reports
+ * the new state (the opposite of the entry's current `checked`).
  */
 export const ContextMenuCheckboxItem = <Msg, R = never>(
   menu: ContextMenuParts,
   h: Html.H<Msg>,
   options: {
     readonly value: string;
-    readonly checked: boolean;
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
@@ -213,7 +217,6 @@ export const ContextMenuCheckboxItem = <Msg, R = never>(
     .checkboxItem({
       element: h.div,
       value: options.value,
-      checked: options.checked,
       closeOnClick: options.closeOnClick,
     })
     .attr("data-slot", "context-menu-checkbox-item")
@@ -230,29 +233,24 @@ export const ContextMenuCheckboxItem = <Msg, R = never>(
     );
 
 /**
- * The radio group: the kit `radioGroup` part; `value` is the checked item's value, or null.
- *
- * `children` is a CALLBACK, deliberately: the kit's `radioItem` part reads
- * the value this group part records when it runs, and JS evaluates call
- * arguments before the call — items passed as a plain argument would be
- * built before the group ran and every item would render unchecked (in a
- * browser too, not just tests). The callback is invoked after the part
- * runs, so items built inside it see the recorded value. (D-8)
+ * The radio group: the kit `radioGroup` part, a plain grouping element.
+ * It carries no value of its own: each radio item is checked when its
+ * entry in the Menu's `items` prop carries `checked: true`, so the
+ * consumer derives the entries from its Model (exactly one checked).
+ * Checked state comes from the items data (Effect-TS/ui PR #474, fixing
+ * issue #445, which this repo's D-8 finding reported), so build order
+ * no longer matters and `children` is a plain argument again — the D-8
+ * children callback this wrapper used to require is gone.
  */
 export const ContextMenuRadioGroup = <Msg, R = never>(
   menu: ContextMenuParts,
   h: Html.H<Msg>,
-  options: { readonly value: string | null },
-  children: () => View.Content<Msg, R>,
-) =>
-  menu
-    .radioGroup({ element: h.div, value: options.value })
-    .attr("data-slot", "context-menu-radio-group")
-    .children(children());
+  children: View.Content<Msg, R>,
+) => menu.radioGroup(h.div).attr("data-slot", "context-menu-radio-group").children(children);
 
 /**
- * A radio item, checked while the enclosing radio group's value is its
- * own, with the upstream Circle indicator.
+ * A radio item, checked while its entry in the Menu's `items` prop
+ * carries `checked: true`, with the upstream Circle indicator.
  */
 export const ContextMenuRadioItem = <Msg, R = never>(
   menu: ContextMenuParts,

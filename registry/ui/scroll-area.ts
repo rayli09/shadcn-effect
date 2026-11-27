@@ -81,18 +81,21 @@ export const ScrollBar = <B extends View.PartTarget<"div">, T extends View.PartT
     readonly class?: string | undefined;
     readonly thumbClass?: string | undefined;
   },
-) => {
+  // The part's own return type, spelled out: left inferred, the
+  // generic `WithRequirements` collapses to `unknown` for callers.
+): View.WithRequirements<B, View.Requirements<T>> | undefined => {
   const orientation = options.orientation ?? "vertical";
-  const built = parts.scrollbar({
-    element: options.element,
-    thumb: options.thumb
-      .attr("data-slot", "scroll-area-thumb")
-      .class(cn(SCROLL_BAR_THUMB_CLASS, options.thumbClass)),
-    orientation,
-    keepMounted: options.keepMounted,
-  });
-  return built
-    ?.attr("data-slot", "scroll-area-scrollbar")
+  // The kit's `scrollbar` part returns the track with the thumb's
+  // requirements joined (`WithRequirements`), which cannot be chained
+  // on while `B` is generic — style the track before handing it to
+  // the part instead, the same shape the thumb below (and the kit's
+  // own example) uses. The part sets neither `data-slot` nor `class`,
+  // so the rendered track is unchanged. The styled builders are bound
+  // to `B` / `T` locals first: passed inline, the part's generic
+  // inference loses the element's type and the result degrades to
+  // `unknown`.
+  const element: B = options.element
+    .attr("data-slot", "scroll-area-scrollbar")
     .class(
       cn(
         SCROLL_BAR_CLASS,
@@ -100,6 +103,15 @@ export const ScrollBar = <B extends View.PartTarget<"div">, T extends View.PartT
         options.class,
       ),
     );
+  const thumb: T = options.thumb
+    .attr("data-slot", "scroll-area-thumb")
+    .class(cn(SCROLL_BAR_THUMB_CLASS, options.thumbClass));
+  return parts.scrollbar({
+    element,
+    thumb,
+    orientation,
+    keepMounted: options.keepMounted,
+  });
 };
 
 /**

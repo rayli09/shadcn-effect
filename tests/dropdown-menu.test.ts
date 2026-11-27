@@ -32,14 +32,18 @@ import {
 // Two Scene-rendering facts about the kit Menu, pinned by these tests:
 // unlike Popover's portal, the Menu always draws its popup in the view —
 // closed is an attribute state (`data-closed` on the content, no
-// `data-popup-open` on the trigger), not an absence. And the kit's
-// radioItem part reads the value the radioGroup part recorded *earlier in
-// the same view evaluation*. The menu RadioGroup wrappers therefore take
-// their items as a children CALLBACK (D-8, fixed at wave-3 consolidation):
-// plain-argument children would be evaluated before the group part ran
-// and every radio item would render unchecked — in a browser too, not
-// just here. (The other wrappers' `children` parameters are typed as a
-// single View.Content, so text labels below go through View.text.)
+// `data-popup-open` on the trigger), not an absence. And checked state
+// is items-driven: a checkbox or radio item renders checked when its
+// entry in the Menu's `items` prop carries `checked: true`, so the
+// consumer below derives the items from its Model on every render, and
+// a checkbox Picked reports the new state (the opposite of the entry's
+// current `checked`). This is Effect-TS/ui PR #474 ("Read Menu checked
+// state from items"), fixing issue #445 — filed from this repo's D-8
+// finding, where radio items passed as a plain argument rendered
+// unchecked because the old `radioGroup` part recorded its value
+// mid-evaluation. Build order is free now and the wrappers' children
+// callback is gone. (The wrappers' `children` parameters are typed as
+// a single View.Content, so text labels below go through View.text.)
 //
 // Untestable in a Scene (declared, not faked): placement and collision
 // (the positioner's geometry is written by the kit's TrackMenu mount,
@@ -60,11 +64,13 @@ const FileMenuMessage = UiSchema.TaggedEnum({
   },
 });
 
-const items = [
+// The Menu's `items` prop, derived from the Model on every render:
+// `checked` on an entry is the kit's only source of checked state.
+const itemsFor = (model: { readonly wrap: boolean; readonly size: string }) => [
   { value: "new", label: "New" },
-  { value: "wrap", label: "Wrap lines" },
-  { value: "small", label: "Small" },
-  { value: "large", label: "Large" },
+  { value: "wrap", label: "Wrap lines", checked: model.wrap },
+  { value: "small", label: "Small", checked: model.size === "small" },
+  { value: "large", label: "Large", checked: model.size === "large" },
 ];
 
 const FileMenu = Html.component({
@@ -91,7 +97,7 @@ const FileMenu = Html.component({
   view: (h, model) =>
     h.div(
       DropdownMenu(h, {
-        props: { open: model.open, items, sideOffset: 4 },
+        props: { open: model.open, items: itemsFor(model), sideOffset: 4 },
         onEmit: {
           RequestedOpen: () => FileMenuMessage.Opened(),
           RequestedClose: () => FileMenuMessage.Closed(),
@@ -106,16 +112,11 @@ const FileMenu = Html.component({
             DropdownMenuContent(menu, h).children(
               DropdownMenuLabel(menu, h, {}).children("Actions"),
               DropdownMenuItem(menu, h, { value: "new" }).children("New"),
-              DropdownMenuCheckboxItem(
-                menu,
-                h,
-                { value: "wrap", checked: model.wrap },
-                View.text("Wrap lines"),
-              ),
+              DropdownMenuCheckboxItem(menu, h, { value: "wrap" }, View.text("Wrap lines")),
               DropdownMenuSeparator(menu, h),
-              // Items inside the group's children callback (D-8) — see
-              // the header note on the kit's evaluation order.
-              DropdownMenuRadioGroup(menu, h, { value: model.size }, () => [
+              // Radio items as plain children: checked state comes from
+              // the items prop data, so build order is free (header).
+              DropdownMenuRadioGroup(menu, h, [
                 DropdownMenuRadioItem(menu, h, { value: "small" }, View.text("Small")),
                 DropdownMenuRadioItem(menu, h, { value: "large" }, View.text("Large")),
               ]),

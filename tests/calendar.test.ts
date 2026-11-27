@@ -9,7 +9,9 @@ import {
   CALENDAR_CAPTION_LABEL_TEXT_CLASS,
   CALENDAR_CLASS,
   CALENDAR_DAY_BUTTON_CLASS,
+  CALENDAR_MONTH_CLASS,
   CALENDAR_MONTH_GRID_CLASS,
+  CALENDAR_MONTHS_CLASS,
   CALENDAR_ROOT_CLASS,
   CALENDAR_RTL_NEXT_CLASS,
   CALENDAR_RTL_PREVIOUS_CLASS,
@@ -119,9 +121,41 @@ const RangePicker = Html.component({
     }),
 });
 
+const SpreadPicker = Html.component({
+  name: "SpreadPicker",
+  model: Schema.Struct({
+    date: Schema.NullOr(Schema.DateTimeUtc),
+    month: Schema.DateTimeUtc,
+  }),
+  message: PickerMessage,
+}).make({
+  init: () => ({ date: utc("2026-11-15"), month: NOVEMBER }),
+  update: {
+    PickedDate: ($, { date }) => $.evolve({ date }),
+    RequestedMonth: ($, { month }) => $.evolve({ month }),
+    PickedRange: ($) => $.model,
+  },
+  view: (h, model) =>
+    Calendar(h, {
+      numberOfMonths: 2,
+      props: {
+        value: model.date,
+        month: model.month,
+        today: TODAY,
+        locale: "en-US",
+      },
+      onEmit: {
+        Picked: ({ date }) => PickerMessage.PickedDate({ date }),
+        RequestedMonth: ({ month }) => PickerMessage.RequestedMonth({ month }),
+      },
+    }),
+});
+
 const root = Locator.attr("data-slot", "calendar");
 const grid = Locator.tag("table");
 const heading = Locator.attr("aria-live", "polite");
+const monthsWrap = Locator.attr("class", CALENDAR_MONTHS_CLASS);
+const monthSection = Locator.attr("class", CALENDAR_MONTH_CLASS);
 const selectedCell = Locator.attr("aria-selected", "true");
 const dayButton = (day: string) => Locator.attr("data-day", day);
 
@@ -206,6 +240,49 @@ describe("Calendar (shadcn-effect port)", () => {
       scene.expect(heading).toHaveText("December 2026");
       // The selection is in November, so no December cell is selected.
       scene.expect(selectedCell).toHaveCount(0);
+    }),
+  );
+
+  it.effect("multi-month: numberOfMonths 2 renders two month sections under one root", () =>
+    Effect.gen(function* () {
+      const scene = yield* Scene.make(SpreadPicker, {});
+      // One root, one months container, two month sections, two grids.
+      scene.expect(root).toHaveCount(1);
+      scene.expect(monthsWrap).toHaveCount(1);
+      assert.strictEqual(scene.all(monthSection).length, 2);
+      assert.strictEqual(scene.all(grid).length, 2);
+      // Each month section carries its own kit heading, in order.
+      assert.deepStrictEqual(
+        scene.all(heading).map((node) => Locator.textOf(node)),
+        ["November 2026", "December 2026"],
+      );
+      // The November selection renders as before: exactly one selected cell.
+      scene.expect(selectedCell).toHaveCount(1);
+      assert.strictEqual(
+        scene.get(dayButton("11/15/2026")).attrs?.["data-selected-single"],
+        "true",
+      );
+    }),
+  );
+
+  it.effect("multi-month: a Picked date in the second month moves the selection there", () =>
+    Effect.gen(function* () {
+      const scene = yield* Scene.make(SpreadPicker, {});
+      // The same Picked flow as single-month; Dec 10 lives only in the
+      // second month's grid (November's grid ends Dec 5).
+      scene.childEmit(KitCalendar, {
+        _tag: "Picked",
+        date: utc("2026-12-10"),
+      });
+      assert.strictEqual(
+        scene.get(dayButton("12/10/2026")).attrs?.["data-selected-single"],
+        "true",
+      );
+      assert.strictEqual(
+        scene.get(dayButton("11/15/2026")).attrs?.["data-selected-single"],
+        "false",
+      );
+      scene.expect(selectedCell).toHaveCount(1);
     }),
   );
 

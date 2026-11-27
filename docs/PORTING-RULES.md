@@ -75,16 +75,21 @@ Instead:
   (no uncontrolled/`defaultValue` mode). Icons are file-local inline SVG
   builders until `registry/lib/icons.ts` hoists them (wave 2 cleanup).
 
-## D-8 — Evaluation order and slot stacking (wave 3, from the Scene tests)
+## D-8 — Evaluation order and slot stacking (wave 3; radio half superseded in wave 5)
 
-- **Part-state children are callbacks.** A kit part can record state that a
-  later part in the same view evaluation reads (the menu `radioItem` part
-  reads the value the `radioGroup` part recorded). JS evaluates call
-  arguments before the call, so children passed as a plain argument to such
-  a wrapper would be built _before_ the recording part runs and render
-  wrong — in a browser, not just in tests. Wrappers in that situation take
-  `children: () => View.Content` and invoke it after the part runs. Applied:
-  `DropdownMenuRadioGroup`, `ContextMenuRadioGroup`, `MenubarRadioGroup`.
+- **Part-state children are callbacks** — SUPERSEDED for menus (wave 5).
+  The hazard was real: the kit `radioItem` part read a closure variable
+  the `radioGroup` part set when called, so items built before their
+  group rendered unchecked. This repo's finding was filed upstream as
+  Effect-TS/ui#445 and fixed in PR #474: checked state now comes from
+  the Menu `items` prop data (`checked` per item, like `disabled`), the
+  parts read their own state from props, and build order no longer
+  matters. The menu RadioGroup wrappers reverted to plain `children`
+  arguments and lost their `{ value }` option; CheckboxItem lost its
+  `checked` option. The general lesson stands for future kit parts:
+  if a part reads state another part records during the same view
+  evaluation, children that depend on it must be built after it runs —
+  but prefer the items-data model when the kit offers one.
 - **A stacked element's own `data-slot` wins.** When a port stacks onto a
   caller-supplied element (the D-2 composition), stamps chain in build
   order and the later stamp wins — so a control element's own slot (e.g.

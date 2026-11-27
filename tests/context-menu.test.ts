@@ -26,6 +26,10 @@ import {
 // (a context menu has no filter). The consumer owns `open` and the
 // checkbox state in its Model; tests drive the child with childEmit
 // (README rule 1), plus one Play for the real right-click flow.
+// Checked state reaches the kit through the `items` prop data
+// (Effect-TS/ui PR #474): the consumer derives each entry's `checked`
+// from its Model, and a checkbox Picked reports the new state (the
+// opposite of the entry's current `checked`).
 //
 // Scene-rendering facts pinned here: as with Menu, the popup is always
 // drawn in the view and closed is `data-closed` on the content. The
@@ -52,9 +56,11 @@ const FileRowMessage = UiSchema.TaggedEnum({
   },
 });
 
-const items = [
+// The Menu's `items` prop, derived from the Model on every render:
+// `checked` on an entry is the kit's only source of checked state.
+const itemsFor = (wrap: boolean) => [
   { value: "rename", label: "Rename" },
-  { value: "wrap", label: "Wrap lines" },
+  { value: "wrap", label: "Wrap lines", checked: wrap },
 ];
 
 const FileRow = Html.component({
@@ -78,7 +84,7 @@ const FileRow = Html.component({
   view: (h, model) =>
     h.div(
       ContextMenu(h, {
-        props: { open: model.open, items },
+        props: { open: model.open, items: itemsFor(model.wrap) },
         onEmit: {
           RequestedOpen: () => FileRowMessage.Opened(),
           RequestedClose: () => FileRowMessage.Closed(),
@@ -92,12 +98,7 @@ const FileRow = Html.component({
             ContextMenuContent(menu, h).children(
               ContextMenuLabel(menu, h, {}).children("File actions"),
               ContextMenuItem(menu, h, { value: "rename" }).children("Rename"),
-              ContextMenuCheckboxItem(
-                menu,
-                h,
-                { value: "wrap", checked: model.wrap },
-                View.text("Wrap lines"),
-              ),
+              ContextMenuCheckboxItem(menu, h, { value: "wrap" }, View.text("Wrap lines")),
               ContextMenuSeparator(menu, h),
             ),
           ),

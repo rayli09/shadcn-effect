@@ -12,10 +12,15 @@
  *   root (data-slot="calendar") > nav (previous / next) + months > month >
  *   month_caption (kit heading) + month_grid (kit grid > weekday / cell > day)
  *
- * The kit is single-month, so one month is drawn. `CalendarDayButton` is kept
- * as a styled part applier (upstream name): it stamps the upstream
- * `data-day` / `data-selected-single` / `data-range-*` attributes and the
- * ghost/icon Button classes onto a kit `day` part's builder.
+ * The kit shows `months` consecutive months under one root (upstream PR
+ * #427): the shared parts (`root` / `previous` / `next` / `weekday` /
+ * `weekdays`) sit at the top level and each shown month's parts live in
+ * `parts.months`, one entry per month. The view iterates those entries,
+ * drawing one upstream month section per entry inside the single `months`
+ * container. `CalendarDayButton` is kept as a styled part applier (upstream
+ * name): it stamps the upstream `data-day` / `data-selected-single` /
+ * `data-range-*` attributes and the ghost/icon Button classes onto a kit
+ * `day` part's builder.
  *
  * Class strings are byte-for-byte the shadcn new-york-v4 strings. The
  * react-day-picker default class names (`getDefaultClassNames()`, e.g.
@@ -23,10 +28,9 @@
  * and are not reproduced.
  *
  * NOT reproduced 1:1 (declared, on top of docs/PORTING-RULES.md):
- * - `mode="multiple"` — the kit has no multi-select calendar. `mode="range"`
+ * - `mode="multiple"` — the kit has no multi-select calendar (its `value`
+ *   is a single date; verified against the current kit source). `mode="range"`
  *   is `RangeCalendar` below; `mode="single"` is `Calendar`.
- * - `numberOfMonths > 1` — the kit grid is one month; consumers render two
- *   `Calendar`s side by side sharing one Model if they need a spread.
  * - `captionLayout="dropdown*"` — the kit has no month/year dropdown
  *   machinery (month changes arrive as `RequestedMonth`); the caption always
  *   renders the label. The dropdown class constants are exported for parity.
@@ -206,6 +210,12 @@ export interface CalendarClassNames {
 }
 
 interface CalendarStyleOptions {
+  /**
+   * Upstream `numberOfMonths`: how many consecutive months to show under
+   * one root. Maps to the kit's `months` prop and overrides
+   * `props.months` when set. Default `1`.
+   */
+  readonly numberOfMonths?: number | undefined;
   /** Upstream `buttonVariant`: the shadcn Button variant the nav buttons wear. Default `"ghost"`. */
   readonly buttonVariant?: ButtonVariant | undefined;
   /** Upstream `captionLayout`. Only `"label"` renders; see header. Default `"label"`. */
@@ -302,11 +312,15 @@ export const CalendarDayButton = <Msg, R, E, N, T extends string>(
     );
 
 // ---------------------------------------------------------------------------
-// The shared month drawing. Both kit components expose the same parts
-// (`root` / `heading` / `previous` / `next` / `grid` / `weekday` / `cell` /
-// `day` plus `weeks` / `weekdays` / `month` / `title`); only the per-day
-// selection modifiers differ, and those are supplied by the caller.
+// The shared drawing. Both kit components expose the same part layout:
+// shared parts at the top level (`root` / `previous` / `next` / `weekday`
+// plus the `weekdays` names) and one entry per shown month in
+// `parts.months` (`month` / `title` / `weeks` / `heading` / `grid` / `cell`
+// / `day`). Only the per-day selection modifiers differ, and those are
+// supplied by the caller.
 // ---------------------------------------------------------------------------
+
+type KitCalendarMonthParts = Component.Headless.Parts<typeof KitCalendar>["months"][number];
 
 interface DayModifiers {
   readonly selected: boolean;
@@ -332,7 +346,7 @@ interface DrawInfo {
   readonly modifiers: (date: DateTime.Utc) => DayModifiers;
 }
 
-const drawMonth = <Msg>(
+const drawCalendar = <Msg>(
   h: Html.H<Msg>,
   parts: Component.Headless.Parts<typeof KitCalendar>,
   info: DrawInfo,
@@ -355,13 +369,13 @@ const drawMonth = <Msg>(
     info.showWeekNumber ? CALENDAR_DAY_NTH_SELECTED_CLASS : CALENDAR_DAY_FIRST_SELECTED_CLASS,
   );
 
-  const drawDay = (date: DateTime.Utc) => {
+  const drawDay = (monthParts: KitCalendarMonthParts, date: DateTime.Utc) => {
     const mods = info.modifiers(date);
-    const outside = !sameMonth(date, parts.month);
+    const outside = !sameMonth(date, monthParts.month);
     const today = sameDay(date, info.today);
     const disabledDay = info.disabled || outOfRange(date, info.min, info.max);
     const hidden = outside && !info.showOutsideDays;
-    const cell = parts
+    const cell = monthParts
       .cell({ element: h.td, date })
       .class(
         cn(
@@ -379,7 +393,7 @@ const drawMonth = <Msg>(
     if (hidden) return selected;
     return selected.children(
       CalendarDayButton(
-        parts.day({
+        monthParts.day({
           element: h.button,
           date,
           unavailable: info.isUnavailable?.(date),
@@ -394,6 +408,62 @@ const drawMonth = <Msg>(
       ).children(String(DateTime.getPartUtc(date, "day"))),
     );
   };
+
+  const drawMonthSection = (monthParts: KitCalendarMonthParts) =>
+    h.div.class(slot("month", CALENDAR_MONTH_CLASS)).children(
+      h.div.class(slot("month_caption", CALENDAR_MONTH_CAPTION_CLASS)).children(
+        monthParts
+          .heading(h.div)
+          .class(captionLabelClass)
+          .children(
+            monthParts.title,
+            // The dropdown caption layouts render no dropdown in the
+            // kit (see header); the chevron is drawn so the caption
+            // keeps upstream's anatomy, inert.
+            info.captionLayout === "label"
+              ? undefined
+              : ChevronDownIcon(h, { class: CALENDAR_CHEVRON_CLASS }).attrs(svgAttrRemovals),
+          ),
+      ),
+      monthParts
+        .grid(h.table)
+        .class(slot("month_grid", CALENDAR_MONTH_GRID_CLASS))
+        .children(
+          h.thead(
+            h.tr
+              .class(slot("weekdays", CALENDAR_WEEKDAYS_CLASS))
+              .children(
+                info.showWeekNumber
+                  ? h.th.class(slot("week_number_header", CALENDAR_WEEK_NUMBER_HEADER_CLASS))
+                  : undefined,
+                ...parts.weekdays.map((weekday, index) =>
+                  parts
+                    .weekday({ element: h.th, index })
+                    .class(slot("weekday", CALENDAR_WEEKDAY_CLASS))
+                    .children(weekday.short),
+                ),
+              ),
+          ),
+          h.tbody(
+            ...monthParts.weeks.map((week) =>
+              h.tr
+                .class(slot("week", CALENDAR_WEEK_CLASS))
+                .children(
+                  info.showWeekNumber
+                    ? h.td
+                        .class(slot("week_number", CALENDAR_WEEK_NUMBER_CLASS))
+                        .children(
+                          h.div
+                            .class(CALENDAR_WEEK_NUMBER_INNER_CLASS)
+                            .children(String(isoWeekNumber(week[0]!))),
+                        )
+                    : undefined,
+                  ...week.map((date) => drawDay(monthParts, date)),
+                ),
+            ),
+          ),
+        ),
+    );
 
   return parts
     .root(h.div)
@@ -428,62 +498,9 @@ const drawMonth = <Msg>(
           )
           .children(ChevronRightIcon(h, { class: CALENDAR_CHEVRON_CLASS }).attrs(svgAttrRemovals)),
       ),
-      h.div.class(slot("months", CALENDAR_MONTHS_CLASS)).children(
-        h.div.class(slot("month", CALENDAR_MONTH_CLASS)).children(
-          h.div.class(slot("month_caption", CALENDAR_MONTH_CAPTION_CLASS)).children(
-            parts
-              .heading(h.div)
-              .class(captionLabelClass)
-              .children(
-                parts.title,
-                // The dropdown caption layouts render no dropdown in the
-                // kit (see header); the chevron is drawn so the caption
-                // keeps upstream's anatomy, inert.
-                info.captionLayout === "label"
-                  ? undefined
-                  : ChevronDownIcon(h, { class: CALENDAR_CHEVRON_CLASS }).attrs(svgAttrRemovals),
-              ),
-          ),
-          parts
-            .grid(h.table)
-            .class(slot("month_grid", CALENDAR_MONTH_GRID_CLASS))
-            .children(
-              h.thead(
-                h.tr
-                  .class(slot("weekdays", CALENDAR_WEEKDAYS_CLASS))
-                  .children(
-                    info.showWeekNumber
-                      ? h.th.class(slot("week_number_header", CALENDAR_WEEK_NUMBER_HEADER_CLASS))
-                      : undefined,
-                    ...parts.weekdays.map((weekday, index) =>
-                      parts
-                        .weekday({ element: h.th, index })
-                        .class(slot("weekday", CALENDAR_WEEKDAY_CLASS))
-                        .children(weekday.short),
-                    ),
-                  ),
-              ),
-              h.tbody(
-                ...parts.weeks.map((week) =>
-                  h.tr
-                    .class(slot("week", CALENDAR_WEEK_CLASS))
-                    .children(
-                      info.showWeekNumber
-                        ? h.td
-                            .class(slot("week_number", CALENDAR_WEEK_NUMBER_CLASS))
-                            .children(
-                              h.div
-                                .class(CALENDAR_WEEK_NUMBER_INNER_CLASS)
-                                .children(String(isoWeekNumber(week[0]!))),
-                            )
-                        : undefined,
-                      ...week.map(drawDay),
-                    ),
-                ),
-              ),
-            ),
-        ),
-      ),
+      h.div
+        .class(slot("months", CALENDAR_MONTHS_CLASS))
+        .children(...parts.months.map(drawMonthSection)),
     );
 };
 
@@ -522,6 +539,12 @@ export type { KitCalendarEvents as CalendarEvents };
 export type RangeCalendarProps = KitRangeCalendarProps;
 export type { KitRangeCalendarEvents as RangeCalendarEvents };
 
+/** The port's `numberOfMonths` option, mapped onto the kit's `months` prop. */
+const withMonths = <P extends { readonly months?: number | undefined }>(
+  props: P,
+  numberOfMonths: number | undefined,
+): P => (numberOfMonths === undefined ? props : { ...props, months: numberOfMonths });
+
 export const Calendar = <Msg>(
   h: Html.H<Msg>,
   options: {
@@ -530,10 +553,10 @@ export const Calendar = <Msg>(
   } & CalendarStyleOptions,
 ) =>
   KitCalendar(h, {
-    props: options.props,
+    props: withMonths(options.props, options.numberOfMonths),
     onEmit: options.onEmit,
     view: (calendar) =>
-      drawMonth(
+      drawCalendar(
         h,
         calendar,
         drawInfo(options.props, options, (date) => {
@@ -561,10 +584,10 @@ export const RangeCalendar = <Msg>(
   } & CalendarStyleOptions,
 ) =>
   KitRangeCalendar(h, {
-    props: options.props,
+    props: withMonths(options.props, options.numberOfMonths),
     onEmit: options.onEmit,
     view: (rangeCalendar) =>
-      drawMonth(
+      drawCalendar(
         h,
         rangeCalendar,
         drawInfo(options.props, options, (date) => {

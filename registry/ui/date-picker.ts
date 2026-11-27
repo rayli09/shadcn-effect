@@ -95,6 +95,8 @@ export interface DatePickerOptions<Msg> {
   readonly today: DateTime.Utc;
   readonly min?: CalendarProps["min"];
   readonly max?: CalendarProps["max"];
+  /** Consecutive months shown in the popup calendar (the Calendar port's `numberOfMonths`). Default `1`. */
+  readonly numberOfMonths?: number | undefined;
   readonly locale?: CalendarProps["locale"];
   readonly firstDayOfWeek?: CalendarProps["firstDayOfWeek"];
   readonly disabled?: boolean | undefined;
@@ -152,6 +154,7 @@ export const DatePicker = <Msg>(h: Html.H<Msg>, options: DatePickerOptions<Msg>)
               class: DATE_PICKER_CONTENT_CLASS,
             }).children(
               Calendar(h, {
+                numberOfMonths: options.numberOfMonths,
                 props: {
                   value: options.date,
                   month: options.month,

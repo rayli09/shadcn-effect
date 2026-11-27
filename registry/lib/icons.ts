@@ -198,3 +198,15 @@ export const OctagonXIcon = <Msg>(h: Html.H<Msg>, options: IconOptions = {}) =>
     ],
     options,
   );
+
+/** Lucide `gallery-vertical-end` (ISC). */
+export const GalleryVerticalEndIcon = <Msg>(h: Html.H<Msg>, options: IconOptions = {}) =>
+  icon(
+    h,
+    [
+      ["path", { d: "M7 2h10" }],
+      ["path", { d: "M5 6h14" }],
+      ["rect", { width: "18", height: "12", x: "3", y: "10", rx: "2" }],
+    ],
+    options,
+  );

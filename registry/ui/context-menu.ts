@@ -167,12 +167,12 @@ export const ContextMenuGroup = <Msg, R = never>(
   menu: ContextMenuParts,
   h: Html.H<Msg>,
   options: { readonly group: string },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .group({ element: h.div, group: options.group })
     .attr("data-slot", "context-menu-group")
-    .children(children);
+    .children(...(Array.isArray(children) ? children : [children]));
 
 /** A plain item. Picking it closes the menu unless `closeOnClick` is false. */
 export const ContextMenuItem = <Msg>(
@@ -211,7 +211,7 @@ export const ContextMenuCheckboxItem = <Msg, R = never>(
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .checkboxItem({
@@ -264,7 +264,7 @@ export const ContextMenuRadioItem = <Msg, R = never>(
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .radioItem({
@@ -332,7 +332,7 @@ export const ContextMenuSubTrigger = <Msg, R = never>(
   sub: ContextMenuSubParts,
   h: Html.H<Msg>,
   options: InsetOptions & { readonly value: string },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .item({ element: sub.submenuTrigger(h.div), value: options.value })
@@ -350,14 +350,12 @@ export const ContextMenuSubContent = <Msg, R = never>(
   sub: ContextMenuSubParts,
   h: Html.H<Msg>,
   options: { readonly class?: string | undefined },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
-  sub
-    .positioner(h.div)
-    .children(
-      sub
-        .popup(h.div)
-        .attr("data-slot", "context-menu-sub-content")
-        .class(cn(CONTEXT_MENU_SUB_CONTENT_CLASS, options.class))
-        .children(children),
-    );
+  sub.positioner(h.div).children(
+    sub
+      .popup(h.div)
+      .attr("data-slot", "context-menu-sub-content")
+      .class(cn(CONTEXT_MENU_SUB_CONTENT_CLASS, options.class))
+      .children(...(Array.isArray(children) ? children : [children])),
+  );

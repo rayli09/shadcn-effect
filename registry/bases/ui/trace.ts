@@ -211,5 +211,5 @@ export const TraceCollapsibleContent = <Msg, R = never>(
       h.div
         .attr("data-slot", "trace-collapsible-content-inner")
         .class(cn(TRACE_COLLAPSIBLE_CONTENT_INNER_CLASS, options.class))
-        .children(children),
+        .children(...(Array.isArray(children) ? children : [children])),
     );

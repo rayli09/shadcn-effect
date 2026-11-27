@@ -474,7 +474,7 @@ export const Sidebar = <Msg, R = never>(
     readonly collapsible?: SidebarCollapsible | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ): View.Content<Msg, R | Component.Shared.Of<typeof SidebarProvider>> => {
   const side = options.side ?? "left";
   const variant = options.variant ?? "sidebar";
@@ -484,7 +484,7 @@ export const Sidebar = <Msg, R = never>(
     return h.div
       .attr("data-slot", "sidebar")
       .class(cn(SIDEBAR_NONE_CLASS, options.class))
-      .children(children);
+      .children(...(Array.isArray(children) ? children : [children]));
   }
 
   if (sidebar.isMobile) {
@@ -507,7 +507,9 @@ export const Sidebar = <Msg, R = never>(
                 sheet.title(h.h2).children("Sidebar"),
                 sheet.description(h.p).children("Displays the mobile sidebar."),
               ),
-              h.div.class("flex h-full w-full flex-col").children(children),
+              h.div
+                .class("flex h-full w-full flex-col")
+                .children(...(Array.isArray(children) ? children : [children])),
             ),
         ),
     });
@@ -551,7 +553,7 @@ export const Sidebar = <Msg, R = never>(
           h.div
             .attrs({ "data-sidebar": "sidebar", "data-slot": "sidebar-inner" })
             .class(SIDEBAR_INNER_CLASS)
-            .children(children),
+            .children(...(Array.isArray(children) ? children : [children])),
         ),
     );
 };

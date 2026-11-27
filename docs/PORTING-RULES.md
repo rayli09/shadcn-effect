@@ -42,9 +42,14 @@ Instead:
   stack a kit part on the same builder (the kit's own documented pattern).
 - **D-3 `form`** — API differs by design (Schema + kit Form instead of RHF+zod);
   class strings, field anatomy and error presentation stay 1:1.
-- **D-4 chart / carousel / resizable** — upstream wraps React-only engines
-  (Recharts, embla, react-resizable-panels). Not ported until an Effect-native
-  engine exists; they stay visible in MAPPING.md, never silently dropped.
+- **D-4 chart / carousel / resizable** — LIFTED in wave 7: all three now
+  have Effect-native engines in both generations (chart: SVG renderer with
+  pure scale/path helpers + hit-area hover tooltips; carousel: real
+  scroll-snap container synced through a Mount; resizable: Mount-based
+  pointer drag + WAI-APG keyboard splitter). The React engines' full
+  surfaces are NOT reproduced (Recharts child composition, embla
+  plugins/physics, react-resizable-panels' imperative API) — each file's
+  header declares its exact simplifications. Nothing is silently dropped.
 
 ## Registry rules
 

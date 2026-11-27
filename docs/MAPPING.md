@@ -100,5 +100,22 @@ table above: **form** has no bases counterpart (upstream dropped it;
 (native step-navigation Component; upstream wraps
 `@shadcn/react/questionnaire`) and **trace** exist only in the bases
 generation; **date-picker** is again a composition, on the bases
-calendar/button/popover. chart/carousel/resizable stay D-4 in both
-generations.
+calendar/button/popover. chart/carousel/resizable were D-4 until wave 7 — see the wave-7 note
+below; all three now ship in both generations on native engines.
+
+## Wave 7 — engines and blocks
+
+- **chart / carousel / resizable** are ported in both generations on
+  Effect-native engines (see PORTING-RULES D-4, lifted). The three rows
+  above predate the engines; their per-file headers carry the current
+  shape and the declared simplifications vs Recharts / embla /
+  react-resizable-panels.
+- **Blocks**: every upstream block is ported file-for-file under
+  `registry/blocks/<generation>/<block>/` and registered as a
+  `registry:block` item (`<block>` for new-york, `base-<block>` for
+  bases): dashboard-01, login-01..05, signup-01..05, sidebar-01..16 in
+  both generations, plus preview / preview-02 / preview-03 (bases only).
+  Blocks are example compositions: sample data and copy are upstream's,
+  submit/auth handlers are declared no-op messages (as upstream wires
+  none), and dashboard-01's data table is a native implementation on the
+  table port (upstream's @tanstack/react-table is not ported).

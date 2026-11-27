@@ -197,12 +197,12 @@ export const DropdownMenuGroup = <Msg, R = never>(
   menu: DropdownMenuParts,
   h: Html.H<Msg>,
   options: { readonly group: string },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .group({ element: h.div, group: options.group })
     .attr("data-slot", "dropdown-menu-group")
-    .children(children);
+    .children(...(Array.isArray(children) ? children : [children]));
 
 /** A plain item. Picking it closes the menu unless `closeOnClick` is false. */
 export const DropdownMenuItem = <Msg>(
@@ -241,7 +241,7 @@ export const DropdownMenuCheckboxItem = <Msg, R = never>(
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .checkboxItem({
@@ -295,7 +295,7 @@ export const DropdownMenuRadioItem = <Msg, R = never>(
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .radioItem({
@@ -362,7 +362,7 @@ export const DropdownMenuSubTrigger = <Msg, R = never>(
   sub: DropdownMenuParts,
   h: Html.H<Msg>,
   options: InsetOptions & { readonly value: string },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .item({ element: sub.submenuTrigger(h.div), value: options.value })
@@ -383,14 +383,12 @@ export const DropdownMenuSubContent = <Msg, R = never>(
   sub: DropdownMenuParts,
   h: Html.H<Msg>,
   options: { readonly class?: string | undefined },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
-  sub
-    .positioner(h.div)
-    .children(
-      sub
-        .popup(h.div)
-        .attr("data-slot", "dropdown-menu-sub-content")
-        .class(cn(DROPDOWN_MENU_SUB_CONTENT_CLASS, options.class))
-        .children(children),
-    );
+  sub.positioner(h.div).children(
+    sub
+      .popup(h.div)
+      .attr("data-slot", "dropdown-menu-sub-content")
+      .class(cn(DROPDOWN_MENU_SUB_CONTENT_CLASS, options.class))
+      .children(...(Array.isArray(children) ? children : [children])),
+  );

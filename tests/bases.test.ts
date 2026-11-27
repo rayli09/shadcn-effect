@@ -298,29 +298,33 @@ const Survey = Html.component({
         ItemChanged: ({ name }) => SurveyMessage.ItemChanged({ name }),
       },
       view: (q) =>
-        q.root(h.form).children(
-          QuestionnaireProgress(q, h).children(`${q.current} of ${q.total}`),
-          QuestionnaireItem(q, h).children(
-            QuestionnaireTitle(q, h).children(q.itemName === "plan" ? "Pick a plan" : "Pick a team"),
-            q.itemName === "plan"
-              ? QuestionnaireChoices(q, h).children(
-                  QuestionnaireChoice(q, h, "free", q.choiceLabel(h.span).children("Free")),
-                  QuestionnaireChoice(q, h, "pro", q.choiceLabel(h.span).children("Pro")),
-                )
-              : QuestionnaireChoices(q, h).children(
-                  QuestionnaireChoice(q, h, "solo", q.choiceLabel(h.span).children("Solo")),
-                  QuestionnaireChoice(q, h, "crew", q.choiceLabel(h.span).children("Crew")),
-                ),
+        q
+          .root(h.form)
+          .children(
+            QuestionnaireProgress(q, h).children(`${q.current} of ${q.total}`),
+            QuestionnaireItem(q, h).children(
+              QuestionnaireTitle(q, h).children(
+                q.itemName === "plan" ? "Pick a plan" : "Pick a team",
+              ),
+              q.itemName === "plan"
+                ? QuestionnaireChoices(q, h).children(
+                    QuestionnaireChoice(q, h, "free", q.choiceLabel(h.span).children("Free")),
+                    QuestionnaireChoice(q, h, "pro", q.choiceLabel(h.span).children("Pro")),
+                  )
+                : QuestionnaireChoices(q, h).children(
+                    QuestionnaireChoice(q, h, "solo", q.choiceLabel(h.span).children("Solo")),
+                    QuestionnaireChoice(q, h, "crew", q.choiceLabel(h.span).children("Crew")),
+                  ),
+            ),
+            QuestionnaireActions(h).children(
+              QuestionnairePrevious(q, h),
+              QuestionnaireSkip(q, h),
+              QuestionnaireNext(q, h),
+              QuestionnaireSubmit(q, h),
+            ),
+            h.output.attr("data-slot", "submitted").children(model.submitted),
+            h.output.attr("data-slot", "current-item").children(model.currentItem),
           ),
-          QuestionnaireActions(h).children(
-            QuestionnairePrevious(q, h),
-            QuestionnaireSkip(q, h),
-            QuestionnaireNext(q, h),
-            QuestionnaireSubmit(q, h),
-          ),
-          h.output.attr("data-slot", "submitted").children(model.submitted),
-          h.output.attr("data-slot", "current-item").children(model.currentItem),
-        ),
     }),
 });
 

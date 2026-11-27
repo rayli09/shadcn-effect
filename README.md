@@ -75,9 +75,14 @@ Two component generations, one registry (137 items):
   (step navigation native in the Component Model), `base-trace`. The bases
   generation has no form item — `base-field` is the form surface, as
   upstream. See [docs/PRESETS.md](docs/PRESETS.md) for activation.
-- Only chart, carousel, resizable remain unported in both generations —
-  declared in docs/PORTING-RULES.md D-4 (they wrap React-only engines:
-  Recharts, embla, react-resizable-panels).
+- Wave 7 lifted D-4: **chart, carousel and resizable now ship in both
+  generations** on Effect-native engines (SVG chart renderer, scroll-snap
+  carousel, pointer-drag resizable panels), each with its simplifications
+  vs the React engines declared in its file header. And the **blocks**:
+  all 27 new-york blocks + all 30 bases blocks (dashboard, login ×5,
+  signup ×5, sidebar ×16, preview ×3) ported file-for-file as
+  `registry:block` items under `registry/blocks/` — example compositions
+  on the ports above, sample data verbatim. Registry total: 195+ items.
 
 Full upstream mapping, primitive by primitive: [docs/MAPPING.md](docs/MAPPING.md).
 Porting rules and the banned-dependency list: [docs/PORTING-RULES.md](docs/PORTING-RULES.md).

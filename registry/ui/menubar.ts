@@ -217,12 +217,12 @@ export const MenubarGroup = <Msg, R = never>(
   menu: MenubarMenuParts,
   h: Html.H<Msg>,
   options: { readonly group: string },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .group({ element: h.div, group: options.group })
     .attr("data-slot", "menubar-group")
-    .children(children);
+    .children(...(Array.isArray(children) ? children : [children]));
 
 /** A plain item. Picking it closes the menu unless `closeOnClick` is false. */
 export const MenubarItem = <Msg>(
@@ -261,7 +261,7 @@ export const MenubarCheckboxItem = <Msg, R = never>(
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .checkboxItem({
@@ -315,7 +315,7 @@ export const MenubarRadioItem = <Msg, R = never>(
     readonly closeOnClick?: boolean | undefined;
     readonly class?: string | undefined;
   },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .radioItem({
@@ -380,7 +380,7 @@ export const MenubarSubTrigger = <Msg, R = never>(
   sub: MenubarMenuParts,
   h: Html.H<Msg>,
   options: InsetOptions & { readonly value: string },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
   menu
     .item({ element: sub.submenuTrigger(h.div), value: options.value })
@@ -398,14 +398,12 @@ export const MenubarSubContent = <Msg, R = never>(
   sub: MenubarMenuParts,
   h: Html.H<Msg>,
   options: { readonly class?: string | undefined },
-  children: View.Content<Msg, R>,
+  children: View.Content<Msg, R> | ReadonlyArray<View.Content<Msg, R>>,
 ) =>
-  sub
-    .positioner(h.div)
-    .children(
-      sub
-        .popup(h.div)
-        .attr("data-slot", "menubar-sub-content")
-        .class(cn(MENUBAR_SUB_CONTENT_CLASS, options.class))
-        .children(children),
-    );
+  sub.positioner(h.div).children(
+    sub
+      .popup(h.div)
+      .attr("data-slot", "menubar-sub-content")
+      .class(cn(MENUBAR_SUB_CONTENT_CLASS, options.class))
+      .children(...(Array.isArray(children) ? children : [children])),
+  );

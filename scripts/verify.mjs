@@ -90,6 +90,23 @@ for (const [name, toks] of Object.entries(basesParity)) {
 }
 if (basesPending) console.log(`bases: ${basesPending} ports pending (no registry item yet)`);
 
+// Gate 4: lib dependency declarations. A file importing @/lib/<x> only
+// installs correctly if its registry item declares the lib item as a
+// registryDependency (the CLI rewrites the alias but does not discover
+// undeclared deps). Caught the hard way: 19 items used @/lib/icons
+// without declaring it, so consumers got unresolvable imports.
+for (const item of registry.items) {
+  const deps = new Set(item.registryDependencies ?? []);
+  for (const f of item.files ?? []) {
+    if (!f.path.endsWith(".ts")) continue;
+    const src = readFileSync(join(root, f.path), "utf8");
+    for (const m of src.matchAll(/@\/lib\/([a-z-]+)/g)) {
+      if (!deps.has(`rayli09/shadcn-effect/${m[1]}`))
+        fail(`${item.name}: imports @/lib/${m[1]} but does not declare rayli09/shadcn-effect/${m[1]}`);
+    }
+  }
+}
+
 if (failures) {
   console.error(`${failures} failure(s)`);
   process.exit(1);

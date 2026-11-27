@@ -20,7 +20,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "alert",
@@ -39,7 +42,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "alert-dialog",
@@ -58,7 +63,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/button"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/button"
+      ]
     },
     {
       "name": "aspect-ratio",
@@ -77,7 +85,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "attachment",
@@ -96,7 +106,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/button"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/button"
+      ]
     },
     {
       "name": "avatar",
@@ -115,7 +128,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "badge",
@@ -134,7 +149,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "breadcrumb",
@@ -153,7 +170,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "bubble",
@@ -172,7 +192,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "button",
@@ -191,7 +213,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "button-group",
@@ -210,7 +234,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/separator"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/separator"
+      ]
     },
     {
       "name": "calendar",
@@ -229,7 +256,11 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/button"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/button",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "card",
@@ -248,7 +279,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "checkbox",
@@ -267,7 +300,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "collapsible",
@@ -304,7 +340,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "command",
@@ -323,7 +362,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "context-menu",
@@ -342,7 +384,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "date-picker",
@@ -365,7 +410,8 @@
         "rayli09/shadcn-effect/utils",
         "rayli09/shadcn-effect/button",
         "rayli09/shadcn-effect/calendar",
-        "rayli09/shadcn-effect/popover"
+        "rayli09/shadcn-effect/popover",
+        "rayli09/shadcn-effect/icons"
       ]
     },
     {
@@ -385,7 +431,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "direction",
@@ -422,7 +471,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "dropdown-menu",
@@ -441,7 +492,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "empty",
@@ -460,7 +514,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "field",
@@ -502,7 +558,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/label"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/label"
+      ]
     },
     {
       "name": "hover-card",
@@ -521,7 +580,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "icons",
@@ -535,7 +596,9 @@
           "target": "~/src/lib/icons.ts"
         }
       ],
-      "dependencies": ["https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"]
+      "dependencies": [
+        "https://pkg.pr.new/Effect-TS/ui/@effect/ui@main"
+      ]
     },
     {
       "name": "input",
@@ -554,7 +617,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "input-group",
@@ -597,7 +662,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "item",
@@ -616,7 +684,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/separator"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/separator"
+      ]
     },
     {
       "name": "kbd",
@@ -635,7 +706,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "label",
@@ -654,7 +727,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "marker",
@@ -673,7 +748,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "menubar",
@@ -692,7 +769,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "message",
@@ -711,7 +791,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "message-scroller",
@@ -753,7 +835,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "navigation-menu",
@@ -772,7 +856,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "pagination",
@@ -791,7 +878,11 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/button"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/button",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "popover",
@@ -810,7 +901,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "progress",
@@ -829,7 +922,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "radio-group",
@@ -848,7 +943,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "scroll-area",
@@ -867,7 +965,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "select",
@@ -886,7 +986,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "separator",
@@ -905,7 +1008,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "sheet",
@@ -924,7 +1029,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/dialog"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/dialog"
+      ]
     },
     {
       "name": "sidebar",
@@ -949,7 +1057,8 @@
         "rayli09/shadcn-effect/input",
         "rayli09/shadcn-effect/separator",
         "rayli09/shadcn-effect/sheet",
-        "rayli09/shadcn-effect/skeleton"
+        "rayli09/shadcn-effect/skeleton",
+        "rayli09/shadcn-effect/icons"
       ]
     },
     {
@@ -969,7 +1078,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "slider",
@@ -988,7 +1099,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "sonner",
@@ -1007,7 +1120,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "spinner",
@@ -1026,7 +1142,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/icons"
+      ]
     },
     {
       "name": "switch",
@@ -1045,7 +1164,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "table",
@@ -1064,7 +1185,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "tabs",
@@ -1083,7 +1206,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "textarea",
@@ -1102,7 +1227,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "theme",
@@ -1134,7 +1261,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "toggle-group",
@@ -1153,7 +1282,10 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils", "rayli09/shadcn-effect/toggle"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils",
+        "rayli09/shadcn-effect/toggle"
+      ]
     },
     {
       "name": "tooltip",
@@ -1172,7 +1304,9 @@
         "https://pkg.pr.new/Effect-TS/ui/@effect/ui-kit@main",
         "effect"
       ],
-      "registryDependencies": ["rayli09/shadcn-effect/utils"]
+      "registryDependencies": [
+        "rayli09/shadcn-effect/utils"
+      ]
     },
     {
       "name": "utils",
